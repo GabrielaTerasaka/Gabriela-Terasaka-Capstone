@@ -1,0 +1,28 @@
+@use "./typography" as *;
+@use "./variables" as *;
+@use "./mixins" as *;
+
+@import url("https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,200;0,400;0,600;0,800;1,200;1,400;1,600;1,800&display=swap");
+
+@function toRem($value) {
+  $remValue: ($value / 16) + rem;
+  @return $remValue;
+}
+
+// html {
+//   font-size: toRem(20);
+//   font-weight: 400;
+// }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: left;
+  outline: none;
+  text-decoration: none;
+}
+body {
+  font-family: "Mulish", sans-serif;
+  font-size: toRem(20);
+  font-weight: 400;
+}

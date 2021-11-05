@@ -1,0 +1,31 @@
+@use "./variables" as *;
+
+@mixin text-style($size, $height, $weight) {
+  font-size: $size;
+  line-height: $height;
+  font-weight: $weight;
+}
+
+@mixin flex-wrap($direction: column, $just-content: center, $align: center) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just-content;
+  align-items: $align;
+  flex-wrap: wrap;
+}
+
+@mixin toRem($property, $value) {
+  #{$property}: ($value / 16) + rem;
+}
+
+@mixin tablet-breakpoint {
+  @media screen and (min-width: $tablet-screensize) {
+    @content;
+  }
+}
+
+@mixin desktop-breakpoint {
+  @media screen and (min-width: $desktop-screensize) {
+    @content;
+  }
+}
