@@ -1,0 +1,72 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+
+.fa-bars,
+.fa-times {
+  color: $red;
+}
+
+.header {
+  @include flex-wrap(row, space-between);
+  background-color: $white;
+  padding: 10px 20px;
+  min-height: 80px;
+  @include tablet-breakpoint {
+  }
+
+  &__logo {
+    max-height: 100px;
+  }
+  &__login,
+  &__sign-up {
+    width: 30%;
+    text-align: center;
+    margin-bottom: 10px;
+    &:hover {
+      color: $green;
+    }
+    @include tablet-breakpoint {
+      @include button;
+    }
+  }
+  &__sign-up {
+  }
+  &__navbar {
+    position: absolute;
+    top: 125px;
+    right: 0;
+    z-index: 10;
+    width: 100%;
+    min-width: max-content;
+    text-align: center;
+    background-color: $white;
+    padding: 10px;
+    margin-left: auto;
+    transform: translateX(100%);
+    transition: transform 0.5s linear;
+    @include flex-wrap;
+
+    @include tablet-breakpoint {
+      transform: translateX(0);
+      top: 0;
+      position: relative;
+      width: calc(100% - 150px);
+      @include flex-wrap(row, flex-end);
+    }
+
+    &--active {
+      transform: translateX(0);
+    }
+  }
+  &__navbar-icon {
+    width: 50px;
+    margin: 8px;
+    padding: 3.5px 10px 2px 11.5px;
+    border-radius: 4px;
+    @include flex-wrap;
+    cursor: pointer;
+    @include tablet-breakpoint {
+      display: none;
+    }
+  }
+}

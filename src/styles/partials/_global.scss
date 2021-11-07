@@ -9,10 +9,6 @@
   @return $remValue;
 }
 
-// html {
-//   font-size: toRem(20);
-//   font-weight: 400;
-// }
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +16,20 @@
   text-align: left;
   outline: none;
   text-decoration: none;
+  overflow-x: hidden;
 }
+
 body {
   font-family: "Mulish", sans-serif;
   font-size: toRem(20);
   font-weight: 400;
+  color: $black;
+}
+
+a {
+  color: $black;
+}
+
+img {
+  border-radius: 4px;
 }
