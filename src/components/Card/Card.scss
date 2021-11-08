@@ -3,17 +3,25 @@
 @use "../../styles/partials/functions" as *;
 
 .card {
-  @include flex-wrap(row);
+  @include flex-wrap(row, space-between);
   margin-bottom: toRem(40);
   &__title {
-    text-align: center;
-    width: 50%;
+    // text-align: center;
+    // width: calc(55% - toRem(30));
+    width: 48%;
+    max-width: toRem(380);
+    max-height: toRem(245);
     font-size: toRem(20);
-    margin-right: toRem(15);
+    // margin: 0 toRem(15);
+    &--right {
+      order: 1;
+      // text-align: right;
+    }
   }
   &__image {
-    width: calc(50% - toRem(15));
+    width: 48%;
+    height: 30vw;
+    object-fit: cover;
     border-radius: 4px;
-    object-fit: contain;
   }
 }

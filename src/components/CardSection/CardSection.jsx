@@ -5,8 +5,8 @@ import cardArray from "../../data/homeInfo.json";
 function CardSection(props) {
   return (
     <section className="card-section">
-      {cardArray.map((card) => {
-        return <Card card={card} key={card.id} />;
+      {cardArray.map((card, index) => {
+        return <Card card={card} key={card.id} index={index} />;
       })}
     </section>
   );
