@@ -3,15 +3,18 @@ import "./HomePage.scss";
 
 import HomeHeader from "../../components/HomeHeader";
 import HeroBanner from "../../components/HeroBanner";
+import Card from "../../components/Card";
+
+import cardArray from "../../data/homeInfo.json";
 
 export default function HomePage() {
   return (
     <div>
-      {" "}
       <HomeHeader />
       <HeroBanner />
-      <h1>Welcome</h1>
-      <img src={cookingImage} alt="" className="image" />
+      {cardArray.map((card) => {
+        return <Card card={card} />;
+      })}
     </div>
   );
 }
