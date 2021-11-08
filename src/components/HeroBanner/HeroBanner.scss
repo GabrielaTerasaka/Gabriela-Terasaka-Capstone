@@ -11,6 +11,10 @@
 
   &__title {
     background-color: $white;
+    width: 50%;
+    max-width: max-content;
+    text-align: center;
+    padding: 5px 10px;
     opacity: 70%;
   }
 }
