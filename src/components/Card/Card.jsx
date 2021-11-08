@@ -7,8 +7,8 @@ function Card(props) {
   return (
     <article className="card">
       <h3 className="card__title">{title}</h3>
-      <img src={`${image_path}`} alt={image_alt} className="card_image" />
-      <img src={image} alt={image} className="card_image" />
+      {/* <img src={`${image_path}`} alt={image_alt} className="card_image" /> */}
+      <img src={image} alt={image} className="card__image" />
     </article>
   );
 }

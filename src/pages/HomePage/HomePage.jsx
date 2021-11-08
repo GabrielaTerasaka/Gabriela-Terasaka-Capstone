@@ -3,18 +3,14 @@ import "./HomePage.scss";
 
 import HomeHeader from "../../components/HomeHeader";
 import HeroBanner from "../../components/HeroBanner";
-import Card from "../../components/Card";
-
-import cardArray from "../../data/homeInfo.json";
+import CardSection from "../../components/CardSection";
 
 export default function HomePage() {
   return (
     <div>
       <HomeHeader />
       <HeroBanner />
-      {cardArray.map((card) => {
-        return <Card card={card} />;
-      })}
+      <CardSection />
     </div>
   );
 }
