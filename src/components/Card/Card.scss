@@ -1,15 +1,18 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
 
 .card {
-  @include flex-wrap;
-  margin-bottom: 40px;
+  @include flex-wrap(row);
+  margin-bottom: toRem(40);
   &__title {
     text-align: center;
-    margin-bottom: 20px;
+    width: 50%;
+    font-size: toRem(20);
+    margin-right: toRem(15);
   }
   &__image {
-    width: 80%;
+    width: calc(50% - toRem(15));
     border-radius: 4px;
     object-fit: contain;
   }

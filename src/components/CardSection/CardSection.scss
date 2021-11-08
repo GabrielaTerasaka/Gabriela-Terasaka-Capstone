@@ -1,6 +1,7 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/functions" as *;
 @use "../../styles/partials/mixins" as *;
 
 .card-section {
-  padding: 20px;
+  padding: toRem(40) toRem(20);
 }
