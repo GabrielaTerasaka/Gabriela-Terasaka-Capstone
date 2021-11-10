@@ -1,0 +1,19 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.footer {
+  background-color: $light-green;
+  padding: toRem(15);
+  &__copyright {
+    text-align: center;
+    font-size: toRem(15);
+    font-weight: $font-demi;
+
+    &--break {
+      margin-top: toRem(10);
+      text-align: center;
+      display: block;
+    }
+  }
+}
