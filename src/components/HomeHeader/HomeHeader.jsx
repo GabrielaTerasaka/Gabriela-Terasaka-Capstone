@@ -19,15 +19,17 @@ class HomeHeader extends React.Component {
   render() {
     return (
       <header className="header">
-        <Link to="/home">
-          <img src={logo} alt="MyPantry logo" className="header__logo" />
-        </Link>
-        <div className="header__navbar-icon" onClick={this.toggleNavIcon}>
-          {this.state.isNavOpen ? (
-            <FontAwesomeIcon icon={faTimes} />
-          ) : (
-            <FontAwesomeIcon icon={faBars} />
-          )}
+        <div className="header__wrapper">
+          <Link to="/home">
+            <img src={logo} alt="MyPantry logo" className="header__logo" />
+          </Link>
+          <div className="header__navbar-icon" onClick={this.toggleNavIcon}>
+            {this.state.isNavOpen ? (
+              <FontAwesomeIcon icon={faTimes} />
+            ) : (
+              <FontAwesomeIcon icon={faBars} />
+            )}
+          </div>
         </div>
         <nav
           className={`header__navbar  ${

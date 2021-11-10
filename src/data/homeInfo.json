@@ -21,12 +21,12 @@
     "id": "6KI0_mpSuk6EL0clWk70Qg",
     "title": "Cook together with your family",
     "image_path": "https://shrouded-peak-10650.herokuapp.com/images/cooking.jpg",
-    "image_alt": ""
+    "image_alt": "couple cooking"
   },
   {
     "id": "1ZhnLuB9JUeSYd6IMKOwPg",
     "title": "Be ready to enjoy the meal",
     "image_path": "https://shrouded-peak-10650.herokuapp.com/images/dish.jpg",
-    "image_alt": ""
+    "image_alt": "main dish"
   }
 ]
