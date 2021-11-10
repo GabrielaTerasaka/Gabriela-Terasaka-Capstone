@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo/MyFoodies_logo_new.png";
 import "./HomeHeader.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faCoffee, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 class HomeHeader extends React.Component {
