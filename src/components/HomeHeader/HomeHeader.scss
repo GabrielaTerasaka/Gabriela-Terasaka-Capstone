@@ -1,17 +1,36 @@
 @use "../../styles/partials/variables" as *;
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
 
 .fa-bars,
 .fa-times {
-  color: $red;
+  color: $green;
 }
 
 .header {
-  @include flex-wrap(row, space-between);
-  background-color: $white;
-  padding: 10px 20px;
-  min-height: 95px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
   @include tablet-breakpoint {
+    position: relative;
+    @include flex-wrap(row, space-between);
+  }
+
+  &__wrapper {
+    @include flex-wrap(row, space-between);
+    position: absolute;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    background-color: $white;
+    padding: 10px 20px;
+    min-height: 95px;
+    @include tablet-breakpoint {
+      position: relative;
+      width: fit-content;
+    }
   }
 
   &__logo {
@@ -19,43 +38,48 @@
   }
   &__login,
   &__sign-up {
-    width: 30%;
-    text-align: center;
-    margin-bottom: 10px;
+    width: 100%;
+    // text-align: center;
+    margin: 0 auto 10px auto;
+    padding-bottom: toRem(5);
+    border-bottom: 1px $light-green solid;
     &:hover {
       color: $green;
     }
     @include tablet-breakpoint {
       @include button;
+      margin: 0;
     }
   }
   &__sign-up {
+    @include tablet-breakpoint {
+      @include button;
+      margin-left: 10px;
+    }
   }
   &__navbar {
     position: absolute;
-    top: 95px;
-    right: 0;
-    z-index: 10;
+    top: 0;
+    transform: translateY(0);
+    left: 0;
+    z-index: 1;
     width: 100%;
-    min-width: max-content;
     text-align: center;
     background-color: $white;
-    padding: 10px;
+    padding: 10px 5%;
     margin-left: auto;
-    transform: translateX(100%);
     transition: transform 0.5s linear;
     @include flex-wrap;
 
     @include tablet-breakpoint {
-      transform: translateX(0);
-      top: 0;
       position: relative;
       width: calc(100% - 150px);
       @include flex-wrap(row, flex-end);
     }
 
     &--active {
-      transform: translateX(0);
+      transform: translateY(92%);
+      border-top: 1px $light-green solid;
     }
   }
   &__navbar-icon {
