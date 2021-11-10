@@ -8,4 +8,9 @@
     @include flex-wrap(row, space-evenly);
     padding: toRem(40) 5% 0 5%;
   }
+  @include desktop-breakpoint {
+    max-width: toRem(1280);
+    margin: auto;
+    padding: toRem(60) 5% toRem(20) 5%;
+  }
 }

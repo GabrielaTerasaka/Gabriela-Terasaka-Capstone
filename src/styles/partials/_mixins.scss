@@ -1,4 +1,5 @@
 @use "./variables" as *;
+@use "./functions" as *;
 
 @mixin text-style($size, $height, $weight) {
   font-size: $size;
@@ -14,13 +15,13 @@
   flex-wrap: wrap;
 }
 
-@mixin toRem($property, $value) {
-  #{$property}: ($value / 16) + rem;
-}
+// @mixin toRem($property, $value) {
+//   #{$property}: ($value / 16) + rem;
+// }
 
 @mixin button {
   border-radius: 50px;
-  @include toRem(width, 100);
+  width: toRem(100);
   border: 2px solid $light-green;
   text-align: center;
   padding: 5px;

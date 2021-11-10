@@ -17,6 +17,9 @@
     // border: 2px solid $light-green;
     border-radius: 4px;
   }
+  @include desktop-breakpoint {
+    margin-right: toRem(40);
+  }
 
   &__title {
     // text-align: center;

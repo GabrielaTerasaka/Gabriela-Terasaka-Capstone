@@ -15,6 +15,10 @@
     position: relative;
     @include flex-wrap(row, space-between);
   }
+  @include desktop-breakpoint {
+    max-width: toRem(1280);
+    margin: auto;
+  }
 
   &__wrapper {
     @include flex-wrap(row, space-between);

@@ -14,6 +14,9 @@
     margin-top: 0;
     max-height: toRem(450);
   }
+  @include desktop-breakpoint {
+    max-height: toRem(600);
+  }
 
   &__title {
     background-color: $white;
@@ -25,6 +28,9 @@
     @include tablet-breakpoint {
       font-size: toRem(35);
       padding: toRem(10) toRem(15);
+    }
+    @include desktop-breakpoint {
+      font-size: toRem(45);
     }
   }
 }
