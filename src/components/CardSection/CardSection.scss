@@ -4,4 +4,8 @@
 
 .card-section {
   padding: toRem(40) toRem(20);
+  @include tablet-breakpoint {
+    @include flex-wrap(row, space-evenly);
+    padding: toRem(40) 5% 0 5%;
+  }
 }
