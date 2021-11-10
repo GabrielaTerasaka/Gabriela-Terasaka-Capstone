@@ -5,6 +5,19 @@
 .card {
   @include flex-wrap(row, space-between);
   margin-bottom: toRem(40);
+  @include tablet-breakpoint {
+    @include flex-wrap(column, space-between);
+    height: toRem(300);
+    width: toRem(250);
+    // box-shadow: 2px 2px 2px 2px $light-green;
+    // box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
+    box-shadow: 2px 4px 12px rgba($color: $black, $alpha: 0.3);
+    margin-right: toRem(15);
+
+    // border: 2px solid $light-green;
+    border-radius: 4px;
+  }
+
   &__title {
     // text-align: center;
     // width: calc(55% - toRem(30));
@@ -13,9 +26,21 @@
     max-height: toRem(245);
     font-size: toRem(20);
     // margin: 0 toRem(15);
+    @include tablet-breakpoint {
+      width: 100%;
+      height: 50%;
+      text-align: center;
+      font-size: toRem(25);
+      @include flex-wrap;
+      order: 2;
+    }
+
     &--right {
       order: 1;
       // text-align: right;
+      @include tablet-breakpoint {
+        order: 2;
+      }
     }
   }
   &__image {
@@ -23,5 +48,10 @@
     height: 30vw;
     object-fit: cover;
     border-radius: 4px;
+    @include tablet-breakpoint {
+      width: 100%;
+      height: 50%;
+      border-radius: 0;
+    }
   }
 }

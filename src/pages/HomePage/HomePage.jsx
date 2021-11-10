@@ -4,6 +4,7 @@ import "./HomePage.scss";
 import HomeHeader from "../../components/HomeHeader";
 import HeroBanner from "../../components/HeroBanner";
 import CardSection from "../../components/CardSection";
+import Footer from "../../components/Footer";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <HomeHeader />
       <HeroBanner />
       <CardSection />
+      <Footer />
     </div>
   );
 }
