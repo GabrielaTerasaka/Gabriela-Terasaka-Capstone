@@ -3,7 +3,7 @@
 @use "../../styles/partials/functions" as *;
 
 .footer {
-  background-color: $light-green;
+  background-color: $background-secondary-color;
   padding: toRem(15);
   &__copyright {
     text-align: center;
