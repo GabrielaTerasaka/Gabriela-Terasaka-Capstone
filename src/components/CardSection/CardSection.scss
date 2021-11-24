@@ -3,9 +3,21 @@
 @use "../../styles/partials/mixins" as *;
 
 .card-section {
-  padding: toRem(40) toRem(20);
-  @include tablet-breakpoint {
-    @include flex-wrap(row, space-evenly);
-    padding: toRem(40) 5% 0 5%;
+  width: 100%;
+  &__wrapper {
+    padding: toRem(40) toRem(20);
+    @include flex-wrap(row, space-around);
+
+    @include tablet-breakpoint {
+      // @include flex-wrap(row, space-between);
+
+      padding: toRem(40) toRem(32) 0 toRem(32);
+      max-width: toRem(1020);
+      margin: 0 auto;
+    }
+    @include desktop-breakpoint {
+      margin: auto;
+      padding: toRem(60) toRem(32) toRem(20) toRem(32);
+    }
   }
 }

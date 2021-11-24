@@ -4,7 +4,7 @@
 
 .fa-bars,
 .fa-times {
-  color: $green;
+  color: $primary-color1;
 }
 
 .header {
@@ -14,6 +14,11 @@
   @include tablet-breakpoint {
     position: relative;
     @include flex-wrap(row, space-between);
+    max-width: toRem(1020);
+    margin: auto;
+  }
+  @include desktop-breakpoint {
+    margin: auto;
   }
 
   &__wrapper {
@@ -24,19 +29,23 @@
     left: 0;
     width: 100%;
     overflow: hidden;
-    background-color: $white;
+    background-color: $background-primary-color;
     padding: 10px 20px;
-    min-height: 95px;
+    min-height: toRem(70);
     @include tablet-breakpoint {
+      height: toRem(80);
       position: relative;
       width: fit-content;
       padding: 0;
-      margin-left: 5%;
+      margin-left: toRem(32);
     }
   }
 
   &__logo {
-    max-height: 70px;
+    height: toRem(50);
+    @include tablet-breakpoint {
+      height: toRem(60);
+    }
   }
   &__login,
   &__sign-up {
@@ -44,9 +53,9 @@
     // text-align: center;
     margin: 0 auto 10px auto;
     padding-bottom: toRem(5);
-    border-bottom: 1px $light-green solid;
+    border-bottom: 1px $primary-color1 solid;
     &:hover {
-      color: $green;
+      color: $secondary-color1;
     }
     @include tablet-breakpoint {
       @include button;
@@ -56,18 +65,18 @@
   &__sign-up {
     @include tablet-breakpoint {
       @include button;
-      margin-left: 10px;
+      margin-left: toRem(20);
     }
   }
   &__navbar {
     position: absolute;
     top: 0;
-    transform: translateY(0);
+    transform: translateY(-30%);
     left: 0;
     z-index: 1;
     width: 100%;
     text-align: center;
-    background-color: $white;
+    background-color: $background-primary-color;
     padding: 10px 5%;
     margin-left: auto;
     transition: transform 0.5s linear;
@@ -75,15 +84,16 @@
 
     @include tablet-breakpoint {
       position: relative;
-      width: calc(95% - 150px);
+      width: calc(100% - toRem(182));
       @include flex-wrap(row, flex-end);
       padding: 0;
-      margin-right: 5%;
+      margin-right: toRem(32);
+      transform: translateY(0%);
     }
 
     &--active {
-      transform: translateY(92%);
-      border-top: 1px $light-green solid;
+      transform: translateY(74%);
+      border-top: 1px $primary-color1 solid;
     }
   }
   &__navbar-icon {

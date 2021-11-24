@@ -6,8 +6,9 @@ import {
   Route,
 } from "react-router-dom";
 
-import HomePage from "./pages/HomePage/HomePage";
-import UserPage from "./pages/UserPage/UserPage";
+import HomePage from "./pages/HomePage";
+import UserPage from "./pages/UserPage";
+import RecipePage from "./pages/RecipePage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Redirect from="/home" to="/" />
           <Route path="/" exact component={HomePage} />
           <Route path="/user" exact component={UserPage} />
+          <Route path="/recipe" exact component={RecipePage} />
           {/* <Route path="/:userId" component={UserPage} /> */}
         </Switch>
       </div>
