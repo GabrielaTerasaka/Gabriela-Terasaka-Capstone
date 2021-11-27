@@ -53,7 +53,7 @@
 
     width: 100%;
     // text-align: center;
-    margin: 0 auto 10px auto;
+    margin: 0 auto;
     padding-bottom: toRem(24);
     // border-bottom: 1px $primary-color1 solid;
     &:hover {
@@ -81,13 +81,13 @@
   &__navbar {
     position: absolute;
     top: 0;
-    transform: translateY(-50%);
+    transform: translateY(-35%);
     left: 0;
     z-index: 1;
     width: 100%;
     text-align: center;
     background-color: $background-primary-color;
-    padding: toRem(32) 5% 0 5%;
+    padding: toRem(24) 5% 0 5%;
     margin-left: auto;
     transition: transform 0.5s linear;
     @include flex-wrap;
@@ -102,7 +102,7 @@
     }
 
     &--active {
-      transform: translateY(54.5%);
+      transform: translateY(68.5%);
       border-top: 1px $primary-color1 solid;
     }
   }
@@ -122,6 +122,13 @@
     margin-right: toRem(16);
     @include tablet-breakpoint {
       margin-right: toRem(8);
+    }
+  }
+  &__box-empty {
+    height: toRem(75);
+    position: relative;
+    @include tablet-breakpoint {
+      height: 0;
     }
   }
 }

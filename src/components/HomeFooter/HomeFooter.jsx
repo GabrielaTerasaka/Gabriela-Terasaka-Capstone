@@ -1,7 +1,7 @@
-import "./Footer.scss";
+import "./HomeFooter.scss";
 import DateObject from "react-date-object";
 
-function Footer() {
+function HomeFooter() {
   const date = new DateObject();
 
   return (
@@ -14,4 +14,4 @@ function Footer() {
   );
 }
 
-export default Footer;
+export default HomeFooter;

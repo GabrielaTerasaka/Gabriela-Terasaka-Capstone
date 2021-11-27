@@ -9,7 +9,8 @@ import {
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
 import RecipePage from "./pages/RecipePage";
-import LoginSignUpPage from "./pages/LoginSignUpPage";
+import SignUpPage from "./pages/SignUpPage";
+import SignInPage from "./pages/SignInPage";
 
 function App() {
   return (
@@ -21,12 +22,12 @@ function App() {
           <Route
             path="/signin"
             exact
-            render={(routerProps) => <LoginSignUpPage {...routerProps} />}
+            render={(routerProps) => <SignInPage {...routerProps} />}
           />
           <Route
             path="/signup"
             exact
-            render={(routerProps) => <LoginSignUpPage {...routerProps} />}
+            render={(routerProps) => <SignUpPage {...routerProps} />}
           />
           <Route path="/user" exact component={UserPage} />
           <Route path="/recipe" exact component={RecipePage} />

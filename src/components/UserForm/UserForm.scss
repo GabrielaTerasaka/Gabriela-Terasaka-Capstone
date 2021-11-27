@@ -1,0 +1,82 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.form {
+  position: relative;
+  width: 100%;
+
+  &__name-wrapper {
+    @include flex-wrap(row, space-between, flex-start);
+    @include tablet-breakpoint {
+      // @include flex-wrap(row, flex-start, flex-start);
+    }
+  }
+  &__password-wrapper {
+    @include flex-wrap(column, flex-start, flex-start);
+    width: 100%;
+    margin-top: toRem(32);
+    @include tablet-breakpoint {
+      @include flex-wrap(row, space-between, flex-start);
+    }
+  }
+  &__buttons-wrapper {
+    margin-top: toRem(32);
+    @include flex-wrap(row, flex-start);
+    // @include tablet-breakpoint {
+    //   @include flex-wrap(row, flex-end);
+    // }
+  }
+  &__first-name {
+    @include input;
+  }
+  &__last-name {
+    @include input;
+  }
+  &__email {
+    @include input;
+  }
+  &__password {
+    // min-width: toRem(300);
+    @include input;
+  }
+  &__confirm-password {
+    @include input;
+    // min-width: toRem(300);
+  }
+  &__label-name {
+    @include label;
+    width: calc(50% - toRem(10));
+  }
+  &__label-password,
+  &__label-email {
+    @include label;
+    width: 100%;
+    @include tablet-breakpoint {
+      width: calc(50% - toRem(10));
+    }
+  }
+  &__submit {
+    @include button-highlight;
+    @include text-style(toRem(16), toRem(18), $font-regular);
+    padding: toRem(10);
+    width: 100%;
+    max-width: toRem(400);
+    margin: 0;
+    @include tablet-breakpoint {
+      @include text-style(toRem(24), toRem(26), $font-regular);
+      width: calc(50% - toRem(10));
+    }
+  }
+  &__input-error {
+    border-color: $alert;
+  }
+  &__alert {
+    @include text-style(toRem(12), toRem(14), $font-regular);
+    color: $alert;
+    height: max-content;
+    &-icon {
+      margin: 0 toRem(10);
+    }
+  }
+}

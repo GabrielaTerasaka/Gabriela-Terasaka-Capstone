@@ -1,0 +1,25 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.sign {
+  border-top: 1px solid $primary-color1;
+  margin-bottom: toRem(78);
+
+  &__wrapper {
+    padding: toRem(60) toRem(20);
+    @include tablet-breakpoint {
+      width: 100%;
+      padding: toRem(60) toRem(32);
+      max-width: toRem(1020);
+      margin: 0 auto;
+    }
+  }
+  &__title {
+    @include title;
+    margin: toRem(8) 0 toRem(32) 0;
+    @include tablet-breakpoint {
+      margin: toRem(8) 0 toRem(60) 0;
+    }
+  }
+}

@@ -3,7 +3,7 @@ import "./RecipePage.scss";
 
 import HomeHeader from "../../components/HomeHeader";
 
-import Footer from "../../components/Footer";
+import HomeFooter from "../../components/HomeFooter";
 import React from "react";
 import axios from "axios";
 
@@ -64,7 +64,7 @@ export default class HomePage extends React.Component {
       <div>
         <HomeHeader />
 
-        <Footer />
+        <HomeFooter />
       </div>
     );
   }

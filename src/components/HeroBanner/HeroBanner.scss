@@ -3,7 +3,9 @@
 @use "../../styles/partials/functions" as *;
 
 .hero {
-  margin-top: toRem(70);
+  position: relative;
+  // top: toRem(75);
+  // margin-top: toRem(70);
   width: 100%;
   height: 50vw;
   background-image: url("../../assets/images/kitchen.jpg");
@@ -15,9 +17,9 @@
     max-height: toRem(550);
     background-image: none;
     background-color: $background-secondary-color;
-    padding: 0 5%;
-  }
-  @include tablet-breakpoint {
+    //   padding: 0 5%;
+    // }
+    // @include tablet-breakpoint {
     padding: 0;
   }
 
@@ -55,13 +57,14 @@
     }
   }
   &__title {
+    @include title;
     background-color: $background-primary-color;
     width: toRem(250);
     text-align: center;
     padding: toRem(5) toRem(10);
     opacity: 0.7;
     @include tablet-breakpoint {
-      font-size: toRem(45);
+      // font-size: toRem(45);
       padding: toRem(10) toRem(15);
       background-color: transparent;
       opacity: 1;
@@ -71,9 +74,9 @@
       // width: toRem(300);
       letter-spacing: -0.5px;
     }
-    @include desktop-breakpoint {
-      font-size: toRem(45);
-    }
+    // @include desktop-breakpoint {
+    //   font-size: toRem(45);
+    // }
   }
   &__content {
     display: none;

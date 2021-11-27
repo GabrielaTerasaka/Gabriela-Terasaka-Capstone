@@ -4,6 +4,8 @@
 
 .card-section {
   width: 100%;
+  margin-bottom: toRem(78);
+
   &__wrapper {
     padding: toRem(40) toRem(20);
     @include flex-wrap(row, space-around);
