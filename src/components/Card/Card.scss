@@ -4,7 +4,7 @@
 
 .card {
   // @include flex-wrap(row, space-between);
-  margin: 0 toRem(8) toRem(20) toRem(8);
+  margin: 0 toRem(8) toRem(32) toRem(8);
   // @include tablet-breakpoint {
   @include flex-wrap(column, space-between);
   height: toRem(300);
@@ -12,7 +12,7 @@
   // box-shadow: 2px 2px 2px 2px $light-green;
   // box-shadow: 2px 4px 12px rgb(0 0 0 / 8%);
   // box-shadow: 2px 4px 12px rgba($color: $black, $alpha: 0.3);
-  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.1);
+  box-shadow: 0px 2px 5px rgba(19, 24, 44, 0.2);
   // margin-right: toRem(15);
 
   // border: 2px solid $light-green;
@@ -20,7 +20,7 @@
   // }
   @include desktop-breakpoint {
     // margin-right: toRem(40);
-    margin-bottom: toRem(40);
+    margin-bottom: toRem(60);
   }
 
   &__title {
