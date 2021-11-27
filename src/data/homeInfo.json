@@ -6,9 +6,15 @@
     "image_alt": "grocery list"
   },
   {
+    "id": "1ZhnLuB9JUeSYd6IMKOwPg11",
+    "title": "Use your virtual list to buy what you need",
+    "image_path": "https://shrouded-peak-10650.herokuapp.com/images/market.jpg",
+    "image_alt": "grocery list"
+  },
+  {
     "id": "Wvm29kjyik-wQnH65P8Tpg",
     "title": "Add purchased items to your virtual pantry",
-    "image_path": "https://shrouded-peak-10650.herokuapp.com/images/the-creative-exchange-ixS7UCRJTdM-unsplash.jpg",
+    "image_path": "https://shrouded-peak-10650.herokuapp.com/images/grocery_bag.jpg",
     "image_alt": "vegetables in a basket"
   },
   {

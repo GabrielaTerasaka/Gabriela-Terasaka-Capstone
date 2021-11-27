@@ -7,7 +7,11 @@ function HeroBanner() {
     <section className="hero">
       <div className="hero__wrapper">
         <div className="hero__wrapper-left">
-          <h2 className="hero__title">Organize Your Food</h2>
+          <h2 className="hero__title">Organize Your Pantry</h2>
+          <p className="hero__content">
+            Don't waste your food and time. Have a way to organize your kitchen
+            and what dishes you can do with your current ingredients.
+          </p>
           <Link to="/" className="hero__link">
             Let's Start
           </Link>

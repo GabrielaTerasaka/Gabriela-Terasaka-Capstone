@@ -21,15 +21,45 @@
 
 @mixin button {
   border-radius: 50px;
-  width: toRem(100);
+  width: fit-content;
   border: 2px solid $primary-color1;
   text-align: center;
-  padding: 5px;
+  padding: toRem(5) toRem(20);
   margin-left: 10px;
+  background-color: $background-primary-color;
+  text-decoration: none;
 
   &:hover {
-    background-color: $primary-color1;
+    background-color: $background-secondary-color;
+    color: $font-primary-color;
+    text-decoration: none;
+  }
+}
+
+@mixin button-highlight {
+  @include button;
+  background-color: $primary-color1;
+  color: $font-supplementary-color;
+
+  &:hover {
+    background-color: $primary-color2;
+    border-color: $primary-color2;
     color: $font-supplementary-color;
+  }
+}
+
+@mixin input {
+  border-radius: 8px;
+  border: 2px solid $primary-color1;
+  padding: toRem(5) toRem(10);
+  margin: toRem(10);
+  background-color: $background-primary-color;
+  text-decoration: none;
+
+  &:focus {
+    background-color: $background-secondary-color;
+    color: $font-primary-color;
+    text-decoration: none;
   }
 }
 

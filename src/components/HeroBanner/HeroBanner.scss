@@ -12,7 +12,7 @@
   @include flex-wrap;
   @include tablet-breakpoint {
     margin-top: 0;
-    max-height: toRem(450);
+    max-height: toRem(550);
     background-image: none;
     background-color: $background-secondary-color;
     padding: 0 5%;
@@ -30,7 +30,7 @@
       max-width: toRem(1020);
     }
     @include desktop-breakpoint {
-      max-height: toRem(600);
+      // max-height: toRem(700);
     }
 
     &-left {
@@ -39,6 +39,7 @@
       @include tablet-breakpoint {
         @include flex-wrap(column, center, flex-start);
         width: 40%;
+        padding-right: toRem(20);
       }
     }
     &-right {
@@ -66,18 +67,30 @@
       opacity: 1;
       text-align: start;
       padding: 0;
-      width: toRem(300);
+      width: 100%;
+      // width: toRem(300);
       letter-spacing: -0.5px;
     }
     @include desktop-breakpoint {
       font-size: toRem(45);
     }
   }
+  &__content {
+    display: none;
+    @include tablet-breakpoint {
+      display: block;
+      margin: toRem(24) 0 0 0;
+      width: 100%;
+
+      // width: toRem(300);
+      @include text-style(toRem(14), toRem(20), $font-regular);
+    }
+  }
   &__link {
     display: none;
     @include tablet-breakpoint {
-      @include button;
-      margin-top: toRem(24);
+      @include button-highlight;
+      margin: toRem(16) 0 0 0;
       display: block;
       width: toRem(150);
     }

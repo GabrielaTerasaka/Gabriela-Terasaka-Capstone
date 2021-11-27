@@ -3,7 +3,12 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/logo/MyFoodies_logo.svg";
 import "./HomeHeader.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faTimes,
+  faSignInAlt,
+  faUser,
+} from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 class HomeHeader extends React.Component {
@@ -37,11 +42,13 @@ class HomeHeader extends React.Component {
             this.state.isNavOpen ? "header__navbar--active" : ""
           }`}
         >
-          <Link to="/home" className="header__login">
-            Log in
+          <Link to="/signin" className="header__login">
+            <FontAwesomeIcon icon={faSignInAlt} className="header__icon" />
+            Sign in
           </Link>
-          <Link to="/home" className="header__sign-up">
-            Sign up
+          <Link to="/signup" className="header__sign-up">
+            <FontAwesomeIcon icon={faUser} className="header__icon" />
+            New Account
           </Link>
         </nav>
       </header>
