@@ -4,8 +4,8 @@ import "./LoginSignUpPage.scss";
 import React from "react";
 
 import HomeHeader from "../../components/HomeHeader";
-import HeroBanner from "../../components/HeroBanner";
-import CardSection from "../../components/CardSection";
+// import HeroBanner from "../../components/HeroBanner";
+// import CardSection from "../../components/CardSection";
 import Footer from "../../components/Footer";
 
 export default class LoginSignUpPage extends React.Component {
