@@ -1,19 +1,68 @@
 import "./UserForm.scss";
-
-import React from "react";
 import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import React from "react";
+import axios from "axios";
+
 export default class LoginSignUpPage extends React.Component {
   state = {
-    // isSignUp: null,
     isErrorFirstName: false,
     isErrorLastName: false,
     isErrorEmail: false,
     isErrorPassword: false,
     isErrorConfirmPassword: false,
     confirmPasswordMessage: null,
+    emailMessage: null,
+    passwordMessage: null,
     passwordEntered: null,
+  };
+
+  checkSignUpInputs = (e) => {
+    const { firstName, lastName, email, password, confirmPassword } = e.target;
+    if (
+      !firstName.value ||
+      !lastName.value ||
+      !email.value ||
+      !password.value ||
+      !confirmPassword.value
+    ) {
+      let msg = "required";
+      const emailMsg = "required";
+
+      if (confirmPassword.value !== password.value) {
+        msg = "does not match password";
+      }
+      this.setState({
+        isErrorFirstName: firstName.value ? false : true,
+        isErrorLastName: lastName.value ? false : true,
+        isErrorEmail: email.value ? false : true,
+        isErrorPassword: password.value ? false : true,
+        isErrorConfirmPassword:
+          confirmPassword.value && confirmPassword.value !== password.value
+            ? false
+            : true,
+        confirmPasswordMessage: msg,
+        emailMessage: email.value ? false : emailMsg,
+      });
+      return true;
+    }
+  };
+
+  checkSignInInputs = (e) => {
+    const { email, password } = e.target;
+    if (!email.value || !password.value) {
+      const emailMsg = "required";
+      const passwordMsg = "required";
+
+      this.setState({
+        isErrorEmail: email.value ? false : true,
+        isErrorPassword: password.value ? false : true,
+        emailMessage: email.value ? false : emailMsg,
+        passwordMessage: password.value ? false : passwordMsg,
+      });
+      return true;
+    }
   };
 
   handleSubmit = (e) => {
@@ -21,50 +70,66 @@ export default class LoginSignUpPage extends React.Component {
     const isSignUp = this.props.isSignUp;
 
     if (isSignUp) {
-      const { firstName, lastName, email, password, confirmPassword } =
-        e.target;
-      if (
-        !firstName.value ||
-        !lastName.value ||
-        !email.value ||
-        !password.value ||
-        !confirmPassword.value
-      ) {
-        let msg = "required";
-        if (confirmPassword.value !== password.value) {
-          msg = "does not match password";
-        }
-        this.setState({
-          isErrorFirstName: firstName.value ? false : true,
-          isErrorLastName: lastName.value ? false : true,
-          isErrorEmail: email.value ? false : true,
-          isErrorPassword: password.value ? false : true,
-          isErrorConfirmPassword:
-            confirmPassword.value && confirmPassword.value !== password.value
-              ? false
-              : true,
-          confirmPasswordMessage: msg,
+      if (this.checkSignUpInputs(e)) return;
+      const { firstName, lastName, email, password } = e.target;
+      const signUpInfo = {
+        first_name: firstName.value,
+        last_name: lastName.value,
+        email: email.value,
+        password: password.value,
+      };
+      // console.log(signUpInfo);
+      axios
+        .post(`http://localhost:8080/signup`, signUpInfo)
+        .then((response) => {
+          // console.log(response);
+          sessionStorage.setItem("authorization", `Bearer ${response.data}`);
+          e.target.reset();
+        })
+        .catch((err) => {
+          if (err.message === "Request failed with status code 401") {
+            this.setState({
+              isErrorEmail: true,
+              emailMessage: "email already registered",
+            });
+          }
+          return;
         });
-      }
     } else {
+      if (this.checkSignInInputs(e)) return;
       const { email, password } = e.target;
-      if (!email.value || !password.value) {
-        this.setState({
-          isErrorEmail: email.value ? false : true,
-          isErrorPassword: password.value ? false : true,
-        });
-      }
-    }
+      const signInInfo = {
+        email: email.value,
+        password: password.value,
+      };
 
-    e.target.reset();
+      axios
+        .post(`http://localhost:8080/login`, signInInfo)
+        .then((response) => {
+          sessionStorage.setItem("authorization", `Bearer ${response.data}`);
+          e.target.reset();
+        })
+        .catch((err) => {
+          if (err.message === "Request failed with status code 401") {
+            this.setState({
+              isErrorPassword: true,
+              passwordMessage: "invalid password",
+            });
+          } else if (err.message === "Request failed with status code 400") {
+            this.setState({
+              isErrorEmail: true,
+              emailMessage: "invalid email",
+            });
+          }
+        });
+      return;
+    }
   };
 
   handleChange = (e) => {
     const inputName = e.target.name;
     if (inputName === "confirmPassword") {
       let msg = "required";
-      console.log(e.target.value);
-      console.log(this.state.passwordEntered);
       if (e.target.value !== this.state.passwordEntered) {
         msg = "does not match password";
         this.setState({
@@ -88,24 +153,16 @@ export default class LoginSignUpPage extends React.Component {
     }
   };
 
-  // componentDidMount() {
-  //   this.setState({
-  //     isSignUp: this.props.match.path === "/signup" ? true : false,
-  //   });
-  // }
-  // componentDidUpdate() {
-  //   this.setState({});
-  // }
-
   render() {
     const {
-      // isSignUp,
       isErrorFirstName,
       isErrorLastName,
       isErrorEmail,
       isErrorPassword,
       isErrorConfirmPassword,
       confirmPasswordMessage,
+      emailMessage,
+      passwordMessage,
     } = this.state;
     const isSignUp = this.props.isSignUp;
     return (
@@ -179,7 +236,8 @@ export default class LoginSignUpPage extends React.Component {
                 icon={faExclamationCircle}
                 className="form__alert-icon"
               />
-              required
+              {/* {`${isSignUp ? "required" : emailMessage}`} */}
+              {emailMessage}
             </span>
           ) : (
             ""
@@ -203,7 +261,7 @@ export default class LoginSignUpPage extends React.Component {
                   icon={faExclamationCircle}
                   className="form__alert-icon"
                 />
-                required
+                {`${isSignUp ? "required" : passwordMessage}`}
               </span>
             ) : (
               ""

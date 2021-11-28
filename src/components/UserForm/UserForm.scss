@@ -7,6 +7,7 @@
   width: 100%;
 
   &__name-wrapper {
+    margin-bottom: toRem(16);
     @include flex-wrap(row, space-between, flex-start);
     @include tablet-breakpoint {
       // @include flex-wrap(row, flex-start, flex-start);
@@ -59,6 +60,8 @@
   &__submit {
     @include button-highlight;
     @include text-style(toRem(16), toRem(18), $font-regular);
+    letter-spacing: toRem(2);
+    text-transform: uppercase;
     padding: toRem(10);
     width: 100%;
     max-width: toRem(400);
