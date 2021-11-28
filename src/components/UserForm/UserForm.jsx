@@ -86,6 +86,7 @@ export default class LoginSignUpPage extends React.Component {
           // console.log(response);
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
+          window.location.href = `/profile`;
         })
         .catch((err) => {
           if (err.message === "Request failed with status code 401") {
@@ -110,6 +111,7 @@ export default class LoginSignUpPage extends React.Component {
         .then((response) => {
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
+          window.location.href = `/profile`;
         })
         .catch((err) => {
           if (err.message === "Request failed with status code 401") {

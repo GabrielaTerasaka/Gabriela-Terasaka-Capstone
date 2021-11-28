@@ -1,0 +1,5 @@
+@use "../../styles/partials/functions" as *;
+.notfound__title {
+  margin: toRem(150) auto;
+  width: fit-content;
+}

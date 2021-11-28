@@ -11,6 +11,7 @@ import UserPage from "./pages/UserPage";
 import RecipePage from "./pages/RecipePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
@@ -29,9 +30,15 @@ function App() {
             exact
             render={(routerProps) => <SignUpPage {...routerProps} />}
           />
-          <Route path="/user" exact component={UserPage} />
-          <Route path="/recipe" exact component={RecipePage} />
-          {/* <Route path="/:userId" component={UserPage} /> */}
+          <Route
+            path="/profile"
+            exact
+            render={(routerProps) => <UserPage {...routerProps} />}
+          />
+          <Route component={NotFoundPage} />
+
+          {/* <Route path="/recipe" exact component={RecipePage} />
+          <Route path="/profile" component={UserPage} /> */}
         </Switch>
       </div>
     </Router>
