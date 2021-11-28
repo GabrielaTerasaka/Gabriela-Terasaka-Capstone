@@ -12,7 +12,7 @@ function HeroBanner() {
             Don't waste your food and time. Have a way to organize your kitchen
             and what dishes you can do with your current ingredients.
           </p>
-          <Link to="/" className="hero__link">
+          <Link to="/signup" className="hero__link">
             Let's Start
           </Link>
         </div>
