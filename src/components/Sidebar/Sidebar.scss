@@ -1,0 +1,46 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.sidebar {
+  position: fixed;
+  bottom: 0;
+  background-color: $background-secondary-color;
+  padding: toRem(16) 0;
+  @include flex-wrap(row);
+  width: 100%;
+  box-shadow: 0 -2px 5px rgba(0 0 0 / 10%);
+  @include tablet-breakpoint {
+    top: 0;
+    box-shadow: 2px 0px 5px rgba(0 0 0 / 10%);
+    @include flex-wrap(column, flex-start);
+    flex-wrap: nowrap;
+    padding: toRem(92) toRem(8) 0 toRem(8);
+    width: max-content;
+    height: 100vh;
+    z-index: 2;
+  }
+
+  &__option-wrapper {
+    width: 25%;
+    @include flex-wrap;
+    @include tablet-breakpoint {
+      width: 100%;
+      flex-wrap: nowrap;
+      margin: toRem(24) 0;
+    }
+  }
+  &__img {
+    height: toRem(32);
+    width: toRem(32);
+    margin-bottom: toRem(8);
+  }
+  &__option {
+    @include text-style(toRem(12), toRem(14), $font-regular);
+    color: rgba($color: $font-primary-color, $alpha: 0.3);
+
+    &--active {
+      color: $font-primary-color;
+    }
+  }
+}

@@ -1,12 +1,10 @@
 import { Link } from "react-router-dom";
-// import logo from "../../assets/logo/MyFoodies_logo_new.png";
+
 import logo from "../../assets/logo/MyFoodies_logo.svg";
 import "./UserHeader.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faBars,
-  faTimes,
-  faSignInAlt,
+  faUserCircle,
   faSignOutAlt,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
@@ -14,76 +12,52 @@ import React from "react";
 
 class UserHeader extends React.Component {
   state = {
-    isNavOpen: false,
+    dropdownShowing: false,
   };
-
-  // toggleNavIcon = () => {
-  //   if (window.innerWidth < 768) {
-  //     this.setState({
-  //       isNavOpen: this.state.isNavOpen ? false : true,
-  //     });
-  //   }
-  // };
-
   signOut = () => {
     sessionStorage.clear();
   };
-
+  toggleDropDown = () => {
+    this.setState({
+      dropdownShowing: this.state.dropdownShowing ? false : true,
+    });
+  };
   render() {
     return (
       <>
-        <header
-          // className={`header ${this.state.isNavOpen ? "header--active" : ""}`}
-          className={`header`}
-        >
-          <div className="header__wrapper">
-            <Link to="/home">
-              <img src={logo} alt="MyPantry logo" className="header__logo" />
+        <header className="user-header">
+          <div className="user-header__wrapper">
+            <Link to="/" className="user-header__logo-link">
+              <img
+                src={logo}
+                alt="MyPantry logo"
+                className="user-header__logo"
+              />
             </Link>
-            {/* <div className="header__navbar-icon" onClick={this.toggleNavIcon}>
-              {this.state.isNavOpen ? (
-                <FontAwesomeIcon icon={faTimes} />
-              ) : (
-                <FontAwesomeIcon icon={faBars} />
-              )}
-            </div> */}
-            <Link
-              to="/profile"
-              className="header__sign-up"
-              // onClick={this.toggleNavIcon}
-            >
-              <FontAwesomeIcon icon={faUser} className="header__icon" />
-              Profile
-            </Link>
-            <Link to="/" className="header__sign-up" onClick={this.signOut}>
-              <FontAwesomeIcon icon={faSignOutAlt} className="header__icon" />
-              Sign Out
-            </Link>
+            <FontAwesomeIcon
+              icon={faUserCircle}
+              className="user-header__icon--main"
+              onClick={this.toggleDropDown}
+            />
           </div>
-          {/* <nav
-            className={`header__navbar  ${
-              this.state.isNavOpen ? "header__navbar--active" : ""
-            }`}
-          >
-            <Link
-              to="/signin"
-              className="header__login"
-              onClick={this.toggleNavIcon}
-            >
-              <FontAwesomeIcon icon={faSignInAlt} className="header__icon" />
-              Sign in
-            </Link>
-            <Link
-              to="/signup"
-              className="header__sign-up"
-              onClick={this.toggleNavIcon}
-            >
-              <FontAwesomeIcon icon={faUser} className="header__icon" />
-              New Account
-            </Link>
-          </nav> */}
         </header>
-        {/* <div className="header__box-empty"></div> */}
+        <div
+          className={`user-header__dropdown ${
+            this.state.dropdownShowing ? "user-header__dropdown--active" : ""
+          }`}
+        >
+          <Link to="/profile" className="user-header__link">
+            <FontAwesomeIcon icon={faUser} className="user-header__icon" />
+            <span className="user-header__icon-text">Profile</span>
+          </Link>
+          <Link to="/" className="user-header__link" onClick={this.signOut}>
+            <FontAwesomeIcon
+              icon={faSignOutAlt}
+              className="user-header__icon"
+            />
+            <span className="user-header__icon-text">Log Out</span>
+          </Link>
+        </div>
       </>
     );
   }

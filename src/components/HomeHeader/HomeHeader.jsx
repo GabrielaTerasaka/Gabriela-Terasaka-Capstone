@@ -31,7 +31,7 @@ class HomeHeader extends React.Component {
           className={`header ${this.state.isNavOpen ? "header--active" : ""}`}
         >
           <div className="header__wrapper">
-            <Link to="/home">
+            <Link to="/">
               <img src={logo} alt="MyPantry logo" className="header__logo" />
             </Link>
             <div className="header__navbar-icon" onClick={this.toggleNavIcon}>

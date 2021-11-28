@@ -6,7 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 
-import HomePage from "./pages/HomePage";
+import IndexPage from "./pages/IndexPage";
 import UserPage from "./pages/UserPage";
 import RecipePage from "./pages/RecipePage";
 import SignUpPage from "./pages/SignUpPage";
@@ -18,8 +18,7 @@ function App() {
     <Router>
       <div className="App">
         <Switch>
-          <Redirect from="/home" to="/" />
-          <Route path="/" exact component={HomePage} />
+          <Route path="/" exact component={IndexPage} />
           <Route
             path="/signin"
             exact
@@ -31,7 +30,7 @@ function App() {
             render={(routerProps) => <SignUpPage {...routerProps} />}
           />
           <Route
-            path="/profile"
+            path="/home"
             exact
             render={(routerProps) => <UserPage {...routerProps} />}
           />

@@ -2,133 +2,93 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/functions" as *;
 
-.fa-bars,
-.fa-times {
-  color: $primary-color1;
-}
-
-.header {
-  position: absolute;
+.user-header {
+  background-color: $background-secondary-color;
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 100%;
+  height: toRem(80);
+  @include flex-wrap;
+  box-shadow: -2px 0px 5px rgba(0 0 0 / 10%);
   @include tablet-breakpoint {
-    position: relative;
-    @include flex-wrap(row, space-between);
-    max-width: toRem(1020);
-    margin: auto;
-  }
-  @include desktop-breakpoint {
-    margin: auto;
-  }
-
-  &__wrapper {
-    @include flex-wrap(row, space-between);
-    position: absolute;
     z-index: 5;
-    top: 0;
-    left: 0;
+  }
+  &__wrapper {
+    overflow: visible;
+    padding: 0 8%;
+    @include flex-wrap(row, space-between);
     width: 100%;
-    overflow: hidden;
-    background-color: $background-primary-color;
-    padding: toRem(10) toRem(20);
-    min-height: toRem(70);
+
     @include tablet-breakpoint {
-      height: toRem(80);
-      position: relative;
-      width: fit-content;
-      padding: 0;
-      margin-left: toRem(32);
+      max-width: toRem(1500);
+      margin-right: auto;
+      padding: 0 toRem(32);
     }
   }
-
+  &__logo-link {
+    height: toRem(50);
+    @include tablet-breakpoint {
+      height: toRem(60);
+    }
+  }
   &__logo {
     height: toRem(50);
     @include tablet-breakpoint {
       height: toRem(60);
     }
   }
-  &__login,
-  &__sign-up {
-    @include text-style(toRem(16), toRem(18), $font-regular);
-
+  &__link {
+    @include text-style(toRem(14), toRem(16), $font-regular);
+    @include flex-wrap(row, flex-start);
     width: 100%;
-    // text-align: center;
-    margin: 0 auto;
-    padding-bottom: toRem(24);
-    // border-bottom: 1px $primary-color1 solid;
+    margin: toRem(8) 0;
     &:hover {
-      color: $primary-color2;
+      color: $primary-color1;
       text-decoration: underline;
-      text-decoration-color: $primary-color2;
+      text-decoration-color: $primary-color1;
     }
     @include tablet-breakpoint {
-      // @include text-style(toRem(16), toRem(18), $font-regular);
-      margin: 0;
+      @include text-style(toRem(16), toRem(18), $font-regular);
     }
   }
-  &__login {
-    @include tablet-breakpoint {
-      @include button;
-      // margin: 0;
-    }
-  }
-  &__sign-up {
-    @include tablet-breakpoint {
-      @include button-highlight;
-      margin-left: toRem(20);
-    }
-  }
-  &__navbar {
-    position: absolute;
-    top: 0;
-    transform: translateY(-35%);
-    left: 0;
-    z-index: 1;
-    width: 100%;
-    text-align: center;
-    background-color: $background-primary-color;
-    padding: toRem(24) 5% 0 5%;
-    margin-left: auto;
-    transition: transform 0.5s linear;
-    @include flex-wrap;
-
-    @include tablet-breakpoint {
-      position: relative;
-      width: calc(100% - toRem(182));
-      @include flex-wrap(row, flex-end);
-      padding: 0;
-      margin-right: toRem(32);
-      transform: translateY(0%);
-    }
-
-    &--active {
-      transform: translateY(68.5%);
-      border-top: 1px $primary-color1 solid;
-    }
-  }
-  &__navbar-icon {
-    width: 50px;
-    margin: 8px;
-    padding: 3.5px 10px 2px 11.5px;
-    border-radius: 4px;
-    @include flex-wrap;
+  &__icon--main {
+    font-size: toRem(32);
     cursor: pointer;
-    @include tablet-breakpoint {
-      display: none;
+    &:hover {
+      color: $primary-color1;
     }
   }
-
   &__icon {
     margin-right: toRem(16);
     @include tablet-breakpoint {
       margin-right: toRem(8);
     }
   }
-  &__box-empty {
-    height: toRem(75);
-    position: relative;
+  &__icon-text {
     @include tablet-breakpoint {
-      height: 0;
+    }
+  }
+  &__dropdown {
+    position: absolute;
+    width: toRem(160);
+    background-color: $background-secondary-color;
+    top: toRem(60);
+    right: calc(8% + toRem(16));
+    z-index: -1;
+    transform: translateY(-100%);
+    box-shadow: -2px 2px 5px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    @include flex-wrap;
+    padding: toRem(16) toRem(24);
+    @include tablet-breakpoint {
+      right: toRem(48);
+    }
+    @media screen and (min-width: 1500px) {
+      right: calc(calc(100% - toRem(1500)) + toRem(48));
+    }
+    &--active {
+      z-index: 10;
+      transform: translateY(0%);
     }
   }
 }
