@@ -78,9 +78,10 @@ export default class LoginSignUpPage extends React.Component {
         email: email.value,
         password: password.value,
       };
-      // console.log(signUpInfo);
+      // console.log(signUpInfo);https://shrouded-peak-10650.herokuapp.com/
       axios
-        .post(`http://localhost:8080/signup`, signUpInfo)
+        // .post(`http://localhost:8080/signup`, signUpInfo)
+        .post(`https://shrouded-peak-10650.herokuapp.com/signup`, signUpInfo)
         .then((response) => {
           // console.log(response);
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
@@ -104,7 +105,8 @@ export default class LoginSignUpPage extends React.Component {
       };
 
       axios
-        .post(`http://localhost:8080/login`, signInInfo)
+        // .post(`http://localhost:8080/login`, signInInfo)
+        .post(`https://shrouded-peak-10650.herokuapp.com/login`, signInInfo)
         .then((response) => {
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
