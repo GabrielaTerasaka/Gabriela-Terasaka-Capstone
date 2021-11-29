@@ -12,6 +12,8 @@ import HomePage from "./pages/HomePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import IndividualGroceryList from "./pages/IndividualGroceryList";
+import AllGroceryList from "./pages/AllGroceryList";
 
 function App() {
   return (
@@ -33,6 +35,15 @@ function App() {
             path="/home"
             exact
             render={(routerProps) => <HomePage {...routerProps} />}
+          />
+          <Route
+            path="/grocery"
+            exact
+            render={(routerProps) => <AllGroceryList {...routerProps} />}
+          />
+          <Route
+            path="/grocery/:id"
+            render={(routerProps) => <IndividualGroceryList {...routerProps} />}
           />
           <Route component={NotFoundPage} />
 

@@ -88,6 +88,25 @@
   }
 }
 
+@mixin input-grocery {
+  border: none;
+  border-bottom: 1px solid rgba($color: $primary-color2, $alpha: 0.5);
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  @include text-style(toRem(12), toRem(14), $font-regular);
+  @include tablet-breakpoint {
+    @include text-style(toRem(14), toRem(16), $font-regular);
+  }
+  &::placeholder {
+    @include text-style(toRem(12), toRem(14), $font-regular);
+    font-family: "Montserrat", sans-serif;
+    font-style: italic;
+    @include tablet-breakpoint {
+      @include text-style(toRem(14), toRem(16), $font-regular);
+    }
+  }
+}
+
 @mixin tablet-breakpoint {
   @media screen and (min-width: $tablet-screensize) {
     @content;

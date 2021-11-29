@@ -36,7 +36,7 @@ export default class HomePage extends React.Component {
       day: "numeric",
     };
     const { user } = this.state;
-    console.log(user);
+
     return (
       <div>
         {!sessionStorage.getItem("authorization") && <NoAccess />}

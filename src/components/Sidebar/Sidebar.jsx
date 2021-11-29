@@ -42,7 +42,11 @@ function Sidebar(props) {
   return (
     <aside className="sidebar">
       {optionsArr.map((option, i) => (
-        <Link key={i} className="sidebar__option-wrapper" to={`/`}>
+        <Link
+          key={i}
+          className="sidebar__option-wrapper"
+          to={`/${option.link}`}
+        >
           <img
             src={isActive === option.title ? option.active : option.inactive}
             alt={option.title + " icon"}

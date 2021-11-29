@@ -28,13 +28,13 @@ class GrocerySummary extends React.Component {
     }
     return (
       <article className="summary">
-        <h3 className="summary__title">
+        <Link to="/grocery" className="summary__title">
           Grocery List{" "}
           <img src={listActive} alt="grocery list" className="summary__img" />
-        </h3>
+        </Link>
         <ul>
           {listArr.slice(0, num).map((list, i) => (
-            <Link key={i} className="summary__link" to="/">
+            <Link key={i} className="summary__link" to={`/grocery/${list.i}`}>
               {list}
               <FontAwesomeIcon
                 icon={faChevronRight}

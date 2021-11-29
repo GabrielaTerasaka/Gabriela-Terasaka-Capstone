@@ -1,0 +1,75 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.grocery {
+  margin-bottom: toRem(100);
+  @include tablet-breakpoint {
+    margin-bottom: 0;
+  }
+  &__wrapper {
+    margin-top: toRem(80);
+    padding: toRem(40) 5%;
+    @include tablet-breakpoint {
+      margin-left: toRem(93);
+      max-width: toRem(1460);
+    }
+  }
+  &__title {
+    @include title;
+    margin-bottom: toRem(40);
+  }
+  &__content-wrapper {
+    border-radius: 4px;
+    border: 1px solid rgba($color: $primary-color2, $alpha: 0.5);
+    max-width: toRem(800);
+    width: 100%;
+    @include flex-wrap(column, flex-start, flex-start);
+    // padding: toRem(16);
+  }
+  &__description-wrapper {
+    @include flex-wrap(row, space-between);
+    width: 100%;
+    padding: toRem(16);
+    @include text-style(toRem(18), toRem(20), $font-demi);
+    @include tablet-breakpoint {
+      @include text-style(toRem(22), toRem(24), $font-demi);
+    }
+  }
+  &__description-left,
+  &__link-name {
+    width: 65%;
+    // @include text-style(toRem(18), toRem(20), $font-demi);
+    // @include tablet-breakpoint {
+    //   @include text-style(toRem(22), toRem(24), $font-demi);
+    // }
+  }
+  &__description-right,
+  &__link-shared {
+    width: 35%;
+    // @include text-style(toRem(18), toRem(20), $font-demi);
+    // @include tablet-breakpoint {
+    //   @include text-style(toRem(22), toRem(24), $font-demi);
+    // }
+  }
+  &__list {
+    width: 100%;
+    @include flex-wrap(column, flex-start, flex-start);
+  }
+  &__link {
+    // margin: toRem(8) 0;
+    @include text-style(toRem(16), toRem(18), $font-regular);
+    @include flex-wrap(row, space-between);
+    width: 100%;
+    padding: toRem(16);
+    color: rgba($color: $font-primary-color, $alpha: 0.5);
+    &:hover {
+      color: $font-primary-color;
+      background-color: $background-secondary-color;
+      // border-radius: 4px;
+    }
+    @include tablet-breakpoint {
+      @include text-style(toRem(20), toRem(22), $font-regular);
+    }
+  }
+}

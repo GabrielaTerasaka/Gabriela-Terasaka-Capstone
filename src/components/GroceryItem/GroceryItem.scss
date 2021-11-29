@@ -1,0 +1,97 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+.label-box {
+  width: 100%;
+  @include tablet-breakpoint {
+    @include flex-wrap(row, flex-start);
+  }
+}
+.label {
+  @include flex-wrap(row, flex-start);
+  margin: toRem(8) 0;
+  width: 100%;
+  @include tablet-breakpoint {
+    width: 60%;
+  }
+  &__mandatory-wrapper {
+    width: calc(100% - toRem(21));
+    @include flex-wrap(row, space-between);
+    @include tablet-breakpoint {
+      @include text-style(toRem(14), toRem(16), $font-regular);
+      // width: 100%;
+    }
+  }
+  &__optional-wrapper {
+    width: 100%;
+    @include flex-wrap(row, space-between);
+    margin: toRem(4) 0 toRem(16) 0;
+    @include text-style(toRem(12), toRem(14), $font-regular);
+    @include tablet-breakpoint {
+      @include text-style(toRem(14), toRem(16), $font-regular);
+      width: 40%;
+      margin: 0;
+    }
+    // @include flex-wrap(row, space-between);
+    // margin-top: toRem(8);
+  }
+
+  &__name {
+    width: 60%;
+    @include input-grocery;
+    text-align: start;
+  }
+  &__qty {
+    @include input-grocery;
+    width: 15%;
+    @include tablet-breakpoint {
+      width: 10%;
+    }
+  }
+  &__unit {
+    @include input-grocery;
+    width: 15%;
+  }
+  &__brand {
+    @include input-grocery;
+    margin-left: toRem(21);
+    @include tablet-breakpoint {
+      width: 40%;
+      margin: 0 0 0 auto;
+    }
+  }
+  &__shelf {
+    @include input-grocery;
+    margin: 0 auto;
+    @include tablet-breakpoint {
+      width: 40%;
+      // margin: 0;
+    }
+  }
+  &__check {
+    margin-right: toRem(8);
+  }
+  &__info {
+    margin-left: auto;
+    border-bottom: 1px solid transparent;
+    cursor: pointer;
+    @include tablet-breakpoint {
+      order: -1;
+      margin-left: toRem(8);
+      margin-right: auto;
+    }
+    // width: 100%;
+    // @include flex-wrap(row, space-between);
+    // margin: toRem(4) 0 toRem(16) 0;
+    // @include text-style(toRem(12), toRem(14), $font-regular);
+    // @include tablet-breakpoint {
+    //   @include text-style(toRem(14), toRem(16), $font-regular);
+    // }
+  }
+  &__info-icon {
+    margin: 0 toRem(4) 0 auto;
+    @include tablet-breakpoint {
+      margin: 0 auto 0 toRem(4);
+    }
+  }
+}

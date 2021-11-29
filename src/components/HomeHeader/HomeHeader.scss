@@ -10,6 +10,7 @@
 .header {
   position: absolute;
   width: 100%;
+  // height: calc(100% - toRem(78));
   height: 100%;
   @include tablet-breakpoint {
     position: relative;

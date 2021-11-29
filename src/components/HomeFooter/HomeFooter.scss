@@ -6,7 +6,9 @@
   background-color: $background-secondary-color;
   padding: toRem(15);
   position: absolute;
-  bottom: 0;
+  // position: fixed;
+  bottom: toRem(0);
+  // bottom: toRem(-78);
   width: 100%;
 
   &__copyright {
