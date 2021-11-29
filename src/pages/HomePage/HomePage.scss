@@ -3,6 +3,10 @@
 @use "../../styles/partials/functions" as *;
 
 .home {
+  margin-bottom: toRem(100);
+  @include tablet-breakpoint {
+    margin-bottom: 0;
+  }
   &__title-wrapper {
     margin-top: toRem(80);
     padding: toRem(40) 5%;

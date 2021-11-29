@@ -41,8 +41,8 @@ function Sidebar(props) {
   const { isActive } = props;
   return (
     <aside className="sidebar">
-      {optionsArr.map((option) => (
-        <Link className="sidebar__option-wrapper" to={`/`}>
+      {optionsArr.map((option, i) => (
+        <Link key={i} className="sidebar__option-wrapper" to={`/`}>
           <img
             src={isActive === option.title ? option.active : option.inactive}
             alt={option.title + " icon"}

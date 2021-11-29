@@ -1,8 +1,10 @@
 import jwt_decode from "jwt-decode";
 import React from "react";
-import GrocerySummary from "../../components/GrocerySummary/GrocerySummary";
+import GrocerySummary from "../../components/GrocerySummary";
+import RecipeSummary from "../../components/RecipeSummary";
+import PantrySummary from "../../components/PantrySummary";
 import NoAccess from "../../components/NoAccess";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import Sidebar from "../../components/Sidebar";
 
 import UserHeader from "../../components/UserHeader";
 
@@ -50,8 +52,8 @@ export default class HomePage extends React.Component {
                 <h2 className="home__title">Hello, {user.first_name}!</h2>
                 <div className="home__summary-wrapper">
                   <GrocerySummary user={user} />
-                  <GrocerySummary user={user} />
-                  <GrocerySummary user={user} />
+                  <PantrySummary user={user} />
+                  <RecipeSummary user={user} />
                 </div>
               </div>
             </main>

@@ -1,0 +1,28 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.summary {
+  &__sub-title {
+    color: rgba($color: $font-primary-color, $alpha: 0.5);
+    @include flex-wrap(row, flex-end);
+    overflow: visible;
+    @include text-style(toRem(12), toRem(12), $font-regular);
+    margin-bottom: toRem(16);
+  }
+  &__list {
+    @include text-style(toRem(16), toRem(18), $font-regular);
+    @include flex-wrap(row, space-between);
+    // padding-right: toRem(16);
+    margin-bottom: toRem(16);
+    overflow: visible;
+    color: $font-primary-color;
+    @include tablet-breakpoint {
+      @include text-style(toRem(20), toRem(22), $font-regular);
+    }
+    &-left,
+    &-right {
+      overflow: visible;
+    }
+  }
+}

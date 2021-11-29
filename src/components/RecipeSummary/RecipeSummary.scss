@@ -1,0 +1,22 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.summary {
+  &__recipe {
+    margin: toRem(24) 0 toRem(8) 0;
+    font-weight: $font-demi;
+  }
+  &__wrapper--recipe {
+    margin-top: 0;
+    width: 95%;
+    margin-left: auto;
+  }
+  &__link--recipe {
+    width: 95%;
+    margin-left: auto;
+  }
+  &__more-button--tasty {
+    margin-left: auto;
+  }
+}
