@@ -25,7 +25,7 @@
   }
   &__summary-wrapper {
     @include flex-wrap;
-    overflow: visible;
+    // overflow: visible;
     @include tablet-breakpoint {
       @include flex-wrap(row, flex-start, flex-start);
     }

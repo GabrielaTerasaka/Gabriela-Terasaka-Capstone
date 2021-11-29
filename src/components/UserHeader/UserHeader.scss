@@ -14,7 +14,7 @@
     z-index: 5;
   }
   &__wrapper {
-    overflow: visible;
+    // overflow: visible;
     padding: 0 5%;
     @include flex-wrap(row, space-between);
     width: 100%;
@@ -27,7 +27,7 @@
   }
   &__logo-link {
     height: toRem(50);
-    overflow: visible;
+    // overflow: visible;
     @include tablet-breakpoint {
       height: toRem(60);
     }
@@ -73,8 +73,9 @@
     position: absolute;
     width: toRem(160);
     background-color: $background-secondary-color;
-    top: toRem(60);
-    right: calc(8% + toRem(16));
+    top: toRem(-10);
+    // top: toRem(60);
+    right: calc(8% - toRem(8));
     z-index: -1;
     transform: translateY(-100%);
     box-shadow: -2px 2px 5px rgba(0 0 0 / 10%);
@@ -89,7 +90,7 @@
     }
     &--active {
       z-index: 10;
-      transform: translateY(0%);
+      transform: translateY(-10%);
     }
   }
 }

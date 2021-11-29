@@ -24,7 +24,7 @@
   &__option-wrapper {
     width: 25%;
     @include flex-wrap;
-    overflow: visible;
+    // overflow: visible;
 
     @include tablet-breakpoint {
       width: 100%;
@@ -40,7 +40,7 @@
   &__option {
     @include text-style(toRem(12), toRem(14), $font-regular);
     color: rgba($color: $font-primary-color, $alpha: 0.3);
-    overflow: visible;
+    // overflow: visible;
 
     &--active {
       color: $font-primary-color;
