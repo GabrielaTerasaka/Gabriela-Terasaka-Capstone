@@ -14,21 +14,25 @@ const optionsArr = [
     title: "Home",
     active: homeActive,
     inactive: homeInactive,
+    link: "home",
   },
   {
     title: "Grocery Lists",
     active: listActive,
     inactive: listInactive,
+    link: "grocery",
   },
   {
     title: "Pantry",
     active: pantryActive,
     inactive: pantryInactive,
+    link: "pantry",
   },
   {
     title: "My Recipes",
     active: recipeActive,
     inactive: recipeInactive,
+    link: "recipes",
   },
 ];
 
@@ -38,7 +42,7 @@ function Sidebar(props) {
   return (
     <aside className="sidebar">
       {optionsArr.map((option) => (
-        <Link className="sidebar__option-wrapper" to="/">
+        <Link className="sidebar__option-wrapper" to={`/`}>
           <img
             src={isActive === option.title ? option.active : option.inactive}
             alt={option.title + " icon"}

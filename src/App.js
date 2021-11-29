@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 
 import IndexPage from "./pages/IndexPage";
-import UserPage from "./pages/UserPage";
+import HomePage from "./pages/HomePage";
 import RecipePage from "./pages/RecipePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
@@ -32,7 +32,7 @@ function App() {
           <Route
             path="/home"
             exact
-            render={(routerProps) => <UserPage {...routerProps} />}
+            render={(routerProps) => <HomePage {...routerProps} />}
           />
           <Route component={NotFoundPage} />
 

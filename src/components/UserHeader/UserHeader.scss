@@ -15,7 +15,7 @@
   }
   &__wrapper {
     overflow: visible;
-    padding: 0 8%;
+    padding: 0 5%;
     @include flex-wrap(row, space-between);
     width: 100%;
 
@@ -27,6 +27,7 @@
   }
   &__logo-link {
     height: toRem(50);
+    overflow: visible;
     @include tablet-breakpoint {
       height: toRem(60);
     }
