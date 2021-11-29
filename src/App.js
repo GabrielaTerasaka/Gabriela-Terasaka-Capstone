@@ -1,14 +1,14 @@
 import "./App.scss";
 import {
   BrowserRouter as Router,
-  Redirect,
+  // Redirect,
   Switch,
   Route,
 } from "react-router-dom";
 
 import IndexPage from "./pages/IndexPage";
 import HomePage from "./pages/HomePage";
-import RecipePage from "./pages/RecipePage";
+// import RecipePage from "./pages/RecipePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
 import NotFoundPage from "./pages/NotFoundPage";
