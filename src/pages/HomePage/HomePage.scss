@@ -1,1 +1,33 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
 
+.home {
+  margin-bottom: toRem(100);
+  @include tablet-breakpoint {
+    margin-bottom: 0;
+  }
+  &__title-wrapper {
+    margin-top: toRem(80);
+    padding: toRem(40) 5%;
+    @include tablet-breakpoint {
+      margin-left: toRem(93);
+      max-width: toRem(1460);
+    }
+  }
+  &__date {
+    @include text-style(toRem(16), toRem(18), $font-regular);
+    margin-bottom: toRem(16);
+  }
+  &__title {
+    @include title;
+    margin-bottom: toRem(40);
+  }
+  &__summary-wrapper {
+    @include flex-wrap;
+    overflow: visible;
+    @include tablet-breakpoint {
+      @include flex-wrap(row, flex-start, flex-start);
+    }
+  }
+}

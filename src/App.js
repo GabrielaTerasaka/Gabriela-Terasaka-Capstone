@@ -6,19 +6,19 @@ import {
   Route,
 } from "react-router-dom";
 
+import IndexPage from "./pages/IndexPage";
 import HomePage from "./pages/HomePage";
-import UserPage from "./pages/UserPage";
 import RecipePage from "./pages/RecipePage";
 import SignUpPage from "./pages/SignUpPage";
 import SignInPage from "./pages/SignInPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
-          <Redirect from="/home" to="/" />
-          <Route path="/" exact component={HomePage} />
+          <Route path="/" exact component={IndexPage} />
           <Route
             path="/signin"
             exact
@@ -29,9 +29,15 @@ function App() {
             exact
             render={(routerProps) => <SignUpPage {...routerProps} />}
           />
-          <Route path="/user" exact component={UserPage} />
-          <Route path="/recipe" exact component={RecipePage} />
-          {/* <Route path="/:userId" component={UserPage} /> */}
+          <Route
+            path="/home"
+            exact
+            render={(routerProps) => <HomePage {...routerProps} />}
+          />
+          <Route component={NotFoundPage} />
+
+          {/* <Route path="/recipe" exact component={RecipePage} />
+          <Route path="/profile" component={UserPage} /> */}
         </Switch>
       </div>
     </Router>

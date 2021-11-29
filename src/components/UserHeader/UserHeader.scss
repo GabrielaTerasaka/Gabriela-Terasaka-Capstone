@@ -1,0 +1,95 @@
+@use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/functions" as *;
+
+.user-header {
+  background-color: $background-secondary-color;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: toRem(80);
+  @include flex-wrap;
+  box-shadow: -2px 0px 5px rgba(0 0 0 / 10%);
+  @include tablet-breakpoint {
+    z-index: 5;
+  }
+  &__wrapper {
+    overflow: visible;
+    padding: 0 5%;
+    @include flex-wrap(row, space-between);
+    width: 100%;
+
+    @include tablet-breakpoint {
+      max-width: toRem(1500);
+      margin-right: auto;
+      padding: 0 toRem(32);
+    }
+  }
+  &__logo-link {
+    height: toRem(50);
+    overflow: visible;
+    @include tablet-breakpoint {
+      height: toRem(60);
+    }
+  }
+  &__logo {
+    height: toRem(50);
+    @include tablet-breakpoint {
+      height: toRem(60);
+    }
+  }
+  &__link {
+    @include text-style(toRem(14), toRem(16), $font-regular);
+    @include flex-wrap(row, flex-start);
+    width: 100%;
+    margin: toRem(8) 0;
+    &:hover {
+      color: $primary-color1;
+      text-decoration: underline;
+      text-decoration-color: $primary-color1;
+    }
+    @include tablet-breakpoint {
+      @include text-style(toRem(16), toRem(18), $font-regular);
+    }
+  }
+  &__icon--main {
+    font-size: toRem(32);
+    cursor: pointer;
+    &:hover {
+      color: $primary-color1;
+    }
+  }
+  &__icon {
+    margin-right: toRem(16);
+    @include tablet-breakpoint {
+      margin-right: toRem(8);
+    }
+  }
+  &__icon-text {
+    @include tablet-breakpoint {
+    }
+  }
+  &__dropdown {
+    position: absolute;
+    width: toRem(160);
+    background-color: $background-secondary-color;
+    top: toRem(60);
+    right: calc(8% + toRem(16));
+    z-index: -1;
+    transform: translateY(-100%);
+    box-shadow: -2px 2px 5px rgba(0 0 0 / 10%);
+    border-radius: 4px;
+    @include flex-wrap;
+    padding: toRem(16) toRem(24);
+    @include tablet-breakpoint {
+      right: toRem(48);
+    }
+    @media screen and (min-width: 1500px) {
+      right: calc(calc(100% - toRem(1500)) + toRem(48));
+    }
+    &--active {
+      z-index: 10;
+      transform: translateY(0%);
+    }
+  }
+}
