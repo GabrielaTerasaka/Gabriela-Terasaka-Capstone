@@ -15,14 +15,14 @@
     @include flex-wrap(row, space-between);
     // padding-right: toRem(16);
     margin-bottom: toRem(16);
-    overflow: visible;
+    // overflow: visible;
     color: $font-primary-color;
     @include tablet-breakpoint {
       @include text-style(toRem(20), toRem(22), $font-regular);
     }
     &-left,
     &-right {
-      overflow: visible;
+      // overflow: visible;
     }
   }
 }

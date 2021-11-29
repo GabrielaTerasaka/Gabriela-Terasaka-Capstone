@@ -10,7 +10,7 @@
   text-align: left;
   outline: none;
   text-decoration: none;
-  overflow-x: hidden;
+  // overflow-x: hidden;
 }
 
 body {
@@ -19,6 +19,8 @@ body {
   font-size: toRem(20);
   font-weight: 400;
   color: $font-primary-color;
+  // remove below
+  overflow-x: hidden;
 }
 
 a {
