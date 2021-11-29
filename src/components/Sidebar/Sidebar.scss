@@ -24,6 +24,8 @@
   &__option-wrapper {
     width: 25%;
     @include flex-wrap;
+    overflow: visible;
+
     @include tablet-breakpoint {
       width: 100%;
       flex-wrap: nowrap;
