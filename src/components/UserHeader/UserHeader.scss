@@ -70,10 +70,10 @@
     }
   }
   &__dropdown {
-    position: absolute;
+    position: fixed;
     width: toRem(160);
     background-color: $background-secondary-color;
-    top: toRem(-10);
+    top: 0;
     // top: toRem(60);
     right: calc(8% - toRem(8));
     z-index: -1;
@@ -90,7 +90,7 @@
     }
     &--active {
       z-index: 10;
-      transform: translateY(-10%);
+      transform: translateY(65%);
     }
   }
 }
