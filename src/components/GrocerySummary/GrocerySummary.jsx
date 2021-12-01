@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-const listArr = ["list 1", "list 2", "list 3", "list 4"];
+// const listArr = ["list 1", "list 2", "list 3", "list 4"];
 // const listArr = [];
 
 class GrocerySummary extends React.Component {
