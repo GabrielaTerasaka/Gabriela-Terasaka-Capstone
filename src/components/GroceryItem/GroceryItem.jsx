@@ -61,34 +61,34 @@ class GroceryItem extends React.Component {
     this.setState({ isMore: this.state.isMore ? false : true });
   };
 
-  componentDidMount() {
-    // console.log("mount");
-    // const token = sessionStorage.getItem("authorization");
-    // axios
-    //   .get(`http://localhost:8080/categories`, {
-    //     headers: { Authorization: token },
-    //   })
-    //   // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-    //   //   headers: { Authorization: token },
-    //   // })
-    //   .then((response) => {
-    //     axios
-    //       .get(`http://localhost:8080/units`, {
-    //         headers: { Authorization: token },
-    //       })
-    //       // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-    //       //   headers: { Authorization: token },
-    //       // })
-    //       .then((res) => {
-    //         console.log("units: " + res.data);
-    //         console.log("categories: " + response.data);
-    //         this.setState({
-    //           unitsArr: res.data,
-    //           categoriesArr: response.data,
-    //         });
-    //       });
-    //   });
-  }
+  // componentDidMount() {
+  // console.log("mount");
+  // const token = sessionStorage.getItem("authorization");
+  // axios
+  //   .get(`http://localhost:8080/categories`, {
+  //     headers: { Authorization: token },
+  //   })
+  //   // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+  //   //   headers: { Authorization: token },
+  //   // })
+  //   .then((response) => {
+  //     axios
+  //       .get(`http://localhost:8080/units`, {
+  //         headers: { Authorization: token },
+  //       })
+  //       // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+  //       //   headers: { Authorization: token },
+  //       // })
+  //       .then((res) => {
+  //         console.log("units: " + res.data);
+  //         console.log("categories: " + response.data);
+  //         this.setState({
+  //           unitsArr: res.data,
+  //           categoriesArr: response.data,
+  //         });
+  //       });
+  //   });
+  // }
 
   // componentDidUpdate() {
   //   console.log("update");

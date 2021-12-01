@@ -3,7 +3,8 @@ import React from "react";
 import GrocerySummary from "../../components/GrocerySummary";
 import RecipeSummary from "../../components/RecipeSummary";
 import PantrySummary from "../../components/PantrySummary";
-import NoAccess from "../../components/NoAccess";
+import NoAccess from "../../pages/NoAccess";
+
 import Sidebar from "../../components/Sidebar";
 
 import UserHeader from "../../components/UserHeader";

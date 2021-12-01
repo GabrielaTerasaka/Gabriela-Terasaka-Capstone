@@ -17,6 +17,10 @@
       padding: toRem(40);
       @include flex-wrap;
     }
+    &--access {
+      margin-top: toRem(150);
+      text-align: center;
+    }
   }
 
   &__content-wrapper {
@@ -143,7 +147,7 @@
   &__title {
     padding-top: toRem(8);
 
-    width: calc(100% - toRem(90));
+    width: calc(100% - toRem(120));
     border: none;
     border-bottom: 1px solid $primary-color1;
     background-color: $background-secondary-color;
@@ -181,18 +185,32 @@
     }
   }
   &__button {
+    //   @extend .ing-grocery__edit;
+    // cursor: pointer;
+    @include text-style(toRem(14), toRem(16), $font-regular);
+    // text-decoration: underline;
+    // margin-right: toRem(16);
+    // &:hover {
+    //   color: $primary-color1;
+    // }
+    // margin-bottom: toRem(40);
+    // border: none;
+    // background-color: transparent;
+    @include tablet-breakpoint {
+      @include text-style(toRem(18), toRem(20), $font-regular);
+    }
+    @include button;
     cursor: pointer;
-    @include text-style(toRem(16), toRem(18), $font-regular);
-    text-decoration: underline;
-    margin-right: toRem(16);
+    // @include text-style(toRem(16), toRem(18), $font-regular);
+    // text-decoration: underline;
+    // margin-right: toRem(16);
     &:hover {
-      color: $primary-color1;
+      // color: $primary-color1;
     }
     margin-bottom: toRem(40);
-    border: none;
-    background-color: transparent;
+
     @include tablet-breakpoint {
-      @include text-style(toRem(20), toRem(22), $font-regular);
+      // @include text-style(toRem(20), toRem(22), $font-regular);
     }
   }
   &__alert {
@@ -226,23 +244,28 @@
   }
   &__title {
     padding-top: toRem(8);
-    width: calc(100% - toRem(90));
+    width: calc(100% - toRem(120));
     @include title;
     margin-bottom: toRem(40);
     border-bottom: 1px solid transparent;
   }
   &__edit {
+    @include button;
     cursor: pointer;
-    @include text-style(toRem(16), toRem(18), $font-regular);
-    text-decoration: underline;
-    margin-right: toRem(16);
+    // @include text-style(toRem(16), toRem(18), $font-regular);
+    // text-decoration: underline;
+    // margin-right: toRem(16);
     &:hover {
-      color: $primary-color1;
+      // color: $primary-color1;
     }
+    @include text-style(toRem(14), toRem(16), $font-regular);
+
     margin-bottom: toRem(40);
 
     @include tablet-breakpoint {
-      @include text-style(toRem(20), toRem(22), $font-regular);
+      @include text-style(toRem(18), toRem(20), $font-regular);
+
+      // @include text-style(toRem(20), toRem(22), $font-regular);
     }
   }
   &__shared,
@@ -277,3 +300,20 @@
     @include text-style(toRem(12), toRem(14), $font-regular);
   }
 }
+
+// .list-form__button {
+//   @extend .ing-grocery__edit;
+//   // cursor: pointer;
+//   // @include text-style(toRem(16), toRem(18), $font-regular);
+//   // text-decoration: underline;
+//   // margin-right: toRem(16);
+//   // &:hover {
+//   //   color: $primary-color1;
+//   // }
+//   // margin-bottom: toRem(40);
+//   // border: none;
+//   // background-color: transparent;
+//   // @include tablet-breakpoint {
+//   //   @include text-style(toRem(20), toRem(22), $font-regular);
+//   // }
+// }

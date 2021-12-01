@@ -3,7 +3,7 @@ import React from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-import NoAccess from "../../components/NoAccess";
+import NoAccess from "../../pages/NoAccess";
 import Sidebar from "../../components/Sidebar";
 import UserHeader from "../../components/UserHeader";
 
@@ -12,69 +12,6 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 
 import "./IndividualGroceryList.scss";
 import GroceryItem from "../../components/GroceryItem";
-
-// let listArr = [
-//   {
-//     ingredient: "ing 1",
-//     quantity: "1",
-//     unit: "2",
-//     category: "cat 1",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "1",
-//     // isChecked: false,
-//   },
-//   {
-//     ingredient: "ing 2",
-//     quantity: "2",
-//     unit: "2",
-//     category: "cat 2",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "2",
-//     // isChecked: false,
-//   },
-//   {
-//     ingredient: "ing 3",
-//     quantity: "3",
-//     unit: "3",
-//     category: "cat 3",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "2",
-//     // isChecked: false,
-//   },
-//   {
-//     ingredient: "ing 4",
-//     quantity: "4",
-//     unit: "4",
-//     category: "cat 4",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "2",
-//     // isChecked: false,
-//   },
-//   {
-//     ingredient: "ing 5",
-//     quantity: "2",
-//     unit: "2",
-//     category: "cat 2",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "2",
-//     // isChecked: false,
-//   },
-//   {
-//     ingredient: "ing 6",
-//     quantity: "2",
-//     unit: "2",
-//     category: "cat 2",
-//     brand: "brand",
-//     shelf_life: "none",
-//     // ingredientID: "2",
-//     // isChecked: false,
-//   },
-// ];
 
 export default class IndividualGroceryList extends React.Component {
   state = {
@@ -92,6 +29,8 @@ export default class IndividualGroceryList extends React.Component {
     sharedUsers: null,
     unitsArr: null,
     categoriesArr: null,
+    listId: null,
+    hasAccess: false,
   };
 
   addNewItem = (e) => {
@@ -194,16 +133,17 @@ export default class IndividualGroceryList extends React.Component {
     const title = e.target.title.value;
     const removeId = e.target.remove.value;
     const token = sessionStorage.getItem("authorization");
+    // const id = this.props.listId;
     const { id } = this.props.match.params;
-    console.log(removeId);
+    // console.log(removeId);
 
     axios
-      .get(`http://localhost:8080/users`, {
-        headers: { Authorization: token },
-      })
-      // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+      // .get(`http://localhost:8080/users`, {
       //   headers: { Authorization: token },
       // })
+      .get(`https://shrouded-peak-10650.herokuapp.com/users`, {
+        headers: { Authorization: token },
+      })
       .then((response) => {
         const allUsers = response.data;
         const foundUser = allUsers.find((user) => user.email === share);
@@ -217,25 +157,30 @@ export default class IndividualGroceryList extends React.Component {
             return;
           } else if (removeId !== "none") {
             axios
-              .put(`http://localhost:8080/grocery/${id}`, {
+              // .put(`http://localhost:8080/grocery/${id}`, {
+              //   headers: { Authorization: token },
+              //   body: { title: title },
+              // })
+              .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
                 headers: { Authorization: token },
                 body: { title: title },
               })
-              // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-              //   headers: { Authorization: token },
-              // })
               .then((response) => {
                 axios
+                  // .delete(
+                  //   `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
+                  //   {
+                  //     headers: { Authorization: token },
+                  //     // body: { listId: id, userId: removeId },
+                  //   }
+                  // )
                   .delete(
-                    `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
+                    `https://shrouded-peak-10650.herokuapp.com/grocery-users?listId=${id}&userId=${removeId}`,
                     {
                       headers: { Authorization: token },
                       // body: { listId: id, userId: removeId },
                     }
                   )
-                  // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-                  //   headers: { Authorization: token },
-                  // })
                   .then((response) => {
                     const newSharedUsers = this.state.sharedUsers.filter(
                       (user) => user.user_id !== Number(removeId)
@@ -254,13 +199,14 @@ export default class IndividualGroceryList extends React.Component {
             return;
           } else {
             axios
-              .put(`http://localhost:8080/grocery/${id}`, {
+              // .put(`http://localhost:8080/grocery/${id}`, {
+              //   headers: { Authorization: token },
+              //   body: { title: title },
+              // })
+              .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
                 headers: { Authorization: token },
                 body: { title: title },
               })
-              // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-              //   headers: { Authorization: token },
-              // })
               .then((response) => {
                 // console.log(response);
                 // if(remove)
@@ -281,37 +227,43 @@ export default class IndividualGroceryList extends React.Component {
           return;
         }
         axios
-          .put(`http://localhost:8080/grocery/${id}`, {
+          // .put(`http://localhost:8080/grocery/${id}`, {
+          //   headers: { Authorization: token },
+          //   body: { title: title },
+          // })
+          .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
             headers: { Authorization: token },
             body: { title: title },
           })
-          // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-          //   headers: { Authorization: token },
-          // })
           .then((response) => {
             axios
-              .post(`http://localhost:8080/grocery-users`, {
+              // .post(`http://localhost:8080/grocery-users`, {
+              //   headers: { Authorization: token },
+              //   body: { listId: id, userId: foundUser.id },
+              // })
+              .post(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
                 headers: { Authorization: token },
                 body: { listId: id, userId: foundUser.id },
               })
-              // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-              //   headers: { Authorization: token },
-              // })
               .then((response) => {
                 console.log(foundUser);
 
                 if (removeId !== "none") {
                   axios
+                    // .delete(
+                    //   `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
+                    //   {
+                    //     headers: { Authorization: token },
+                    //     // body: { listId: id, userId: removeId },
+                    //   }
+                    // )
                     .delete(
-                      `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
+                      `https://shrouded-peak-10650.herokuapp.com/grocery-users?listId=${id}&userId=${removeId}`,
                       {
                         headers: { Authorization: token },
                         // body: { listId: id, userId: removeId },
                       }
                     )
-                    // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
-                    //   headers: { Authorization: token },
-                    // })
                     .then((response) => {
                       // console.log(response);
                       // if(remove)
@@ -355,6 +307,7 @@ export default class IndividualGroceryList extends React.Component {
 
   componentDidMount() {
     // console.log("Mount: " + this.state.groceryListActive);
+    // const id = this.props.listId;
     const { id } = this.props.match.params;
 
     if (sessionStorage.getItem("authorization")) {
@@ -363,28 +316,30 @@ export default class IndividualGroceryList extends React.Component {
       );
       const token = sessionStorage.getItem("authorization");
       axios
-        .get(`http://localhost:8080/grocery/${id}`, {
-          headers: { Authorization: token },
-        })
-        // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+        // .get(`http://localhost:8080/grocery/${id}`, {
         //   headers: { Authorization: token },
         // })
+        .get(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
+          headers: { Authorization: token },
+        })
         .then((response) => {
           const listInfo = response.data[0];
+          console.log(listInfo);
 
           axios
-            .get(`http://localhost:8080/grocery-users`, {
-              headers: { Authorization: token },
-            })
-            // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+            // .get(`http://localhost:8080/grocery-users`, {
             //   headers: { Authorization: token },
             // })
+            .get(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
+              headers: { Authorization: token },
+            })
             .then((res) => {
-              // console.log(res.data);
               const sharedLists = res.data;
               const sharedUsers = sharedLists.filter(
                 (sharedList) => sharedList.list_id === listInfo.id
               );
+              console.log(sharedUsers);
+
               // .map((user) => user.shared_user_name);
               // console.log(
               //   sharedLists.filter(
@@ -392,9 +347,15 @@ export default class IndividualGroceryList extends React.Component {
               //   )
               // );
               axios
-                .get(`http://localhost:8080/grocery-items/${id}`, {
-                  headers: { Authorization: token },
-                })
+                // .get(`http://localhost:8080/grocery-items/${id}`, {
+                //   headers: { Authorization: token },
+                // })
+                .get(
+                  `https://shrouded-peak-10650.herokuapp.com/grocery-items/${id}`,
+                  {
+                    headers: { Authorization: token },
+                  }
+                )
                 .then((respo) => {
                   const newListX = respo.data.map((item, i) => {
                     return {
@@ -412,25 +373,38 @@ export default class IndividualGroceryList extends React.Component {
                   //   };
                   // });
                   axios
-                    .get(`http://localhost:8080/categories`, {
-                      headers: { Authorization: token },
-                    })
-                    // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+                    // .get(`http://localhost:8080/categories`, {
                     //   headers: { Authorization: token },
                     // })
+                    .get(
+                      `https://shrouded-peak-10650.herokuapp.com/categories`,
+                      {
+                        headers: { Authorization: token },
+                      }
+                    )
                     .then((response) => {
                       axios
-                        .get(`http://localhost:8080/units`, {
-                          headers: { Authorization: token },
-                        })
-                        // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+                        // .get(`http://localhost:8080/units`, {
                         //   headers: { Authorization: token },
                         // })
+                        .get(
+                          `https://shrouded-peak-10650.herokuapp.com/units`,
+                          {
+                            headers: { Authorization: token },
+                          }
+                        )
                         .then((res) => {
                           // console.log("units: " + res.data.join(", "));
                           // console.log(
                           //   "categories: " + response.data.join(", ")
                           // );
+                          const foundUser = sharedUsers.find(
+                            (user) => user.user_id === decode.id
+                          );
+
+                          if (decode.id === listInfo.ownerId || foundUser)
+                            console.log("has access");
+
                           this.setState({
                             user: decode,
                             // groceryListActive: newList,
@@ -439,9 +413,13 @@ export default class IndividualGroceryList extends React.Component {
                             idCounter: newListX.length + 1,
                             listName: listInfo.title,
                             sharedUsers: sharedUsers,
-                            ownerList: listInfo.owner,
+                            ownerList: listInfo,
                             unitsArr: res.data,
                             categoriesArr: response.data,
+                            hasAccess:
+                              decode.id === listInfo.ownerId || foundUser
+                                ? true
+                                : false,
                           });
                           // this.setState({
                           //   unitsArr: res.data,
@@ -481,6 +459,7 @@ export default class IndividualGroceryList extends React.Component {
       ownerList,
       unitsArr,
       categoriesArr,
+      hasAccess,
     } = this.state;
 
     // let listName, sharedUsers, ownerList;
@@ -491,7 +470,7 @@ export default class IndividualGroceryList extends React.Component {
     // }
 
     // const { id } = this.props.match.params;
-    console.log(groceryListActive);
+    // console.log(groceryListActive);
     // const usersName = sharedUsers.map((user) => user.shared_user_name);
     // console.log(usersName);
     return (
@@ -500,176 +479,184 @@ export default class IndividualGroceryList extends React.Component {
         {sessionStorage.getItem("authorization") && user && (
           <>
             <UserHeader />
-            <main className="ing-grocery">
-              <div className="ing-grocery__wrapper">
-                {isEditable ? (
-                  <form
-                    className="list-form"
-                    onSubmit={(e) => {
-                      this.listUpdate(e);
-                    }}
-                  >
-                    <input
-                      defaultValue={`${listName}`}
-                      type="text"
-                      name="title"
-                      className={`list-form__title ${
-                        isErrorTitle ? "list-form__title--error" : ""
-                      }`}
-                      placeholder="list name"
-                    />
-                    <button type="submit" className="list-form__button">
-                      Save
-                    </button>
-                    <p className="ing-grocery__shared">
-                      Shared with{" "}
-                      {sharedUsers
-                        .map((user) => user.shared_user_name)
-                        .join(", ")}
-                    </p>
-                    <label className="list-form__share">
-                      Add person to share:{" "}
-                      <input
-                        type="email"
-                        name="share"
-                        className={`list-form__share-input ${
-                          isErrorEmail ? "list-form__share-input--error" : ""
-                        }`}
-                        placeholder="email"
-                      />
-                      {isErrorEmail ? (
-                        <span className="list-form__alert">
-                          <FontAwesomeIcon
-                            icon={faExclamationCircle}
-                            className="form__alert-icon"
-                          />
-                          invalid email
-                        </span>
-                      ) : (
-                        ""
-                      )}
-                    </label>
-                    <label className="list-form__share">
-                      Remove a person from share:{" "}
-                      <select
-                        name="remove"
-                        className="list-form__share-remove"
-                        defaultValue="none"
-                      >
-                        <option value="none">Please select a name</option>
-                        {sharedUsers.map((user) => (
-                          <option value={user.user_id} key={user.user_id}>
-                            {user.shared_user_name}
-                          </option>
-                        ))}
-                      </select>
-                    </label>
-
-                    <p className="ing-grocery__owner-form">
-                      Owned by {ownerList}
-                    </p>
-                  </form>
-                ) : (
-                  <div className="ing-grocery__title-wrapper">
-                    <h2 className="ing-grocery__title">{listName}</h2>
-                    <p
-                      className="ing-grocery__edit"
-                      onClick={this.toggleEditable}
+            {!hasAccess ? (
+              <h1 className="ing-grocery__wrapper ing-grocery__wrapper--access">
+                You do not access this grocery list
+              </h1>
+            ) : (
+              <main className="ing-grocery">
+                <div className="ing-grocery__wrapper">
+                  {isEditable ? (
+                    <form
+                      className="list-form"
+                      onSubmit={(e) => {
+                        this.listUpdate(e);
+                      }}
                     >
-                      Edit
-                    </p>
-                    <p className="ing-grocery__shared">
-                      Shared with{" "}
-                      {sharedUsers
-                        .map((user) => user.shared_user_name)
-                        .join(", ")}
-                    </p>
-                    <p className="ing-grocery__owner">Owned by {ownerList}</p>
-                  </div>
-                )}
+                      <input
+                        defaultValue={`${listName}`}
+                        type="text"
+                        name="title"
+                        className={`list-form__title ${
+                          isErrorTitle ? "list-form__title--error" : ""
+                        }`}
+                        placeholder="list name"
+                      />
+                      <button type="submit" className="list-form__button">
+                        Save
+                      </button>
+                      <p className="ing-grocery__shared">
+                        Shared with{" "}
+                        {sharedUsers
+                          .map((user) => user.shared_user_name)
+                          .join(", ")}
+                      </p>
+                      <label className="list-form__share">
+                        Add person to share:{" "}
+                        <input
+                          type="email"
+                          name="share"
+                          className={`list-form__share-input ${
+                            isErrorEmail ? "list-form__share-input--error" : ""
+                          }`}
+                          placeholder="email"
+                        />
+                        {isErrorEmail ? (
+                          <span className="list-form__alert">
+                            <FontAwesomeIcon
+                              icon={faExclamationCircle}
+                              className="form__alert-icon"
+                            />
+                            invalid email
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </label>
+                      <label className="list-form__share">
+                        Remove a person from share:{" "}
+                        <select
+                          name="remove"
+                          className="list-form__share-remove"
+                          defaultValue="none"
+                        >
+                          <option value="none">Please select a name</option>
+                          {sharedUsers.map((user) => (
+                            <option value={user.user_id} key={user.user_id}>
+                              {user.shared_user_name}
+                            </option>
+                          ))}
+                        </select>
+                      </label>
 
-                <div className="ing-grocery__content-wrapper">
-                  {/* <div className="ing-grocery__description-wrapper">
+                      <p className="ing-grocery__owner-form">
+                        Owned by {ownerList.owner}
+                      </p>
+                    </form>
+                  ) : (
+                    <div className="ing-grocery__title-wrapper">
+                      <h2 className="ing-grocery__title">{listName}</h2>
+                      <p
+                        className="ing-grocery__edit"
+                        onClick={this.toggleEditable}
+                      >
+                        Edit
+                      </p>
+                      <p className="ing-grocery__shared">
+                        Shared with{" "}
+                        {sharedUsers
+                          .map((user) => user.shared_user_name)
+                          .join(", ")}
+                      </p>
+                      <p className="ing-grocery__owner">
+                        Owned by {ownerList.owner}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="ing-grocery__content-wrapper">
+                    {/* <div className="ing-grocery__description-wrapper">
                     <h4 className="ing-grocery__description">List Name</h4>
                     <h4 className="ing-grocery__description">Shared with</h4>
                   </div> */}
-                  <form className="grocery-form" onSubmit={this.handleSubmit}>
-                    <div className="grocery-form__buttons-top">
-                      <button
-                        type="submit"
-                        name="save"
-                        className="grocery-form__button-save--top"
-                      >
-                        Save Changes
-                      </button>
-                      <button
-                        name="addPantry"
-                        onClick={this.addToPantry}
-                        className="grocery-form__button-pantry--top"
-                      >
-                        Add Selected Items to Pantry
-                      </button>
-                    </div>
-
-                    <div className="grocery-form__ing-wrapper">
-                      {groceryListActive.map((ingredient, i) => (
-                        <GroceryItem
-                          ingredient={ingredient}
-                          index={i}
-                          // key={i}
-                          key={ingredient.ingredientID}
-                          handleChange={this.handleChange}
-                          handleDelete={this.handleDelete}
-                          unitsArr={unitsArr}
-                          categoriesArr={categoriesArr}
-                        />
-                      ))}
-                    </div>
-                    <div className="grocery-form__buttons-wrapper">
-                      {/* <button
-                        type="submit"
-                        name="save"
-                        className="grocery-form__button-save"
-                      >
-                        Save Changes
-                      </button> */}
-                      <button
-                        onClick={this.addNewItem}
-                        className="grocery-form__button-add"
-                      >
-                        + New Ingredient
-                      </button>
-                      {/* <button
-                        name="addPantry"
-                        onClick={this.addToPantry}
-                        className="grocery-form__button-pantry"
-                      >
-                        Add Items to Pantry
-                      </button> */}
-                      <div className="grocery-form__buttons-bottom">
+                    <form className="grocery-form" onSubmit={this.handleSubmit}>
+                      <div className="grocery-form__buttons-top">
                         <button
                           type="submit"
                           name="save"
-                          className="grocery-form__button-save--bottom"
+                          className="grocery-form__button-save--top"
                         >
                           Save Changes
                         </button>
                         <button
                           name="addPantry"
                           onClick={this.addToPantry}
-                          className="grocery-form__button-pantry--bottom"
+                          className="grocery-form__button-pantry--top"
                         >
                           Add Selected Items to Pantry
                         </button>
                       </div>
-                    </div>
-                  </form>
+
+                      <div className="grocery-form__ing-wrapper">
+                        {groceryListActive.map((ingredient, i) => (
+                          <GroceryItem
+                            ingredient={ingredient}
+                            index={i}
+                            // key={i}
+                            key={ingredient.ingredientID}
+                            handleChange={this.handleChange}
+                            handleDelete={this.handleDelete}
+                            unitsArr={unitsArr}
+                            categoriesArr={categoriesArr}
+                          />
+                        ))}
+                      </div>
+                      <div className="grocery-form__buttons-wrapper">
+                        {/* <button
+                        type="submit"
+                        name="save"
+                        className="grocery-form__button-save"
+                      >
+                        Save Changes
+                      </button> */}
+                        <button
+                          onClick={this.addNewItem}
+                          className="grocery-form__button-add"
+                        >
+                          + New Ingredient
+                        </button>
+                        {/* <button
+                        name="addPantry"
+                        onClick={this.addToPantry}
+                        className="grocery-form__button-pantry"
+                      >
+                        Add Items to Pantry
+                      </button> */}
+                        <div className="grocery-form__buttons-bottom">
+                          <button
+                            type="submit"
+                            name="save"
+                            className="grocery-form__button-save--bottom"
+                          >
+                            Save Changes
+                          </button>
+                          <button
+                            name="addPantry"
+                            onClick={this.addToPantry}
+                            className="grocery-form__button-pantry--bottom"
+                          >
+                            Add Selected Items to Pantry
+                          </button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                  <p className="ing-grocery__comments">
+                    * selected items will be added to owner's list pantry
+                  </p>
                 </div>
-                <p className="ing-grocery__comments">
-                  * selected items will be added to owner's list pantry
-                </p>
-              </div>
-            </main>
+              </main>
+            )}
             <Sidebar isActive={"Grocery Lists"} />
           </>
         )}

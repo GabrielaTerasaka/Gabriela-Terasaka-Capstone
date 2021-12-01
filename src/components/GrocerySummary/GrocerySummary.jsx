@@ -24,12 +24,12 @@ class GrocerySummary extends React.Component {
   componentDidMount() {
     const token = sessionStorage.getItem("authorization");
     axios
-      .get(`http://localhost:8080/grocery`, {
-        headers: { Authorization: token },
-      })
-      // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+      // .get(`http://localhost:8080/grocery`, {
       //   headers: { Authorization: token },
       // })
+      .get(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
+        headers: { Authorization: token },
+      })
       .then((response) => {
         console.log(response.data);
         this.setState({
@@ -49,7 +49,13 @@ class GrocerySummary extends React.Component {
     }
     return (
       <article className="summary">
-        <Link to="/grocery" className="summary__title">
+        <Link
+          to="/grocery"
+          className="summary__title"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+        >
           Grocery List{" "}
           <img src={listActive} alt="grocery list" className="summary__img" />
         </Link>
@@ -60,6 +66,7 @@ class GrocerySummary extends React.Component {
                 key={list.id}
                 className="summary__link"
                 to={`/grocery/${list.id}`}
+                // listId={list.id}
               >
                 {list.title}
                 <FontAwesomeIcon
@@ -71,7 +78,7 @@ class GrocerySummary extends React.Component {
         </ul>
         <div className="summary__wrapper">
           <p className="summary__add-button">+ Add New List</p>
-          {currentLists && currentLists.length < 3 ? (
+          {currentLists && currentLists.length <= 3 ? (
             ""
           ) : (
             <>

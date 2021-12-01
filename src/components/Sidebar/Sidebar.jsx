@@ -46,6 +46,9 @@ function Sidebar(props) {
           key={i}
           className="sidebar__option-wrapper"
           to={`/${option.link}`}
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
         >
           <img
             src={isActive === option.title ? option.active : option.inactive}

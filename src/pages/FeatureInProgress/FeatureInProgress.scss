@@ -1,12 +1,13 @@
 @use "../../styles/partials/functions" as *;
 .notfound {
   &__title {
-    margin: toRem(150) auto;
+    margin: toRem(150) auto toRem(80) auto;
+    text-align: center;
+    padding: 0 toRem(16);
     width: fit-content;
   }
-  &__link {
+  &__logo {
     margin: 0 auto;
     display: block;
-    width: max-content;
   }
 }

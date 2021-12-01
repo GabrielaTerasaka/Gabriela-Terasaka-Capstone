@@ -1,0 +1,30 @@
+@use "../../styles/partials/functions" as *;
+@use "../../styles/partials/mixins" as *;
+
+.access {
+  &__title {
+    width: fit-content;
+    max-width: toRem(800);
+    padding: toRem(30);
+    margin: toRem(150) auto toRem(80) auto;
+    text-align: center;
+  }
+  &__navbar {
+    width: fit-content;
+    max-width: toRem(800);
+    margin: 0 auto;
+    @include flex-wrap(row);
+    gap: toRem(16);
+  }
+  &__login {
+    @include button;
+    margin: 0;
+  }
+  &__sign-up {
+    @include button-highlight;
+    margin: 0;
+  }
+  &__icon {
+    margin-right: toRem(8);
+  }
+}

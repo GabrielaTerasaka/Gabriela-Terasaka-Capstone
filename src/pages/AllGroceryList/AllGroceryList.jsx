@@ -3,7 +3,7 @@ import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
-import NoAccess from "../../components/NoAccess";
+import NoAccess from "../../pages/NoAccess";
 import Sidebar from "../../components/Sidebar";
 import UserHeader from "../../components/UserHeader";
 
@@ -22,22 +22,22 @@ export default class AllGroceryList extends React.Component {
       );
       const token = sessionStorage.getItem("authorization");
       axios
-        .get(`http://localhost:8080/grocery`, {
-          headers: { Authorization: token },
-        })
-        // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+        // .get(`http://localhost:8080/grocery`, {
         //   headers: { Authorization: token },
         // })
+        .get(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
+          headers: { Authorization: token },
+        })
         .then((response) => {
           // console.log(response.data);
           const userList = response.data;
           axios
-            .get(`http://localhost:8080/grocery-users`, {
-              headers: { Authorization: token },
-            })
-            // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+            // .get(`http://localhost:8080/grocery-users`, {
             //   headers: { Authorization: token },
             // })
+            .get(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
+              headers: { Authorization: token },
+            })
             .then((res) => {
               // console.log(res.data);
               const sharedLists = res.data;
@@ -108,6 +108,7 @@ export default class AllGroceryList extends React.Component {
                         className="grocery__link"
                         key={list.id}
                         to={`/grocery/${list.id}`}
+                        // listId={list.id}
                       >
                         <p className="grocery__link-name">{list.title}</p>
                         <p className="grocery__link-owner">{list.owner}</p>
