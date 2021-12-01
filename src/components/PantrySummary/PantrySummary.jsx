@@ -1,6 +1,7 @@
 import "./PantrySummary.scss";
 import pantryActive from "../../assets/icons/pantry_active.svg";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const listArr = [
   { ingredient: "ingredient 1", quantity: "1", unit: "gram" },
@@ -27,10 +28,16 @@ class PantrySummary extends React.Component {
     };
     return (
       <article className="summary">
-        <h3 className="summary__title">
+        <Link
+          to="/pantry"
+          className="summary__title"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+        >
           Pantry{" "}
           <img src={pantryActive} alt="grocery list" className="summary__img" />
-        </h3>
+        </Link>
         <ul>
           {listArr.slice(0, 10).map((list, i) => (
             <li key={i} className="summary__list">

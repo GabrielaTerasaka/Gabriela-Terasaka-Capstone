@@ -14,10 +14,16 @@ class RecipeSummary extends React.Component {
   render() {
     return (
       <article className="summary">
-        <h3 className="summary__title">
+        <Link
+          to="/recipes"
+          className="summary__title"
+          onClick={() => {
+            window.scrollTo(0, 0);
+          }}
+        >
           Recipes{" "}
           <img src={recipeActive} alt="grocery list" className="summary__img" />
-        </h3>
+        </Link>
         <p className="summary__recipe">Personal Recipes</p>
         <ul>
           {listArr.slice(0, 3).map((list, i) => (
@@ -38,7 +44,7 @@ class RecipeSummary extends React.Component {
           <p className="summary__add-button">+ Add New Recipe</p>
           <p className="summary__more-button">See More</p>
         </div>
-        <p className="summary__recipe">Tasty Recipes</p>
+        <p className="summary__recipe">Suggested Recipes</p>
         <ul>
           {listArr.slice(0, 3).map((list, i) => (
             <Link

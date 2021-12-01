@@ -3,7 +3,8 @@ import React from "react";
 import GrocerySummary from "../../components/GrocerySummary";
 import RecipeSummary from "../../components/RecipeSummary";
 import PantrySummary from "../../components/PantrySummary";
-import NoAccess from "../../components/NoAccess";
+import NoAccess from "../../pages/NoAccess";
+
 import Sidebar from "../../components/Sidebar";
 
 import UserHeader from "../../components/UserHeader";
@@ -36,7 +37,7 @@ export default class HomePage extends React.Component {
       day: "numeric",
     };
     const { user } = this.state;
-    console.log(user);
+
     return (
       <div>
         {!sessionStorage.getItem("authorization") && <NoAccess />}

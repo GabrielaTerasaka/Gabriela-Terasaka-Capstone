@@ -27,7 +27,7 @@ class UserHeader extends React.Component {
       <>
         <header className="user-header">
           <div className="user-header__wrapper">
-            <Link to="/" className="user-header__logo-link">
+            <Link to="/home" className="user-header__logo-link">
               <img
                 src={logo}
                 alt="MyPantry logo"
