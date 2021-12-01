@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 import NoAccess from "../../pages/NoAccess";
