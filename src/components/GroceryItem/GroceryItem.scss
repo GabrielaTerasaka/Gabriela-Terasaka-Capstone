@@ -3,6 +3,7 @@
 @use "../../styles/partials/functions" as *;
 .label-box {
   width: 100%;
+  // position: relative;
   @include tablet-breakpoint {
     @include flex-wrap(row, flex-start);
   }
@@ -16,7 +17,7 @@
   }
   &__mandatory-wrapper {
     width: calc(100% - toRem(21));
-    @include flex-wrap(row, space-between);
+    @include flex-wrap(row, space-between, flex-end);
     @include tablet-breakpoint {
       @include text-style(toRem(14), toRem(16), $font-regular);
       // width: 100%;
@@ -52,9 +53,11 @@
     @include input-grocery;
     width: 15%;
   }
-  &__brand {
+  &__category {
     @include input-grocery;
     margin-left: toRem(21);
+    width: 30%;
+
     @include tablet-breakpoint {
       width: 40%;
       margin: 0 0 0 auto;
@@ -63,6 +66,8 @@
   &__shelf {
     @include input-grocery;
     margin: 0 auto;
+    width: 30%;
+
     @include tablet-breakpoint {
       width: 40%;
       // margin: 0;
@@ -73,6 +78,7 @@
   }
   &__info {
     margin-left: auto;
+    margin-right: toRem(18);
     border-bottom: 1px solid transparent;
     cursor: pointer;
     @include tablet-breakpoint {
@@ -92,6 +98,18 @@
     margin: 0 toRem(4) 0 auto;
     @include tablet-breakpoint {
       margin: 0 auto 0 toRem(4);
+    }
+    &--delete {
+      color: $alert;
+      align-self: flex-start;
+      // margin-right: auto;
+      // position: absolute;
+      // top: 0;
+      // right: toRem(-8);
+      @include text-style(toRem(12), toRem(14), $font-regular);
+      @include tablet-breakpoint {
+        @include text-style(toRem(14), toRem(16), $font-regular);
+      }
     }
   }
 }

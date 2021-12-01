@@ -7,11 +7,12 @@
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 10;
   height: toRem(80);
   @include flex-wrap;
   box-shadow: -2px 0px 5px rgba(0 0 0 / 10%);
   @include tablet-breakpoint {
-    z-index: 5;
+    // z-index: 5;
   }
   &__wrapper {
     // overflow: visible;

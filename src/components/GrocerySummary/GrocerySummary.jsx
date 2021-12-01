@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 const listArr = ["list 1", "list 2", "list 3", "list 4"];
 // const listArr = [];
@@ -12,6 +13,7 @@ const listArr = ["list 1", "list 2", "list 3", "list 4"];
 class GrocerySummary extends React.Component {
   state = {
     isMore: false,
+    currentLists: null,
   };
 
   toggleMore = () => {
@@ -19,12 +21,31 @@ class GrocerySummary extends React.Component {
       isMore: this.state.isMore ? false : true,
     });
   };
+  componentDidMount() {
+    const token = sessionStorage.getItem("authorization");
+    axios
+      .get(`http://localhost:8080/grocery`, {
+        headers: { Authorization: token },
+      })
+      // .get(`https://shrouded-peak-10650.herokuapp.com/login`, {
+      //   headers: { Authorization: token },
+      // })
+      .then((response) => {
+        console.log(response.data);
+        this.setState({
+          currentLists: response.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 
   render() {
-    const { isMore } = this.state;
+    const { isMore, currentLists } = this.state;
     let num = 3;
     if (isMore) {
-      num = listArr.length;
+      num = currentLists.length;
     }
     return (
       <article className="summary">
@@ -33,21 +54,32 @@ class GrocerySummary extends React.Component {
           <img src={listActive} alt="grocery list" className="summary__img" />
         </Link>
         <ul>
-          {listArr.slice(0, num).map((list, i) => (
-            <Link key={i} className="summary__link" to={`/grocery/${list.i}`}>
-              {list}
-              <FontAwesomeIcon
-                icon={faChevronRight}
-                className="summary__icon"
-              />
-            </Link>
-          ))}
+          {currentLists &&
+            currentLists.slice(0, num).map((list, i) => (
+              <Link
+                key={list.id}
+                className="summary__link"
+                to={`/grocery/${list.id}`}
+              >
+                {list.title}
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="summary__icon"
+                />
+              </Link>
+            ))}
         </ul>
         <div className="summary__wrapper">
           <p className="summary__add-button">+ Add New List</p>
-          <p className="summary__more-button" onClick={this.toggleMore}>{`${
-            isMore ? "Less" : "More"
-          }`}</p>
+          {currentLists && currentLists.length < 3 ? (
+            ""
+          ) : (
+            <>
+              <p className="summary__more-button" onClick={this.toggleMore}>{`${
+                isMore ? "Less" : "More"
+              }`}</p>
+            </>
+          )}
         </div>
       </article>
     );

@@ -12,12 +12,19 @@
     padding: toRem(40) 5%;
     @include tablet-breakpoint {
       margin-left: toRem(93);
-      max-width: toRem(1460);
+      // max-width: toRem(1460);
+      max-width: toRem(1364);
+      padding: toRem(40);
+      @include flex-wrap;
     }
   }
   &__title {
     @include title;
     margin-bottom: toRem(40);
+    @include tablet-breakpoint {
+      width: 100%;
+      max-width: toRem(798);
+    }
   }
   &__content-wrapper {
     border-radius: 4px;
@@ -38,7 +45,17 @@
   }
   &__description-left,
   &__link-name {
-    width: 65%;
+    width: 40%;
+    // @include text-style(toRem(18), toRem(20), $font-demi);
+    // @include tablet-breakpoint {
+    //   @include text-style(toRem(22), toRem(24), $font-demi);
+    // }
+  }
+  &__description-middle,
+  &__link-owner {
+    width: 25%;
+    text-align: center;
+
     // @include text-style(toRem(18), toRem(20), $font-demi);
     // @include tablet-breakpoint {
     //   @include text-style(toRem(22), toRem(24), $font-demi);
@@ -47,6 +64,7 @@
   &__description-right,
   &__link-shared {
     width: 35%;
+    text-align: center;
     // @include text-style(toRem(18), toRem(20), $font-demi);
     // @include tablet-breakpoint {
     //   @include text-style(toRem(22), toRem(24), $font-demi);
@@ -58,7 +76,7 @@
   }
   &__link {
     // margin: toRem(8) 0;
-    @include text-style(toRem(16), toRem(18), $font-regular);
+    @include text-style(toRem(14), toRem(16), $font-regular);
     @include flex-wrap(row, space-between);
     width: 100%;
     padding: toRem(16);
@@ -69,7 +87,25 @@
       // border-radius: 4px;
     }
     @include tablet-breakpoint {
-      @include text-style(toRem(20), toRem(22), $font-regular);
+      @include text-style(toRem(16), toRem(18), $font-regular);
+    }
+  }
+  &__button-wrapper {
+    width: 100%;
+    max-width: toRem(798);
+    @include flex-wrap(row, flex-end);
+  }
+  &__add-button {
+    margin: toRem(16) toRem(8) 0 0;
+    @include text-style(toRem(14), toRem(14), $font-demi);
+    color: $primary-color2;
+    cursor: pointer;
+    &:hover {
+      color: $primary-color1;
+      text-decoration: underline $primary-color1;
+    }
+    @include tablet-breakpoint {
+      @include text-style(toRem(16), toRem(18), $font-demi);
     }
   }
 }
