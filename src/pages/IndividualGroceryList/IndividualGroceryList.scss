@@ -87,8 +87,11 @@
   // position: relative;
   // z-index: -1;
   &__ing-wrapper {
-    padding: toRem(16) toRem(16) 0 toRem(16);
+    padding: toRem(16) toRem(8) 0 toRem(8);
     width: 100%;
+    @include tablet-breakpoint {
+      padding: toRem(16) toRem(16) 0 toRem(16);
+    }
   }
   &__buttons-wrapper {
     margin-top: toRem(8);
@@ -99,12 +102,13 @@
   &__button-add {
     @include button;
     border-width: 1px;
-    margin: toRem(8) toRem(16) toRem(16) auto;
+    margin: toRem(8) toRem(8) toRem(16) auto;
     cursor: pointer;
 
     @include text-style(toRem(14), toRem(16), $font-regular);
     @include tablet-breakpoint {
       @include text-style(toRem(16), toRem(18), $font-regular);
+      margin: toRem(8) toRem(16) toRem(16) auto;
     }
   }
   &__buttons-top,

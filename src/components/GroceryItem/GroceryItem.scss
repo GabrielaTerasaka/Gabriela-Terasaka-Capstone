@@ -9,14 +9,14 @@
   }
 }
 .label {
-  @include flex-wrap(row, flex-start);
+  @include flex-wrap(row, space-between);
   margin: toRem(8) 0;
   width: 100%;
   @include tablet-breakpoint {
     width: 60%;
   }
   &__mandatory-wrapper {
-    width: calc(100% - toRem(21));
+    width: calc(100% - toRem(25));
     @include flex-wrap(row, space-between, flex-end);
     @include tablet-breakpoint {
       @include text-style(toRem(14), toRem(16), $font-regular);
@@ -55,7 +55,7 @@
   }
   &__category {
     @include input-grocery;
-    margin-left: toRem(21);
+    margin-left: toRem(25);
     width: 30%;
 
     @include tablet-breakpoint {
@@ -74,7 +74,7 @@
     }
   }
   &__check {
-    margin-right: toRem(8);
+    margin-right: toRem(4);
   }
   &__info {
     margin-left: auto;
