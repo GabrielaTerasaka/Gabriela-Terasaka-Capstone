@@ -64,7 +64,7 @@ class PantrySummary extends React.Component {
     //   );
     // console.log(lastUpdate);
     const date =
-      currentPantry &&
+      currentPantry.length !== 0 &&
       new Date(
         Number(currentPantry[currentPantry.length - 1].ingredient_date_bought)
       );
