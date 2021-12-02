@@ -143,7 +143,7 @@ export default class IndividualGroceryList extends React.Component {
         category_id: item.category_id,
       };
     });
-    // console.log(newListItems);
+    console.log(this.state.ownerList);
 
     const token = sessionStorage.getItem("authorization");
     axios
@@ -153,7 +153,7 @@ export default class IndividualGroceryList extends React.Component {
       // })
       .post(`https://shrouded-peak-10650.herokuapp.com/pantry-items`, {
         headers: { Authorization: token },
-        body: { addPantryItems },
+        body: { addPantryItems, ownerId: this.state.ownerList.ownerId },
       })
       .then((response) => {
         axios
