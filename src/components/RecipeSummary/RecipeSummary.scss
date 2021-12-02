@@ -4,17 +4,20 @@
 
 .summary {
   &__recipe {
-    margin: toRem(24) 0 toRem(8) 0;
+    margin: toRem(24) 0 toRem(16) 0;
     font-weight: $font-demi;
+    &--suggested {
+      margin-top: toRem(48);
+    }
   }
   &__wrapper--recipe {
-    margin-top: 0;
     width: 95%;
     margin-left: auto;
   }
   &__link--recipe {
     width: 95%;
     margin-left: auto;
+    margin-top: toRem(8);
   }
   &__more-button--tasty {
     margin-left: auto;
