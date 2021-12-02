@@ -104,9 +104,11 @@ class PantrySummary extends React.Component {
                 </li>
               ))}
             </ul>
-            <h4 className="summary__sub-title">
-              last updated on {`${date.toLocaleDateString("en-US", format)}`}
-            </h4>
+            {date && (
+              <h4 className="summary__sub-title">
+                last updated on {`${date.toLocaleDateString("en-US", format)}`}
+              </h4>
+            )}
             <div className="summary__wrapper">
               {/* <p className="summary__add-button">+ Add New Ingredient</p> */}
               <Link to="/pantry" className="summary__more-button">
