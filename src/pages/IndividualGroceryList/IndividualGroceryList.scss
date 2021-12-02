@@ -2,6 +2,9 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/functions" as *;
 
+// .list-wrapper {
+//   position: relative;
+// }
 .ing-grocery {
   margin-bottom: toRem(100);
   @include tablet-breakpoint {
@@ -54,6 +57,24 @@
     }
     @include tablet-breakpoint {
       @include text-style(toRem(20), toRem(22), $font-regular);
+    }
+  }
+  &__delete-wrapper {
+    margin: toRem(32) auto 0 auto;
+    width: 100%;
+    max-width: toRem(798);
+  }
+  &__delete {
+    @include button;
+    border-color: $alert;
+    cursor: pointer;
+    @include text-style(toRem(14), toRem(16), $font-regular);
+
+    &:hover {
+      background-color: rgba($color: $alert, $alpha: 0.3);
+    }
+    @include tablet-breakpoint {
+      @include text-style(toRem(18), toRem(20), $font-regular);
     }
   }
 }

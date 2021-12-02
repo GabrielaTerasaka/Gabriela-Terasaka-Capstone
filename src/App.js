@@ -15,6 +15,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import FeatureInProgress from "./pages/FeatureInProgress";
 import IndividualGroceryList from "./pages/IndividualGroceryList";
 import AllGroceryList from "./pages/AllGroceryList";
+import Pantry from "./pages/Pantry";
 
 function App() {
   return (
@@ -49,7 +50,7 @@ function App() {
           <Route
             path="/pantry"
             exact
-            render={(routerProps) => <FeatureInProgress {...routerProps} />}
+            render={(routerProps) => <Pantry {...routerProps} />}
           />
           <Route
             path="/recipes"
