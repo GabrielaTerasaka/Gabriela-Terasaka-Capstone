@@ -62,6 +62,11 @@ function App() {
             exact
             render={(routerProps) => <FeatureInProgress {...routerProps} />}
           />
+          <Route
+            path="/notfound"
+            exact
+            render={(routerProps) => <NotFoundPage {...routerProps} />}
+          />
           <Route component={NotFoundPage} />
 
           {/* <Route path="/recipe" exact component={RecipePage} />

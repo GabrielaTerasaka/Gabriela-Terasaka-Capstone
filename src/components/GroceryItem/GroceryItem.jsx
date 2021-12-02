@@ -215,7 +215,7 @@ class GroceryItem extends React.Component {
                 type="text"
                 defaultValue={shelf_life}
                 className="label__shelf"
-                placeholder="shelf life"
+                placeholder="expiry date"
                 onChange={(e) => {
                   this.props.handleChange(e, index, "shelf_life");
                 }}

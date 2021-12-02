@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <HomeHeader />
-      <h1 class="notfound__title"> 404 Page Not Found</h1>
+      <h1 className="notfound__title"> 404 Page Not Found</h1>
       <Link to="/" className="notfound__link">
         <img src={logo} alt="MyFoodies logo" />
       </Link>
