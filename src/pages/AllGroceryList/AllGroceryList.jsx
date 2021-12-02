@@ -15,6 +15,24 @@ export default class AllGroceryList extends React.Component {
     allGroceryList: [],
   };
 
+  addNewList = () => {
+    const token = sessionStorage.getItem("authorization");
+    axios
+      // .post(`http://localhost:8080/grocery`, {
+      //   headers: { Authorization: token },
+      // })
+      .post(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        window.location.href = `/grocery/${response.data[0]}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   componentDidMount() {
     if (sessionStorage.getItem("authorization")) {
       const decode = jwt_decode(
@@ -49,7 +67,7 @@ export default class AllGroceryList extends React.Component {
                     .map((user) => user.shared_user_name),
                 };
               });
-              console.log(allListInfo);
+              // console.log(allListInfo);
               this.setState({
                 allGroceryList: allListInfo,
                 user: decode,
@@ -122,7 +140,9 @@ export default class AllGroceryList extends React.Component {
                   </ul>
                 </div>
                 <div className="grocery__button-wrapper">
-                  <p className="grocery__add-button">+ Add New List</p>
+                  <p className="grocery__add-button" onClick={this.addNewList}>
+                    + Add New List
+                  </p>
                 </div>
               </div>
             </main>

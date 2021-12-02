@@ -18,10 +18,10 @@ export default class HomePage extends React.Component {
         },
       })
       .then((response) => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         response.data.results.forEach((element) => {
           const { id, name, thumbnail_url, video_url, recipes } = element;
-          console.log(id, name, thumbnail_url, video_url);
+          // console.log(id, name, thumbnail_url, video_url);
           const {
             cook_time_minutes,
             instructions,
@@ -30,15 +30,15 @@ export default class HomePage extends React.Component {
             credits,
             sections,
           } = recipes[0];
-          console.log(
-            cook_time_minutes,
-            instructions,
-            num_servings,
-            prep_time_minutes,
-            credits[0].name,
-            sections
-          );
-          console.log(sections.components);
+          // console.log(
+          //   cook_time_minutes,
+          //   instructions,
+          //   num_servings,
+          //   prep_time_minutes,
+          //   credits[0].name,
+          //   sections
+          // );
+          // console.log(sections.components);
           // thumbnail_url, video_url
           // recipes[0].cook_time_minutes  .instructions   .num_servings   .prep_time_minutes .credits[0].name .sections.components
         });

@@ -21,6 +21,23 @@ class GrocerySummary extends React.Component {
       isMore: this.state.isMore ? false : true,
     });
   };
+  addNewList = () => {
+    const token = sessionStorage.getItem("authorization");
+    axios
+      // .post(`http://localhost:8080/grocery`, {
+      //   headers: { Authorization: token },
+      // })
+      .post(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        // console.log(response.data);
+        window.location.href = `/grocery/${response.data[0]}`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   componentDidMount() {
     const token = sessionStorage.getItem("authorization");
     axios
@@ -31,7 +48,7 @@ class GrocerySummary extends React.Component {
         headers: { Authorization: token },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({
           currentLists: response.data,
         });
@@ -77,7 +94,9 @@ class GrocerySummary extends React.Component {
             ))}
         </ul>
         <div className="summary__wrapper">
-          <p className="summary__add-button">+ Add New List</p>
+          <p className="summary__add-button" onClick={this.addNewList}>
+            + Add New List
+          </p>
           {currentLists && currentLists.length <= 3 ? (
             ""
           ) : (

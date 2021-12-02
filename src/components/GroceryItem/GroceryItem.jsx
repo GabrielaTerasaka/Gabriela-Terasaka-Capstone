@@ -98,7 +98,7 @@ class GroceryItem extends React.Component {
     const { qty, unit_id, category_id, shelf_life, ingredient_name } =
       // const { ingredientID, quantity, unit, category, shelf_life, ingredient } =
       this.state.activeItem;
-    const { index } = this.props;
+    const { index, noCheckbox } = this.props;
     const { isMore, unitsArr, categoriesArr } = this.state;
     // console.log(this.state.activeItem);
     const unit = String(unit_id);
@@ -110,14 +110,16 @@ class GroceryItem extends React.Component {
         <div className="label">
           {/* <label className="label"> */}
           <label>
-            <input
-              type="checkbox"
-              // name={ingredientID}
-              className="label__check"
-              onChange={(e) => {
-                this.props.handleChange(e, index, "checkbox");
-              }}
-            />
+            {!noCheckbox && (
+              <input
+                type="checkbox"
+                // name={ingredientID}
+                className="label__check"
+                onChange={(e) => {
+                  this.props.handleChange(e, index, "checkbox");
+                }}
+              />
+            )}
           </label>
           <div className="label__mandatory-wrapper">
             <input
@@ -126,7 +128,7 @@ class GroceryItem extends React.Component {
               className="label__name"
               placeholder="ingredient"
               onChange={(e) => {
-                this.props.handleChange(e, index, "ingredient");
+                this.props.handleChange(e, index, "ingredient_name");
               }}
             />
             <input
@@ -135,7 +137,7 @@ class GroceryItem extends React.Component {
               className="label__qty"
               placeholder="qty"
               onChange={(e) => {
-                this.props.handleChange(e, index, "quantity");
+                this.props.handleChange(e, index, "qty");
               }}
             />
             {/* <input
