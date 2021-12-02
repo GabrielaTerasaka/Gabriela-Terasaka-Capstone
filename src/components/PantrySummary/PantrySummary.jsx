@@ -63,12 +63,17 @@ class PantrySummary extends React.Component {
     //     currentPantry.map((item) => Number(item.ingredient_date_bought))
     //   );
     // console.log(lastUpdate);
+    // console.log(currentPantry);
     const date =
       currentPantry &&
       currentPantry.length !== 0 &&
       new Date(
-        Number(currentPantry[currentPantry.length - 1].ingredient_date_bought)
+        currentPantry.sort(
+          (a, b) => a.ingredient_date_bought - b.ingredient_date_bought
+        )[currentPantry.length - 1].ingredient_date_bought
       );
+    // console.log(date);
+
     // const date = new Date(Date.now());
     const format = {
       year: "numeric",
