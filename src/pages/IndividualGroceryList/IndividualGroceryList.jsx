@@ -115,7 +115,7 @@ export default class IndividualGroceryList extends React.Component {
     const selectedItems = this.state.groceryListActive.filter(
       (item) => item.isChecked && item.ingredient_name && item.qty
     );
-    // console.log(selectedItems);
+    console.log(Date.now());
 
     const addPantryItems = selectedItems.map((item) => {
       return {
@@ -124,6 +124,7 @@ export default class IndividualGroceryList extends React.Component {
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
+        // ingredient_date_bought: (Date.now()),
       };
     });
     // console.log(addPantryItems);
@@ -143,7 +144,7 @@ export default class IndividualGroceryList extends React.Component {
         category_id: item.category_id,
       };
     });
-    console.log(this.state.ownerList);
+    // console.log(this.state.ownerList);
 
     const token = sessionStorage.getItem("authorization");
     axios
