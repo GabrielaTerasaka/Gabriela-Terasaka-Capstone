@@ -44,7 +44,9 @@ class RecipeSummary extends React.Component {
           <p className="summary__add-button">+ Add New Recipe</p>
           <p className="summary__more-button">See More</p>
         </div>
-        <p className="summary__recipe">Suggested Recipes</p>
+        <p className="summary__recipe summary__recipe--suggested">
+          Suggested Recipes
+        </p>
         <ul>
           {listArr.slice(0, 3).map((list, i) => (
             <Link
