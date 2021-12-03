@@ -10,7 +10,7 @@ export default function HomePage() {
   return (
     <div>
       <UserHeader />
-      <h1 class="notfound__title"> Feature Coming Soon</h1>
+      <h1 className="notfound__title"> Feature Coming Soon</h1>
       <img src={logo} alt="MyFoodies logo" className="notfound__logo" />
       <Sidebar />
     </div>

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-
+import { Redirect } from "react-router-dom";
 // const listArr = ["list 1", "list 2", "list 3", "list 4"];
 // const listArr = [];
 
@@ -14,6 +14,7 @@ class GrocerySummary extends React.Component {
   state = {
     isMore: false,
     currentLists: null,
+    redirect: null,
   };
 
   toggleMore = () => {
@@ -32,7 +33,14 @@ class GrocerySummary extends React.Component {
       })
       .then((response) => {
         // console.log(response.data);
-        window.location.href = `/grocery/${response.data[0]}`;
+        window.history.pushState(
+          null,
+          "List Page",
+          `/grocery/${response.data[0]}`
+        );
+        this.setState({
+          redirect: <Redirect to={`/grocery/${response.data[0]}`} />,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -107,6 +115,7 @@ class GrocerySummary extends React.Component {
             </>
           )}
         </div>
+        {this.state.redirect}
       </article>
     );
   }

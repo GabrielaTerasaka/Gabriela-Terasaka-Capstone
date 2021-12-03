@@ -13,7 +13,8 @@ export default function DeleteModal(props) {
           props.cancelDeleteOption();
         }}
       ></div>
-      <div className="modal__box">
+      <div className="modal__box" style={{ top: window.scrollY + "px" }}>
+        {/* <div className="modal__box"> */}
         <img
           src={closeIcon}
           alt="close icon"

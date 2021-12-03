@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import axios from "axios";
 
 import NoAccess from "../../pages/NoAccess";
@@ -15,6 +15,7 @@ export default class AllGroceryList extends React.Component {
     user: null,
     allGroceryList: [],
     isLoading: true,
+    redirect: null,
   };
 
   addNewList = () => {
@@ -28,7 +29,15 @@ export default class AllGroceryList extends React.Component {
       })
       .then((response) => {
         // console.log(response.data);
-        window.location.href = `/grocery/${response.data[0]}`;
+        // window.location.href = `/grocery/${response.data[0]}`;
+        window.history.pushState(
+          null,
+          "List Page",
+          `/grocery/${response.data[0]}`
+        );
+        this.setState({
+          redirect: <Redirect to={`/grocery/${response.data[0]}`} />,
+        });
       })
       .catch((err) => {
         console.log(err);
@@ -155,6 +164,7 @@ export default class AllGroceryList extends React.Component {
                     </p>
                   </div>
                 </div>
+                {this.state.redirect}
               </main>
             )}
 

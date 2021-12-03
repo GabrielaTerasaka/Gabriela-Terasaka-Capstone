@@ -30,7 +30,10 @@ class RecipeSummary extends React.Component {
             <Link
               key={i}
               className="summary__link summary__link--recipe"
-              to="/"
+              to="/featureinprogress"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               {list}
               <FontAwesomeIcon
@@ -41,8 +44,26 @@ class RecipeSummary extends React.Component {
           ))}
         </ul>
         <div className="summary__wrapper summary__wrapper--recipe">
-          <p className="summary__add-button">+ Add New Recipe</p>
-          <p className="summary__more-button">See More</p>
+          {/* <p className="summary__add-button">+ Add New Recipe</p>
+          <p className="summary__more-button">See More</p> */}
+          <Link
+            to="/featureinprogress"
+            className="summary__add-button"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            + Add New Recipe
+          </Link>
+          <Link
+            to="/featureinprogress"
+            className="summary__more-button"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            See More
+          </Link>
         </div>
         <p className="summary__recipe summary__recipe--suggested">
           Suggested Recipes
@@ -52,7 +73,10 @@ class RecipeSummary extends React.Component {
             <Link
               key={i}
               className="summary__link summary__link--recipe"
-              to="/"
+              to="/featureinprogress"
+              onClick={() => {
+                window.scrollTo(0, 0);
+              }}
             >
               {list}
               <FontAwesomeIcon
@@ -63,9 +87,18 @@ class RecipeSummary extends React.Component {
           ))}
         </ul>
         <div className="summary__wrapper summary__wrapper--recipe">
-          <p className="summary__more-button summary__more-button--tasty">
+          {/* <p className="summary__more-button summary__more-button--tasty">
             See More
-          </p>
+          </p> */}
+          <Link
+            to="/featureinprogress"
+            className="summary__more-button summary__more-button--tasty"
+            onClick={() => {
+              window.scrollTo(0, 0);
+            }}
+          >
+            See More
+          </Link>
         </div>
       </article>
     );
