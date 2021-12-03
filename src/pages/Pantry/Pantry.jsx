@@ -15,6 +15,8 @@ import GroceryItem from "../../components/GroceryItem";
 import Loading from "../../components/Loading";
 // import DeleteModal from "../../components/DeleteModal";
 
+let messageControl;
+
 export default class Pantry extends React.Component {
   state = {
     // user: null,
@@ -105,7 +107,7 @@ export default class Pantry extends React.Component {
       message: "Saved Successfully",
       // isChanged: true,
     });
-    setTimeout(() => {
+    messageControl = setTimeout(() => {
       this.setState({
         // groceryListActive: saveItems,
         showMessage: false,
@@ -628,7 +630,9 @@ export default class Pantry extends React.Component {
   //     });
   //   }
   // }
-
+  componentWillUnmount() {
+    clearTimeout(messageControl);
+  }
   render() {
     const {
       user,
@@ -830,7 +834,7 @@ export default class Pantry extends React.Component {
                           <button
                             type="submit"
                             name="save"
-                            className="grocery-form__button-save--bottom pantry__save--bottom"
+                            className="pantry__save--bottom"
                             onClick={(e) => {
                               this.handleSaveChanges(e);
                             }}

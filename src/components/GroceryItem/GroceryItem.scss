@@ -50,10 +50,12 @@
     }
   }
   &__unit {
+    cursor: pointer;
     @include input-grocery;
     width: 15%;
   }
   &__category {
+    cursor: pointer;
     @include input-grocery;
     margin-left: toRem(25);
     width: 30%;
@@ -154,6 +156,8 @@
       margin: 0 auto 0 toRem(4);
     }
     &--delete {
+      cursor: pointer;
+
       color: $alert;
       align-self: flex-start;
       // margin-right: auto;
@@ -182,6 +186,8 @@
 
 .label__shelf {
   &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+
     // background-color: red;
     padding: 0;
     margin-left: toRem(4);

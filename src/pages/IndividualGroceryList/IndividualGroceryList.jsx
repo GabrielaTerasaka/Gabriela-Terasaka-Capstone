@@ -15,6 +15,8 @@ import GroceryItem from "../../components/GroceryItem";
 import DeleteModal from "../../components/DeleteModal";
 import Loading from "../../components/Loading";
 
+let messageControl;
+
 export default class IndividualGroceryList extends React.Component {
   state = {
     user: null,
@@ -37,6 +39,7 @@ export default class IndividualGroceryList extends React.Component {
     isLoading: true,
     showMessage: false,
     message: null,
+    redirect: null,
   };
 
   addNewItem = (e) => {
@@ -105,7 +108,7 @@ export default class IndividualGroceryList extends React.Component {
       message: "Saved Successfully",
       // isChanged: true,
     });
-    setTimeout(() => {
+    messageControl = setTimeout(() => {
       this.setState({
         // groceryListActive: saveItems,
         showMessage: false,
@@ -200,7 +203,7 @@ export default class IndividualGroceryList extends React.Component {
       message: "Added Successfully",
       // isChanged: true,
     });
-    setTimeout(() => {
+    messageControl = setTimeout(() => {
       this.setState({
         // groceryListActive: saveItems,
         showMessage: false,
@@ -586,7 +589,15 @@ export default class IndividualGroceryList extends React.Component {
                   });
               });
           } else {
-            window.location.href = "/notfound";
+            // window.location.href = "/notfound";
+            window.history.pushState(
+              null,
+              "List Page",
+              `/grocery/${response.data[0]}`
+            );
+            this.setState({
+              redirect: <Redirect to={`/notfound`} />,
+            });
           }
         })
         .catch(() => {
@@ -607,6 +618,9 @@ export default class IndividualGroceryList extends React.Component {
   //     });
   //   }
   // }
+  componentWillUnmount() {
+    clearTimeout(messageControl);
+  }
 
   render() {
     const {
@@ -882,6 +896,7 @@ export default class IndividualGroceryList extends React.Component {
             handleDeleteElement={this.handleDeleteElement}
           />
         )}
+        {this.state.redirect}
         {isRedirect && <Redirect to="/grocery" />}
       </div>
     );

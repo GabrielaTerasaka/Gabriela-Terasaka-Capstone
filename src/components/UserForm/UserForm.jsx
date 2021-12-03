@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React from "react";
 import axios from "axios";
+import { Redirect } from "react-router-dom";
 
 export default class LoginSignUpPage extends React.Component {
   state = {
@@ -16,6 +17,7 @@ export default class LoginSignUpPage extends React.Component {
     emailMessage: null,
     passwordMessage: null,
     passwordEntered: null,
+    redirect: null,
   };
 
   checkSignUpInputs = (e) => {
@@ -86,7 +88,8 @@ export default class LoginSignUpPage extends React.Component {
           // console.log(response);
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
-          window.location.href = `/home`;
+          window.history.pushState(null, "Home Page", "/home");
+          this.setState({ redirect: <Redirect to="/home" /> });
         })
         .catch((err) => {
           if (err.message === "Request failed with status code 401") {
@@ -111,7 +114,10 @@ export default class LoginSignUpPage extends React.Component {
         .then((response) => {
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
-          window.location.href = `/home`;
+          // window.location.href = `/home`;
+          // history.pushState;
+          window.history.pushState(null, "Home Page", "/home");
+          this.setState({ redirect: <Redirect to="/home" /> });
         })
         .catch((err) => {
           if (err.message === "Request failed with status code 401") {
@@ -309,6 +315,7 @@ export default class LoginSignUpPage extends React.Component {
             {isSignUp ? "Sign up" : "Sign in"}
           </button>
         </div>
+        {this.state.redirect}
       </form>
     );
   }

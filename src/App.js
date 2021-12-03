@@ -63,6 +63,11 @@ function App() {
             render={(routerProps) => <FeatureInProgress {...routerProps} />}
           />
           <Route
+            path="/featureinprogress"
+            exact
+            render={(routerProps) => <FeatureInProgress {...routerProps} />}
+          />
+          <Route
             path="/notfound"
             exact
             render={(routerProps) => <NotFoundPage {...routerProps} />}

@@ -340,9 +340,19 @@
 // // }
 
 .pantry__save--bottom {
+  border: none;
+  border-top: 1px solid rgba(52, 58, 64, 0.5);
   width: 100%;
-  border-right: none;
+  cursor: pointer;
+  background-color: $background-secondary-color;
+  font-family: "Montserrat", sans-serif;
   border-radius: 0 0 4px 4px;
+  text-align: center;
+  padding: 0.5rem;
+  @include text-style(toRem(14), toRem(16), $font-demi);
+  @include tablet-breakpoint {
+    @include text-style(toRem(16), toRem(18), $font-demi);
+  }
 }
 .pantry-form__message {
   @include tablet-breakpoint {
