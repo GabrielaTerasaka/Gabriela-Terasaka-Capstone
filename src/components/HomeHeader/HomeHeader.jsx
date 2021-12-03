@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-// import logo from "../../assets/logo/MyFoodies_logo_new.png";
 import logo from "../../assets/logo/MyFoodies_logo.svg";
 import "./HomeHeader.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,4 +1,3 @@
-// import cookingImage from "../../assets/images/becca-tapert-O7sK3d3TPWQ-unsplash.jpg";
 import "./NotFoundPage.scss";
 import logo from "../../assets/logo/MyFoodies_logo.svg";
 

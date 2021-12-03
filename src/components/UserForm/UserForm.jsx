@@ -80,12 +80,9 @@ export default class LoginSignUpPage extends React.Component {
         email: email.value,
         password: password.value,
       };
-      // console.log(signUpInfo);https://shrouded-peak-10650.herokuapp.com/
       axios
-        // .post(`http://localhost:8080/signup`, signUpInfo)
         .post(`https://shrouded-peak-10650.herokuapp.com/signup`, signUpInfo)
         .then((response) => {
-          // console.log(response);
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
           window.history.pushState(null, "Home Page", "/home");
@@ -109,13 +106,10 @@ export default class LoginSignUpPage extends React.Component {
       };
 
       axios
-        // .post(`http://localhost:8080/login`, signInInfo)
         .post(`https://shrouded-peak-10650.herokuapp.com/login`, signInInfo)
         .then((response) => {
           sessionStorage.setItem("authorization", `Bearer ${response.data}`);
           e.target.reset();
-          // window.location.href = `/home`;
-          // history.pushState;
           window.history.pushState(null, "Home Page", "/home");
           this.setState({ redirect: <Redirect to="/home" /> });
         })
@@ -246,7 +240,6 @@ export default class LoginSignUpPage extends React.Component {
                 icon={faExclamationCircle}
                 className="form__alert-icon"
               />
-              {/* {`${isSignUp ? "required" : emailMessage}`} */}
               {emailMessage}
             </span>
           ) : (

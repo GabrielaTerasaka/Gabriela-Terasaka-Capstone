@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
-// const listArr = ["list 1", "list 2", "list 3", "list 4"];
-// const listArr = [];
 
 class GrocerySummary extends React.Component {
   state = {
@@ -25,14 +23,10 @@ class GrocerySummary extends React.Component {
   addNewList = () => {
     const token = sessionStorage.getItem("authorization");
     axios
-      // .post(`http://localhost:8080/grocery`, {
-      //   headers: { Authorization: token },
-      // })
       .post(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
         headers: { Authorization: token },
       })
       .then((response) => {
-        // console.log(response.data);
         window.history.pushState(
           null,
           "List Page",
@@ -49,14 +43,10 @@ class GrocerySummary extends React.Component {
   componentDidMount() {
     const token = sessionStorage.getItem("authorization");
     axios
-      // .get(`http://localhost:8080/grocery`, {
-      //   headers: { Authorization: token },
-      // })
       .get(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
         headers: { Authorization: token },
       })
       .then((response) => {
-        // console.log(response.data);
         this.setState({
           currentLists: response.data,
         });
@@ -91,7 +81,6 @@ class GrocerySummary extends React.Component {
                 key={list.id}
                 className="summary__link"
                 to={`/grocery/${list.id}`}
-                // listId={list.id}
               >
                 {list.title}
                 <FontAwesomeIcon

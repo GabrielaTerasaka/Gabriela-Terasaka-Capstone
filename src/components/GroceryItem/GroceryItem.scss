@@ -3,7 +3,6 @@
 @use "../../styles/partials/functions" as *;
 .label-box {
   width: 100%;
-  // position: relative;
   @include tablet-breakpoint {
     @include flex-wrap(row, flex-start);
   }
@@ -18,9 +17,9 @@
   &__mandatory-wrapper {
     width: calc(100% - toRem(25));
     @include flex-wrap(row, space-between, flex-end);
+
     @include tablet-breakpoint {
       @include text-style(toRem(14), toRem(16), $font-regular);
-      // width: 100%;
     }
   }
   &__optional-wrapper {
@@ -28,13 +27,12 @@
     @include flex-wrap(row, space-between);
     margin: toRem(4) 0 toRem(16) 0;
     @include text-style(toRem(12), toRem(14), $font-regular);
+
     @include tablet-breakpoint {
       @include text-style(toRem(14), toRem(16), $font-regular);
       width: 40%;
       margin: 0;
     }
-    // @include flex-wrap(row, space-between);
-    // margin-top: toRem(8);
   }
 
   &__name {
@@ -72,18 +70,14 @@
 
     @include tablet-breakpoint {
       width: 40%;
-      // margin: 0;
     }
   }
   &__checkbox-wrapper {
     background-color: red;
     display: block;
     position: relative;
-    // padding-left: 35px;
-    // margin-bottom: 12px;
     cursor: pointer;
     height: toRem(15);
-    // font-size: 22px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -101,7 +95,6 @@
     }
   }
   &__checkbox {
-    // margin-right: toRem(4);
     position: absolute;
     opacity: 0;
     cursor: pointer;
@@ -124,7 +117,6 @@
     width: toRem(15);
     border-radius: 4px;
     border: 1px solid rgba($color: $font-primary-color, $alpha: 0.8);
-    // background-color: $background-secondary-color;
     &:after {
       content: "";
       position: absolute;
@@ -134,7 +126,6 @@
 
   &__info {
     margin-left: auto;
-    // margin-right: toRem(18);
     border-bottom: 1px solid transparent;
     cursor: pointer;
     @include tablet-breakpoint {
@@ -142,13 +133,6 @@
       margin-left: toRem(8);
       margin-right: auto;
     }
-    // width: 100%;
-    // @include flex-wrap(row, space-between);
-    // margin: toRem(4) 0 toRem(16) 0;
-    // @include text-style(toRem(12), toRem(14), $font-regular);
-    // @include tablet-breakpoint {
-    //   @include text-style(toRem(14), toRem(16), $font-regular);
-    // }
   }
   &__info-icon {
     margin: 0 toRem(4) 0 auto;
@@ -157,14 +141,10 @@
     }
     &--delete {
       cursor: pointer;
-
       color: $alert;
       align-self: flex-start;
-      // margin-right: auto;
-      // position: absolute;
-      // top: 0;
-      // right: toRem(-8);
       @include text-style(toRem(12), toRem(14), $font-regular);
+
       @include tablet-breakpoint {
         @include text-style(toRem(14), toRem(16), $font-regular);
       }
@@ -187,8 +167,6 @@
 .label__shelf {
   &::-webkit-calendar-picker-indicator {
     cursor: pointer;
-
-    // background-color: red;
     padding: 0;
     margin-left: toRem(4);
   }

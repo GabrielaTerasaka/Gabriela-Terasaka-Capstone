@@ -1,4 +1,3 @@
-// import cookingImage from "../../assets/images/becca-tapert-O7sK3d3TPWQ-unsplash.jpg";
 import "./IndexPage.scss";
 
 import HomeHeader from "../../components/HomeHeader";

@@ -2,9 +2,6 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/functions" as *;
 
-// .list-wrapper {
-//   position: relative;
-// }
 .ing-grocery {
   margin-bottom: toRem(100);
   @include tablet-breakpoint {
@@ -15,7 +12,6 @@
     padding: toRem(40) 5% toRem(126) 5%;
     @include tablet-breakpoint {
       margin-left: toRem(93);
-      // max-width: toRem(1460);
       max-width: toRem(1364);
       padding: toRem(40);
       @include flex-wrap;
@@ -29,17 +25,14 @@
   &__content-wrapper {
     border-radius: 4px;
     border: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
-    // border: 1px solid rgba($color: $primary-color2, $alpha: 0.5);
     max-width: toRem(800);
     width: 100%;
     @include flex-wrap(column, flex-start, flex-start);
-    // padding: toRem(16);
   }
   &__description-wrapper {
     @include flex-wrap(row, space-between);
     width: 100%;
     padding: toRem(16);
-    // z-index: -1;
     @include text-style(toRem(18), toRem(20), $font-demi);
     @include tablet-breakpoint {
       @include text-style(toRem(22), toRem(24), $font-demi);
@@ -82,11 +75,8 @@
 
 .grocery-form {
   width: 100%;
-  // padding: 0 toRem(16) toRem(16) toRem(16);
   @include flex-wrap(column, flex-start, flex-start);
   box-shadow: -2px 2px 5px rgba(0 0 0 / 10%);
-  // position: relative;
-  // z-index: -1;
   &__ing-wrapper {
     padding: toRem(16) toRem(8) 0 toRem(8);
     width: 100%;
@@ -100,14 +90,11 @@
     @include flex-wrap(row, space-between, flex-end);
   }
 
-  &__buttons-top,
   &__buttons-bottom {
     width: 100%;
     @include flex-wrap(row, flex-start, stretch);
     height: auto;
   }
-  &__button-save--top,
-  &__button-pantry--top,
   &__button-save--bottom,
   &__button-pantry--bottom,
   &__button-delete--bottom {
@@ -117,7 +104,6 @@
     border: none;
     text-align: center;
     padding: toRem(8);
-    // border-bottom: 1px solid rgba($color: $primary-color2, $alpha: 0.5);
 
     @include text-style(toRem(14), toRem(16), $font-demi);
     @include tablet-breakpoint {
@@ -128,45 +114,26 @@
       color: $font-supplementary-color;
     }
   }
-  &__button-save--top,
   &__button-save--bottom {
     width: 33%;
-    // width: 40%;
     display: inline-block;
-    // border-radius: 4px 0 0 0;
-    border-right: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
-    // align-self: stretch;
-  }
-  &__button-pantry--top,
-  &__button-pantry--bottom {
-    display: inline-block;
-    width: 34%;
-    // width: 60%;
-    // border-radius: 0 4px 0 0;
-  }
-  &__button-save--bottom {
     border-radius: 0 0 0 4px;
     border: none;
     border-right: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
-    // border-right: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
     border-top: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
-    // border-top: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
   }
   &__button-pantry--bottom {
-    // border-radius: 0 0 4px 0;
+    display: inline-block;
+    width: 34%;
     border: none;
     border-top: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
     border-right: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
-    // border-top: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
-    // border-right: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
   }
   &__button-delete--bottom {
     width: 33%;
-
     border-radius: 0 0 4px 0;
     border: none;
     border-top: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
-    // border-top: 1px solid rgba($color: $primary-color2, $alpha: 0.3);
     background-color: rgba($color: $alert, $alpha: 0.2);
     &:hover {
       background-color: rgba($color: $alert, $alpha: 0.8);
@@ -189,24 +156,16 @@
     width: 50%;
     padding-right: toRem(8);
     margin-right: auto;
-    // margin: toRem(16) auto toRem(32) auto;
-    // height: toRem(28);
-
-    // margin: toRem(8) toRem(16) toRem(16) toRem(8);
     color: $primary-color1;
     @include text-style(toRem(14), toRem(16), $font-regular);
     @include tablet-breakpoint {
       @include text-style(toRem(16), toRem(18), $font-regular);
-      // margin: toRem(32) auto;
-      // margin-left: toRem(16);
-      // height: toRem(30);
     }
   }
   &__button-add {
     @include button;
     border-width: 1px;
     margin: 0;
-    // margin-left: auto;
     cursor: pointer;
     width: 50%;
     max-width: max-content;
@@ -214,8 +173,6 @@
     @include text-style(toRem(14), toRem(16), $font-regular);
     @include tablet-breakpoint {
       @include text-style(toRem(16), toRem(18), $font-regular);
-      // margin: 0 toRem(16) 0 auto;
-      // margin: toRem(32) auto;
     }
   }
 }
@@ -244,7 +201,6 @@
   &__share {
     display: block;
     margin: 0 0 toRem(8) toRem(24);
-    // padding-left: toRem(8);
     @include text-style(toRem(14), toRem(16), $font-regular);
     @include tablet-breakpoint {
       @include text-style(toRem(18), toRem(20), $font-regular);
@@ -266,32 +222,12 @@
     }
   }
   &__button {
-    //   @extend .ing-grocery__edit;
-    // cursor: pointer;
-    @include text-style(toRem(14), toRem(16), $font-regular);
-    // text-decoration: underline;
-    // margin-right: toRem(16);
-    // &:hover {
-    //   color: $primary-color1;
-    // }
-    // margin-bottom: toRem(40);
-    // border: none;
-    // background-color: transparent;
-    @include tablet-breakpoint {
-      @include text-style(toRem(18), toRem(20), $font-regular);
-    }
     @include button;
     cursor: pointer;
-    // @include text-style(toRem(16), toRem(18), $font-regular);
-    // text-decoration: underline;
-    // margin-right: toRem(16);
-    &:hover {
-      // color: $primary-color1;
-    }
+    @include text-style(toRem(14), toRem(16), $font-regular);
     margin-bottom: toRem(40);
-
     @include tablet-breakpoint {
-      // @include text-style(toRem(20), toRem(22), $font-regular);
+      @include text-style(toRem(18), toRem(20), $font-regular);
     }
   }
   &__alert {
@@ -333,27 +269,17 @@
   &__edit {
     @include button;
     cursor: pointer;
-    // @include text-style(toRem(16), toRem(18), $font-regular);
-    // text-decoration: underline;
-    // margin-right: toRem(16);
-    &:hover {
-      // color: $primary-color1;
-    }
     @include text-style(toRem(14), toRem(16), $font-regular);
-
     margin-bottom: toRem(40);
 
     @include tablet-breakpoint {
       @include text-style(toRem(18), toRem(20), $font-regular);
-
-      // @include text-style(toRem(20), toRem(22), $font-regular);
     }
   }
   &__shared,
   &__owner,
   &__owner-form {
     margin-bottom: toRem(8);
-    // padding: 0 toRem(8);
     width: 100%;
     @include text-style(toRem(16), toRem(18), $font-regular);
     @include tablet-breakpoint {
@@ -381,20 +307,3 @@
     @include text-style(toRem(12), toRem(14), $font-regular);
   }
 }
-
-// .list-form__button {
-//   @extend .ing-grocery__edit;
-//   // cursor: pointer;
-//   // @include text-style(toRem(16), toRem(18), $font-regular);
-//   // text-decoration: underline;
-//   // margin-right: toRem(16);
-//   // &:hover {
-//   //   color: $primary-color1;
-//   // }
-//   // margin-bottom: toRem(40);
-//   // border: none;
-//   // background-color: transparent;
-//   // @include tablet-breakpoint {
-//   //   @include text-style(toRem(20), toRem(22), $font-regular);
-//   // }
-// }

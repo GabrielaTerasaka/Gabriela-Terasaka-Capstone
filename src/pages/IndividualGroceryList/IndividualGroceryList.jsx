@@ -22,12 +22,10 @@ export default class IndividualGroceryList extends React.Component {
     user: null,
     groceryListActive: [],
     isRedirect: false,
-    // isChanged: false,
     idCounter: 0,
     isEditable: false,
     isErrorEmail: false,
     isErrorTitle: false,
-    // listInfo: null,
     ownerList: null,
     listName: null,
     sharedUsers: null,
@@ -44,22 +42,16 @@ export default class IndividualGroceryList extends React.Component {
 
   addNewItem = (e) => {
     e.preventDefault();
-    // console.log("Add: " + this.state.groceryListActive);
-    // const newID =
-    //   this.state.idCounter + 1;
-    // console.log(newID);
+
     const newList = this.state.groceryListActive;
     newList.push({
       ingredient_name: "",
       qty: "",
       unit_id: 1,
       category_id: 1,
-      // brand: "",
       shelf_life: "",
       ingredientID: this.state.idCounter,
-      // ingredientID: newID,
       isChecked: false,
-      // isChanged: false,
     });
     this.setState({
       groceryListActive: newList,
@@ -85,34 +77,23 @@ export default class IndividualGroceryList extends React.Component {
         category_id: item.category_id,
       };
     });
-    // console.log(newListItems);
-    // if (newListItems.length > 0) {
+
     axios
-      // .put(`http://localhost:8080/grocery-items/${id}`, {
-      //   headers: { Authorization: token },
-      //   body: { newListItems },
-      // })
       .put(`https://shrouded-peak-10650.herokuapp.com/grocery-items/${id}`, {
         headers: { Authorization: token },
         body: { newListItems },
       })
-      .then((response) => {
-        // console.log(response.data);
-      });
-    // }
-    // listArr = [...notSelectedItems];
+      .then(() => {});
 
     this.setState({
       groceryListActive: saveItems,
       showMessage: true,
       message: "Saved Successfully",
-      // isChanged: true,
     });
+
     messageControl = setTimeout(() => {
       this.setState({
-        // groceryListActive: saveItems,
         showMessage: false,
-        // isChanged: true,
       });
     }, 5000);
   };
@@ -120,22 +101,18 @@ export default class IndividualGroceryList extends React.Component {
   handleDelete = (index) => {
     const newList = this.state.groceryListActive;
     newList.splice(index, 1);
-    // console.log(newList);
+
     this.setState({
       groceryListActive: newList,
-      // isChanged: true,
     });
   };
 
   addToPantry = (e) => {
-    // handleSubmit = (e) => {
     e.preventDefault();
 
-    // console.log(this.state.groceryListActive);
     const selectedItems = this.state.groceryListActive.filter(
       (item) => item.isChecked && item.ingredient_name
     );
-    // console.log(Date.now());
 
     const addPantryItems = selectedItems.map((item) => {
       return {
@@ -144,15 +121,13 @@ export default class IndividualGroceryList extends React.Component {
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
-        // ingredient_date_bought: (Date.now()),
       };
     });
-    // console.log(addPantryItems);
+
     const { id } = this.props.match.params;
     const notSelectedItems = this.state.groceryListActive
       .filter((item) => !item.isChecked || !item.ingredient_name)
       .filter((item) => item.ingredient_name);
-    // console.log(notSelectedItems);
 
     const newListItems = notSelectedItems.map((item) => {
       return {
@@ -164,25 +139,15 @@ export default class IndividualGroceryList extends React.Component {
         category_id: item.category_id,
       };
     });
-    // console.log(newListItems);
 
     const token = sessionStorage.getItem("authorization");
     axios
-      // .post(`http://localhost:8080/pantry-items`, {
-      //   headers: { Authorization: token },
-      //   body: { addPantryItems },
-      // })
       .post(`https://shrouded-peak-10650.herokuapp.com/pantry-items`, {
         headers: { Authorization: token },
         body: { addPantryItems, ownerId: this.state.ownerList.ownerId },
       })
-      .then((response) => {
-        // if (newListItems.length > 0) {
+      .then(() => {
         axios
-          // .put(`http://localhost:8080/grocery-items/${id}`, {
-          //   headers: { Authorization: token },
-          //   body: { newListItems },
-          // })
           .put(
             `https://shrouded-peak-10650.herokuapp.com/grocery-items/${id}`,
             {
@@ -190,31 +155,24 @@ export default class IndividualGroceryList extends React.Component {
               body: { newListItems },
             }
           )
-          .then((response) => {
-            // console.log(response.data);
-          });
-        // }
+          .then(() => {});
       });
 
-    // listArr = [...notSelectedItems];
     this.setState({
       groceryListActive: notSelectedItems,
       showMessage: true,
       message: "Added Successfully",
-      // isChanged: true,
     });
     messageControl = setTimeout(() => {
       this.setState({
-        // groceryListActive: saveItems,
         showMessage: false,
-        // isChanged: true,
       });
     }, 5000);
   };
 
   handleDeleteList = (e) => {
     e.preventDefault();
-    // handleDeleteList = () => {
+
     this.setState({
       isDelete: true,
     });
@@ -229,14 +187,10 @@ export default class IndividualGroceryList extends React.Component {
     const token = sessionStorage.getItem("authorization");
 
     axios
-      // .delete(`http://localhost:8080/grocery/${id}`, {
-      //   headers: { Authorization: token },
-      // })
       .delete(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
         headers: { Authorization: token },
       })
-      .then((response) => {
-        // console.log(response.data.message);
+      .then(() => {
         this.setState({
           isRedirect: true,
         });
@@ -244,35 +198,22 @@ export default class IndividualGroceryList extends React.Component {
   };
 
   handleChange = (e, index, name) => {
-    // e.preventDefault();
     const additionalItem = this.state.groceryListActive;
-    // let listArr;
-    // console.log(e.target.name);
-    // console.log(e.target.checked);
-    // console.log(e.target.value);
-    // console.log(index);
+
     if (name === "checkbox") {
       additionalItem[index]["isChecked"] = e.target.checked;
-      // console.log(additionalItem);
-      // const listArr = [...additionalItem];
 
       this.setState({
         groceryListActive: additionalItem,
-        // isChanged: true,
       });
     } else {
-      // const additionalItem = this.state.groceryListActive;
       additionalItem[index][name] =
         name === "unit_id" || name === "category_id"
           ? Number(e.target.value)
           : e.target.value;
-      // console.log(additionalItem[index][name]);
-      // listArr = [...additionalItem];
-      // console.log(additionalItem);
 
       this.setState({
         groceryListActive: additionalItem,
-        // isChanged: true,
       });
     }
   };
@@ -289,14 +230,9 @@ export default class IndividualGroceryList extends React.Component {
     const title = e.target.title.value;
     const removeId = e.target.remove.value;
     const token = sessionStorage.getItem("authorization");
-    // const id = this.props.listId;
     const { id } = this.props.match.params;
-    // console.log(removeId);
 
     axios
-      // .get(`http://localhost:8080/users`, {
-      //   headers: { Authorization: token },
-      // })
       .get(`https://shrouded-peak-10650.herokuapp.com/users`, {
         headers: { Authorization: token },
       })
@@ -313,36 +249,23 @@ export default class IndividualGroceryList extends React.Component {
             return;
           } else if (removeId !== "none") {
             axios
-              // .put(`http://localhost:8080/grocery/${id}`, {
-              //   headers: { Authorization: token },
-              //   body: { title: title },
-              // })
               .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
                 headers: { Authorization: token },
                 body: { title: title },
               })
-              .then((response) => {
+              .then(() => {
                 axios
-                  // .delete(
-                  //   `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
-                  //   {
-                  //     headers: { Authorization: token },
-                  //     // body: { listId: id, userId: removeId },
-                  //   }
-                  // )
                   .delete(
                     `https://shrouded-peak-10650.herokuapp.com/grocery-users?listId=${id}&userId=${removeId}`,
                     {
                       headers: { Authorization: token },
-                      // body: { listId: id, userId: removeId },
                     }
                   )
-                  .then((response) => {
+                  .then(() => {
                     const newSharedUsers = this.state.sharedUsers.filter(
                       (user) => user.user_id !== Number(removeId)
                     );
-                    // console.log(newSharedUsers);
-                    // if(remove)
+
                     this.setState({
                       listName: title,
                       isEditable: false,
@@ -355,17 +278,11 @@ export default class IndividualGroceryList extends React.Component {
             return;
           } else {
             axios
-              // .put(`http://localhost:8080/grocery/${id}`, {
-              //   headers: { Authorization: token },
-              //   body: { title: title },
-              // })
               .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
                 headers: { Authorization: token },
                 body: { title: title },
               })
-              .then((response) => {
-                // console.log(response);
-                // if(remove)
+              .then(() => {
                 this.setState({
                   listName: title,
                   isEditable: false,
@@ -383,46 +300,26 @@ export default class IndividualGroceryList extends React.Component {
           return;
         }
         axios
-          // .put(`http://localhost:8080/grocery/${id}`, {
-          //   headers: { Authorization: token },
-          //   body: { title: title },
-          // })
           .put(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
             headers: { Authorization: token },
             body: { title: title },
           })
-          .then((response) => {
+          .then(() => {
             axios
-              // .post(`http://localhost:8080/grocery-users`, {
-              //   headers: { Authorization: token },
-              //   body: { listId: id, userId: foundUser.id },
-              // })
               .post(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
                 headers: { Authorization: token },
                 body: { listId: id, userId: foundUser.id },
               })
-              .then((response) => {
-                // console.log(foundUser);
-
+              .then(() => {
                 if (removeId !== "none") {
                   axios
-                    // .delete(
-                    //   `http://localhost:8080/grocery-users?listId=${id}&userId=${removeId}`,
-                    //   {
-                    //     headers: { Authorization: token },
-                    //     // body: { listId: id, userId: removeId },
-                    //   }
-                    // )
                     .delete(
                       `https://shrouded-peak-10650.herokuapp.com/grocery-users?listId=${id}&userId=${removeId}`,
                       {
                         headers: { Authorization: token },
-                        // body: { listId: id, userId: removeId },
                       }
                     )
-                    .then((response) => {
-                      // console.log(response);
-                      // if(remove)
+                    .then(() => {
                       const newSharedUsers = this.state.sharedUsers.filter(
                         (user) => user.user_id !== Number(removeId)
                       );
@@ -462,8 +359,6 @@ export default class IndividualGroceryList extends React.Component {
   };
 
   componentDidMount() {
-    // console.log("Mount: " + this.state.groceryListActive);
-    // const id = this.props.listId;
     const { id } = this.props.match.params;
 
     if (sessionStorage.getItem("authorization")) {
@@ -472,20 +367,14 @@ export default class IndividualGroceryList extends React.Component {
       );
       const token = sessionStorage.getItem("authorization");
       axios
-        // .get(`http://localhost:8080/grocery/${id}`, {
-        //   headers: { Authorization: token },
-        // })
         .get(`https://shrouded-peak-10650.herokuapp.com/grocery/${id}`, {
           headers: { Authorization: token },
         })
         .then((response) => {
           const listInfo = response.data[0];
-          // console.log(listInfo);
+
           if (listInfo) {
             axios
-              // .get(`http://localhost:8080/grocery-users`, {
-              //   headers: { Authorization: token },
-              // })
               .get(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
                 headers: { Authorization: token },
               })
@@ -494,18 +383,8 @@ export default class IndividualGroceryList extends React.Component {
                 const sharedUsers = sharedLists.filter(
                   (sharedList) => sharedList.list_id === listInfo.id
                 );
-                // console.log(sharedUsers);
 
-                // .map((user) => user.shared_user_name);
-                // console.log(
-                //   sharedLists.filter(
-                //     (sharedList) => sharedList.list_id === listInfo.id
-                //   )
-                // );
                 axios
-                  // .get(`http://localhost:8080/grocery-items/${id}`, {
-                  //   headers: { Authorization: token },
-                  // })
                   .get(
                     `https://shrouded-peak-10650.herokuapp.com/grocery-items/${id}`,
                     {
@@ -520,18 +399,8 @@ export default class IndividualGroceryList extends React.Component {
                         ingredientID: i + 1,
                       };
                     });
-                    // console.log(newListX);
-                    // const newList = listArr.map((item, i) => {
-                    //   return {
-                    //     ...item,
-                    //     isChecked: false,
-                    //     ingredientID: i + 1,
-                    //   };
-                    // });
+
                     axios
-                      // .get(`http://localhost:8080/categories`, {
-                      //   headers: { Authorization: token },
-                      // })
                       .get(
                         `https://shrouded-peak-10650.herokuapp.com/categories`,
                         {
@@ -540,9 +409,6 @@ export default class IndividualGroceryList extends React.Component {
                       )
                       .then((response) => {
                         axios
-                          // .get(`http://localhost:8080/units`, {
-                          //   headers: { Authorization: token },
-                          // })
                           .get(
                             `https://shrouded-peak-10650.herokuapp.com/units`,
                             {
@@ -550,23 +416,12 @@ export default class IndividualGroceryList extends React.Component {
                             }
                           )
                           .then((res) => {
-                            // console.log("units: " + res.data.join(", "));
-                            // console.log(
-                            //   "categories: " + response.data.join(", ")
-                            // );
                             const foundUser = sharedUsers.find(
                               (user) => user.user_id === decode.id
                             );
 
-                            // if (decode.id === listInfo.ownerId || foundUser)
-                            // console.log(decode.id);
-                            // console.log(listInfo.ownerId);
-                            // console.log(foundUser);
-
                             this.setState({
                               user: decode,
-                              // groceryListActive: newList,
-                              // idCounter: newList.length + 1,
                               groceryListActive: newListX,
                               idCounter: newListX.length + 1,
                               listName: listInfo.title,
@@ -580,16 +435,11 @@ export default class IndividualGroceryList extends React.Component {
                                   : false,
                               isLoading: false,
                             });
-                            // this.setState({
-                            //   unitsArr: res.data,
-                            //   categoriesArr: response.data,
-                            // });
                           });
                       });
                   });
               });
           } else {
-            // window.location.href = "/notfound";
             window.history.pushState(
               null,
               "List Page",
@@ -603,21 +453,9 @@ export default class IndividualGroceryList extends React.Component {
         .catch(() => {
           this.setState({ isRedirect: true });
         });
-
-      // console.log(decode);
     }
   }
 
-  // componentDidUpdate(preProps, preState) {
-  //   console.log("Update " + this.state.groceryListActive);
-  //   // console.log(preState);
-  //   if (this.state.isChanged) {
-  //     this.setState({
-  //       groceryListActive: listArr,
-  //       isChanged: false,
-  //     });
-  //   }
-  // }
   componentWillUnmount() {
     clearTimeout(messageControl);
   }
@@ -642,17 +480,6 @@ export default class IndividualGroceryList extends React.Component {
       message,
     } = this.state;
 
-    // let listName, sharedUsers, ownerList;
-    // if (listInfo) {
-    //   listName = listInfo.listName;
-    //   sharedUsers = listInfo.sharedUsers;
-    //   ownerList = listInfo.ownerList;
-    // }
-
-    // const { id } = this.props.match.params;
-    // console.log(groceryListActive);
-    // const usersName = sharedUsers.map((user) => user.shared_user_name);
-    // console.log(usersName);
     return (
       <div className="list-wrapper">
         {!sessionStorage.getItem("authorization") && <NoAccess />}
@@ -764,35 +591,7 @@ export default class IndividualGroceryList extends React.Component {
                       )}
 
                       <div className="ing-grocery__content-wrapper">
-                        {/* <div className="ing-grocery__description-wrapper">
-                    <h4 className="ing-grocery__description">List Name</h4>
-                    <h4 className="ing-grocery__description">Shared with</h4>
-                  </div> */}
                         <form className="grocery-form">
-                          {/* <form className="grocery-form" onSubmit={this.handleSubmit}> */}
-                          {/* <div className="grocery-form__buttons-top">
-                            <button
-                              // type="submit"
-                              name="save"
-                              className="grocery-form__button-save--top"
-                              onClick={(e) => {
-                                this.handleSaveChanges(e);
-                              }}
-                            >
-                              Save Changes
-                            </button>
-                            <button
-                              // type="submit"
-                              name="addPantry"
-                              onClick={(e) => {
-                                this.addToPantry(e);
-                              }}
-                              className="grocery-form__button-pantry--top"
-                            >
-                              Add Selected Items to Pantry
-                            </button>
-                          </div> */}
-
                           <div className="grocery-form__ing-wrapper">
                             {groceryListActive.map((ingredient, i) => (
                               <GroceryItem
@@ -809,13 +608,6 @@ export default class IndividualGroceryList extends React.Component {
                             ))}
                           </div>
                           <div className="grocery-form__buttons-wrapper">
-                            {/* <button
-                        type="submit"
-                        name="save"
-                        className="grocery-form__button-save"
-                      >
-                        Save Changes
-                      </button> */}
                             <div className="grocery-form__inner-wrapper">
                               {showMessage && (
                                 <p className="grocery-form__message">
@@ -829,16 +621,8 @@ export default class IndividualGroceryList extends React.Component {
                                 + New Ingredient
                               </button>
                             </div>
-                            {/* <button
-                        name="addPantry"
-                        onClick={this.addToPantry}
-                        className="grocery-form__button-pantry"
-                      >
-                        Add Items to Pantry
-                      </button> */}
                             <div className="grocery-form__buttons-bottom">
                               <button
-                                // type="submit"
                                 name="save"
                                 className="grocery-form__button-save--bottom"
                                 onClick={(e) => {
@@ -848,7 +632,6 @@ export default class IndividualGroceryList extends React.Component {
                                 Save
                               </button>
                               <button
-                                // type="submit"
                                 name="addPantry"
                                 onClick={(e) => {
                                   this.addToPantry(e);
@@ -870,16 +653,8 @@ export default class IndividualGroceryList extends React.Component {
                         </form>
                       </div>
                       <p className="ing-grocery__comments">
-                        * selected items will be added to owner's list pantry
+                        * selected items will be added to owner's pantry
                       </p>
-                      {/* <div className="ing-grocery__delete-wrapper">
-                        <p
-                          className="ing-grocery__delete"
-                          onClick={this.handleDeleteList}
-                        >
-                          Delete List
-                        </p>
-                      </div> */}
                     </div>
                   </main>
                 )}

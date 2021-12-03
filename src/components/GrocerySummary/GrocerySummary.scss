@@ -9,16 +9,12 @@
   max-width: toRem(380);
   width: 100%;
   box-shadow: -2px 2px 5px rgba(0 0 0 / 10%);
-  // margin-bottom: toRem(16);
-  @include tablet-breakpoint {
-    // margin: toRem(16) toRem(16) toRem(16) 0;
-  }
 
   &__title {
     @include text-style(toRem(24), toRem(26), $font-demi);
     @include flex-wrap(row, space-between);
     margin-bottom: toRem(32);
-    // overflow: visible;
+
     @include tablet-breakpoint {
       @include text-style(toRem(28), toRem(30), $font-demi);
     }
@@ -33,7 +29,6 @@
     @include text-style(toRem(16), toRem(18), $font-regular);
     @include flex-wrap(row, space-between);
     margin-bottom: toRem(16);
-    // overflow: visible;
     color: rgba($color: $font-primary-color, $alpha: 0.5);
     &:hover {
       color: $font-primary-color;
@@ -49,12 +44,10 @@
   &__wrapper {
     @include flex-wrap(row, space-between);
     margin-top: toRem(30);
-    // overflow: visible;
   }
   &__add-button,
   &__more-button {
     @include text-style(toRem(14), toRem(14), $font-demi);
-    // overflow: visible;
     color: $primary-color2;
     margin: 0;
     cursor: pointer;

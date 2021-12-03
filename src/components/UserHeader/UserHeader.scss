@@ -11,11 +11,8 @@
   height: toRem(80);
   @include flex-wrap;
   box-shadow: -2px 0px 5px rgba(0 0 0 / 10%);
-  @include tablet-breakpoint {
-    // z-index: 5;
-  }
+
   &__wrapper {
-    // overflow: visible;
     padding: 0 5%;
     @include flex-wrap(row, space-between);
     width: 100%;
@@ -28,7 +25,6 @@
   }
   &__logo-link {
     height: toRem(50);
-    // overflow: visible;
     @include tablet-breakpoint {
       height: toRem(60);
     }
@@ -75,7 +71,6 @@
     width: toRem(160);
     background-color: $background-secondary-color;
     top: 0;
-    // top: toRem(60);
     right: calc(8% - toRem(8));
     z-index: -1;
     transform: translateY(-100%);

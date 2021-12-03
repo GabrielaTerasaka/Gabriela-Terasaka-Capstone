@@ -9,9 +9,6 @@
   &__name-wrapper {
     margin-bottom: toRem(16);
     @include flex-wrap(row, space-between, flex-start);
-    @include tablet-breakpoint {
-      // @include flex-wrap(row, flex-start, flex-start);
-    }
   }
   &__password-wrapper {
     @include flex-wrap(column, flex-start, flex-start);
@@ -24,26 +21,13 @@
   &__buttons-wrapper {
     margin-top: toRem(32);
     @include flex-wrap(row, flex-start);
-    // @include tablet-breakpoint {
-    //   @include flex-wrap(row, flex-end);
-    // }
   }
-  &__first-name {
-    @include input;
-  }
-  &__last-name {
-    @include input;
-  }
-  &__email {
-    @include input;
-  }
-  &__password {
-    // min-width: toRem(300);
-    @include input;
-  }
+  &__first-name,
+  &__last-name,
+  &__email,
+  &__password,
   &__confirm-password {
     @include input;
-    // min-width: toRem(300);
   }
   &__label-name {
     @include label;
