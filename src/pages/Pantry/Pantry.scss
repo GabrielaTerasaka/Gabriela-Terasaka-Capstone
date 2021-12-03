@@ -345,5 +345,7 @@
   border-radius: 0 0 4px 4px;
 }
 .pantry-form__message {
-  margin-left: toRem(24);
+  @include tablet-breakpoint {
+    margin-left: toRem(24);
+  }
 }
