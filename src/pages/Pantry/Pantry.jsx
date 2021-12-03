@@ -12,6 +12,7 @@ import UserHeader from "../../components/UserHeader";
 
 import "./Pantry.scss";
 import GroceryItem from "../../components/GroceryItem";
+import Loading from "../../components/Loading";
 // import DeleteModal from "../../components/DeleteModal";
 
 export default class Pantry extends React.Component {
@@ -36,6 +37,9 @@ export default class Pantry extends React.Component {
     currentPantry: null,
     unitsArr: null,
     categoriesArr: null,
+    isLoading: true,
+    showMessage: false,
+    message: true,
   };
 
   addNewItem = (e) => {
@@ -97,8 +101,17 @@ export default class Pantry extends React.Component {
     // listArr = [...notSelectedItems];
     this.setState({
       currentPantry: saveItems,
+      showMessage: true,
+      message: "Saved Successfully",
       // isChanged: true,
     });
+    setTimeout(() => {
+      this.setState({
+        // groceryListActive: saveItems,
+        showMessage: false,
+        // isChanged: true,
+      });
+    }, 5000);
   };
 
   handleDelete = (index) => {
@@ -467,6 +480,7 @@ export default class Pantry extends React.Component {
                     categoriesArr: resp.data,
                     user: decode,
                     idCounter: newList.length + 1,
+                    isLoading: false,
                   });
                 })
                 .catch((err) => {
@@ -629,8 +643,11 @@ export default class Pantry extends React.Component {
       currentPantry,
       unitsArr,
       categoriesArr,
+      isLoading,
       // hasAccess,
       // isDelete,
+      showMessage,
+      message,
     } = this.state;
 
     // let listName, sharedUsers, ownerList;
@@ -647,17 +664,14 @@ export default class Pantry extends React.Component {
     return (
       <div className="list-wrapper">
         {!sessionStorage.getItem("authorization") && <NoAccess />}
-        {sessionStorage.getItem("authorization") && user && (
+        {sessionStorage.getItem("authorization") && (
           <>
             <UserHeader />
-            {/* {!hasAccess ? (
-              <h1 className="ing-grocery__wrapper ing-grocery__wrapper--access">
-                You do not have access this grocery list
-              </h1>
-            ) : ( */}
-            <main className="ing-grocery">
-              <div className="ing-grocery__wrapper">
-                {/* {isEditable ? (
+            {isLoading && <Loading />}
+            {user && (
+              <main className="ing-grocery">
+                <div className="ing-grocery__wrapper">
+                  {/* {isEditable ? (
                     <form
                       className="list-form"
                       onSubmit={(e) => {
@@ -725,9 +739,9 @@ export default class Pantry extends React.Component {
                       </p>
                     </form>
                   ) : ( */}
-                <div className="ing-grocery__title-wrapper">
-                  <h2 className="ing-grocery__title">Pantry</h2>
-                  {/* <p
+                  <div className="ing-grocery__title-wrapper">
+                    <h2 className="ing-grocery__title">Pantry</h2>
+                    {/* <p
                         className="ing-grocery__edit"
                         onClick={this.toggleEditable}
                       >
@@ -742,17 +756,17 @@ export default class Pantry extends React.Component {
                       <p className="ing-grocery__owner">
                         Owned by {ownerList.owner}
                       </p> */}
-                </div>
-                {/* )} */}
+                  </div>
+                  {/* )} */}
 
-                <div className="ing-grocery__content-wrapper">
-                  {/* <div className="ing-grocery__description-wrapper">
+                  <div className="ing-grocery__content-wrapper">
+                    {/* <div className="ing-grocery__description-wrapper">
                     <h4 className="ing-grocery__description">List Name</h4>
                     <h4 className="ing-grocery__description">Shared with</h4>
                   </div> */}
-                  <form className="grocery-form" onSubmit={this.handleSubmit}>
-                    <div className="grocery-form__buttons-top">
-                      {/* <button
+                    <form className="grocery-form" onSubmit={this.handleSubmit}>
+                      <div className="grocery-form__buttons-top">
+                        {/* <button
                         type="submit"
                         name="save"
                         className="grocery-form__button-save--top"
@@ -760,77 +774,84 @@ export default class Pantry extends React.Component {
                       >
                         Save Changes
                       </button> */}
-                      {/* <button
+                        {/* <button
                         name="addPantry"
                         onClick={this.addToPantry}
                         className="grocery-form__button-pantry--top"
                       >
                         Add Selected Items to Pantry
                       </button> */}
-                    </div>
+                      </div>
 
-                    <div className="grocery-form__ing-wrapper">
-                      {currentPantry.map((ingredient, i) => (
-                        <GroceryItem
-                          ingredient={ingredient}
-                          index={i}
-                          // key={i}
-                          noCheckbox={true}
-                          key={ingredient.ingredientID}
-                          handleChange={this.handleChange}
-                          handleDelete={this.handleDelete}
-                          unitsArr={unitsArr}
-                          categoriesArr={categoriesArr}
-                        />
-                      ))}
-                    </div>
-                    <div className="grocery-form__buttons-wrapper">
-                      {/* <button
+                      <div className="grocery-form__ing-wrapper">
+                        {currentPantry.map((ingredient, i) => (
+                          <GroceryItem
+                            ingredient={ingredient}
+                            index={i}
+                            // key={i}
+                            noCheckbox={true}
+                            key={ingredient.ingredientID}
+                            handleChange={this.handleChange}
+                            handleDelete={this.handleDelete}
+                            unitsArr={unitsArr}
+                            categoriesArr={categoriesArr}
+                          />
+                        ))}
+                      </div>
+                      <div className="grocery-form__buttons-wrapper">
+                        {/* <button
                         type="submit"
                         name="save"
                         className="grocery-form__button-save"
                       >
                         Save Changes
                       </button> */}
-                      <button
-                        onClick={this.addNewItem}
-                        className="grocery-form__button-add"
-                      >
-                        + New Ingredient
-                      </button>
-                      {/* <button
+                        <div className="grocery-form__inner-wrapper">
+                          {showMessage && (
+                            <p className="grocery-form__message pantry-form__message">
+                              {message}
+                            </p>
+                          )}
+                          <button
+                            onClick={this.addNewItem}
+                            className="grocery-form__button-add"
+                          >
+                            + New Ingredient
+                          </button>
+                        </div>
+                        {/* <button
                         name="addPantry"
                         onClick={this.addToPantry}
                         className="grocery-form__button-pantry"
                       >
                         Add Items to Pantry
                       </button> */}
-                      <div className="grocery-form__buttons-bottom">
-                        <button
-                          type="submit"
-                          name="save"
-                          className="grocery-form__button-save--bottom pantry__save--bottom"
-                          onClick={(e) => {
-                            this.handleSaveChanges(e);
-                          }}
-                        >
-                          Save Changes
-                        </button>
-                        {/* <button
+                        <div className="grocery-form__buttons-bottom">
+                          <button
+                            type="submit"
+                            name="save"
+                            className="grocery-form__button-save--bottom pantry__save--bottom"
+                            onClick={(e) => {
+                              this.handleSaveChanges(e);
+                            }}
+                          >
+                            Save
+                          </button>
+                          {/* <button
                             name="addPantry"
                             onClick={this.addToPantry}
                             className="grocery-form__button-pantry--bottom"
                           >
                             Add Selected Items to Pantry
                           </button> */}
+                        </div>
                       </div>
-                    </div>
-                  </form>
-                </div>
-                {/* <p className="ing-grocery__comments">
+                    </form>
+                  </div>
+                  {/* <p className="ing-grocery__comments">
                     * selected items will be added to owner's list pantry
                   </p> */}
-                {/* <div className="ing-grocery__delete-wrapper">
+                  {/* <div className="ing-grocery__delete-wrapper">
                     <p
                       className="ing-grocery__delete"
                       onClick={this.handleDeleteList}
@@ -838,8 +859,15 @@ export default class Pantry extends React.Component {
                       Delete List
                     </p>
                   </div> */}
-              </div>
-            </main>
+                </div>
+              </main>
+            )}
+            {/* {!hasAccess ? (
+              <h1 className="ing-grocery__wrapper ing-grocery__wrapper--access">
+                You do not have access this grocery list
+              </h1>
+            ) : ( */}
+
             {/* )} */}
             <Sidebar isActive={"Pantry"} />
           </>

@@ -10,10 +10,12 @@ import Sidebar from "../../components/Sidebar";
 import UserHeader from "../../components/UserHeader";
 
 import "./HomePage.scss";
+import Loading from "../../components/Loading";
 
 export default class HomePage extends React.Component {
   state = {
     user: null,
+    isLoading: true,
   };
 
   componentDidMount() {
@@ -23,6 +25,7 @@ export default class HomePage extends React.Component {
       );
       this.setState({
         user: decode,
+        isLoading: false,
       });
       // console.log(decode);
     }
@@ -36,28 +39,32 @@ export default class HomePage extends React.Component {
       month: "long",
       day: "numeric",
     };
-    const { user } = this.state;
+    const { user, isLoading } = this.state;
 
     return (
       <div>
         {!sessionStorage.getItem("authorization") && <NoAccess />}
-        {sessionStorage.getItem("authorization") && user && (
+        {sessionStorage.getItem("authorization") && (
           <>
             <UserHeader />
-            <main className="home">
-              <div className="home__title-wrapper">
-                <p className="home__date">{`${date.toLocaleDateString(
-                  "en-US",
-                  format
-                )}`}</p>
-                <h2 className="home__title">Hello, {user.first_name}!</h2>
-                <div className="home__summary-wrapper">
-                  <GrocerySummary user={user} />
-                  <PantrySummary user={user} />
-                  <RecipeSummary user={user} />
+            {isLoading && <Loading />}
+            {user && (
+              <main className="home">
+                <div className="home__title-wrapper">
+                  <p className="home__date">{`${date.toLocaleDateString(
+                    "en-US",
+                    format
+                  )}`}</p>
+                  <h2 className="home__title">Hello, {user.first_name}!</h2>
+                  <div className="home__summary-wrapper">
+                    <GrocerySummary user={user} />
+                    <PantrySummary user={user} />
+                    <RecipeSummary user={user} />
+                  </div>
                 </div>
-              </div>
-            </main>
+              </main>
+            )}
+
             <Sidebar isActive={"Home"} />
           </>
         )}

@@ -66,19 +66,73 @@
   &__shelf {
     @include input-grocery;
     margin: 0 auto;
-    width: 30%;
+    width: 35%;
 
     @include tablet-breakpoint {
       width: 40%;
       // margin: 0;
     }
   }
-  &__check {
-    margin-right: toRem(4);
+  &__checkbox-wrapper {
+    background-color: red;
+    display: block;
+    position: relative;
+    // padding-left: 35px;
+    // margin-bottom: 12px;
+    cursor: pointer;
+    height: toRem(15);
+    // font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    & .label__custom-checkbox:after {
+      left: toRem(3.5);
+      top: toRem(0);
+      width: toRem(4);
+      height: toRem(8);
+      border: solid $background-primary-color;
+      border-width: 0 2px 2px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(40deg);
+    }
   }
+  &__checkbox {
+    // margin-right: toRem(4);
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    &:checked ~ .label__custom-checkbox {
+      background-color: rgba($color: $primary-color1, $alpha: 0.5);
+      border-color: $primary-color1;
+      &:after {
+        display: block;
+      }
+    }
+  }
+  &__custom-checkbox {
+    margin-right: toRem(4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: toRem(15);
+    width: toRem(15);
+    border-radius: 4px;
+    border: 1px solid rgba($color: $font-primary-color, $alpha: 0.8);
+    // background-color: $background-secondary-color;
+    &:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+  }
+
   &__info {
     margin-left: auto;
-    margin-right: toRem(18);
+    // margin-right: toRem(18);
     border-bottom: 1px solid transparent;
     cursor: pointer;
     @include tablet-breakpoint {
@@ -111,5 +165,25 @@
         @include text-style(toRem(14), toRem(16), $font-regular);
       }
     }
+  }
+}
+
+/* Chrome, Safari, Edge, Opera */
+.label__qty::-webkit-outer-spin-button,
+.label__qty::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.label__qty[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.label__shelf {
+  &::-webkit-calendar-picker-indicator {
+    // background-color: red;
+    padding: 0;
+    margin-left: toRem(4);
   }
 }
