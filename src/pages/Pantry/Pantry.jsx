@@ -72,13 +72,13 @@ export default class Pantry extends React.Component {
     const { id } = this.state.user;
     const token = sessionStorage.getItem("authorization");
     const saveItems = this.state.currentPantry.filter(
-      (item) => item.ingredient_name && item.qty
+      (item) => item.ingredient_name
     );
     const newPantryItems = saveItems.map((item) => {
       return {
         user_id: id,
         ingredient_name: item.ingredient_name,
-        qty: item.qty,
+        qty: item.qty === "" ? 1 : item.qty,
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
