@@ -70,13 +70,13 @@ export default class IndividualGroceryList extends React.Component {
 
     const token = sessionStorage.getItem("authorization");
     const saveItems = this.state.groceryListActive.filter(
-      (item) => item.ingredient_name && item.qty
+      (item) => item.ingredient_name
     );
     const newListItems = saveItems.map((item) => {
       return {
         list_id: id,
         ingredient_name: item.ingredient_name,
-        qty: item.qty,
+        qty: item.qty === "" ? 1 : item.qty,
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
@@ -130,14 +130,14 @@ export default class IndividualGroceryList extends React.Component {
 
     // console.log(this.state.groceryListActive);
     const selectedItems = this.state.groceryListActive.filter(
-      (item) => item.isChecked && item.ingredient_name && item.qty
+      (item) => item.isChecked && item.ingredient_name
     );
     // console.log(Date.now());
 
     const addPantryItems = selectedItems.map((item) => {
       return {
         ingredient_name: item.ingredient_name,
-        qty: item.qty,
+        qty: item.qty === "" ? 1 : item.qty,
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
@@ -147,15 +147,15 @@ export default class IndividualGroceryList extends React.Component {
     // console.log(addPantryItems);
     const { id } = this.props.match.params;
     const notSelectedItems = this.state.groceryListActive
-      .filter((item) => !item.isChecked || !item.ingredient_name || !item.qty)
-      .filter((item) => item.ingredient_name && item.qty);
+      .filter((item) => !item.isChecked || !item.ingredient_name)
+      .filter((item) => item.ingredient_name);
     // console.log(notSelectedItems);
 
     const newListItems = notSelectedItems.map((item) => {
       return {
         list_id: id,
         ingredient_name: item.ingredient_name,
-        qty: item.qty,
+        qty: item.qty === "" ? 1 : item.qty,
         unit_id: item.unit_id,
         shelf_life: item.shelf_life,
         category_id: item.category_id,
