@@ -13,6 +13,7 @@ import { faExclamationCircle } from "@fortawesome/free-solid-svg-icons";
 import "./IndividualGroceryList.scss";
 import GroceryItem from "../../components/GroceryItem";
 import DeleteModal from "../../components/DeleteModal";
+import Loading from "../../components/Loading";
 
 export default class IndividualGroceryList extends React.Component {
   state = {
@@ -33,6 +34,9 @@ export default class IndividualGroceryList extends React.Component {
     listId: null,
     hasAccess: false,
     isDelete: false,
+    isLoading: true,
+    showMessage: false,
+    message: null,
   };
 
   addNewItem = (e) => {
@@ -94,10 +98,20 @@ export default class IndividualGroceryList extends React.Component {
       });
     // }
     // listArr = [...notSelectedItems];
+
     this.setState({
       groceryListActive: saveItems,
+      showMessage: true,
+      message: "Saved Successfully",
       // isChanged: true,
     });
+    setTimeout(() => {
+      this.setState({
+        // groceryListActive: saveItems,
+        showMessage: false,
+        // isChanged: true,
+      });
+    }, 5000);
   };
 
   handleDelete = (index) => {
@@ -147,7 +161,7 @@ export default class IndividualGroceryList extends React.Component {
         category_id: item.category_id,
       };
     });
-    // console.log(this.state.ownerList);
+    // console.log(newListItems);
 
     const token = sessionStorage.getItem("authorization");
     axios
@@ -182,11 +196,22 @@ export default class IndividualGroceryList extends React.Component {
     // listArr = [...notSelectedItems];
     this.setState({
       groceryListActive: notSelectedItems,
+      showMessage: true,
+      message: "Added Successfully",
       // isChanged: true,
     });
+    setTimeout(() => {
+      this.setState({
+        // groceryListActive: saveItems,
+        showMessage: false,
+        // isChanged: true,
+      });
+    }, 5000);
   };
 
-  handleDeleteList = () => {
+  handleDeleteList = (e) => {
+    e.preventDefault();
+    // handleDeleteList = () => {
     this.setState({
       isDelete: true,
     });
@@ -550,6 +575,7 @@ export default class IndividualGroceryList extends React.Component {
                                 decode.id === listInfo.ownerId || foundUser
                                   ? true
                                   : false,
+                              isLoading: false,
                             });
                             // this.setState({
                             //   unitsArr: res.data,
@@ -597,6 +623,9 @@ export default class IndividualGroceryList extends React.Component {
       categoriesArr,
       hasAccess,
       isDelete,
+      isLoading,
+      showMessage,
+      message,
     } = this.state;
 
     // let listName, sharedUsers, ownerList;
@@ -613,209 +642,236 @@ export default class IndividualGroceryList extends React.Component {
     return (
       <div className="list-wrapper">
         {!sessionStorage.getItem("authorization") && <NoAccess />}
-        {sessionStorage.getItem("authorization") && user && (
+        {sessionStorage.getItem("authorization") && (
           <>
             <UserHeader />
-            {!hasAccess ? (
-              <h1 className="ing-grocery__wrapper ing-grocery__wrapper--access">
-                You do not have access this grocery list
-              </h1>
-            ) : (
-              <main className="ing-grocery">
-                <div className="ing-grocery__wrapper">
-                  {isEditable ? (
-                    <form
-                      className="list-form"
-                      onSubmit={(e) => {
-                        this.listUpdate(e);
-                      }}
-                    >
-                      <input
-                        defaultValue={`${listName}`}
-                        type="text"
-                        name="title"
-                        className={`list-form__title ${
-                          isErrorTitle ? "list-form__title--error" : ""
-                        }`}
-                        placeholder="list name"
-                      />
-                      <button type="submit" className="list-form__button">
-                        Save
-                      </button>
-                      <p className="ing-grocery__shared">
-                        Shared with{" "}
-                        {sharedUsers
-                          .map((user) => user.shared_user_name)
-                          .join(", ")}
-                      </p>
-                      <label className="list-form__share">
-                        Add person to share:{" "}
-                        <input
-                          type="email"
-                          name="share"
-                          className={`list-form__share-input ${
-                            isErrorEmail ? "list-form__share-input--error" : ""
-                          }`}
-                          placeholder="email"
-                        />
-                        {isErrorEmail ? (
-                          <span className="list-form__alert">
-                            <FontAwesomeIcon
-                              icon={faExclamationCircle}
-                              className="form__alert-icon"
-                            />
-                            invalid email
-                          </span>
-                        ) : (
-                          ""
-                        )}
-                      </label>
-                      <label className="list-form__share">
-                        Remove a person from share:{" "}
-                        <select
-                          name="remove"
-                          className="list-form__share-remove"
-                          defaultValue="none"
+            {isLoading && <Loading />}
+            {user && (
+              <>
+                {!hasAccess ? (
+                  <h1 className="ing-grocery__wrapper ing-grocery__wrapper--access">
+                    You do not have access this grocery list
+                  </h1>
+                ) : (
+                  <main className="ing-grocery">
+                    <div className="ing-grocery__wrapper">
+                      {isEditable ? (
+                        <form
+                          className="list-form"
+                          onSubmit={(e) => {
+                            this.listUpdate(e);
+                          }}
                         >
-                          <option value="none">Please select a name</option>
-                          {sharedUsers.map((user) => (
-                            <option value={user.user_id} key={user.user_id}>
-                              {user.shared_user_name}
-                            </option>
-                          ))}
-                        </select>
-                      </label>
+                          <input
+                            defaultValue={`${listName}`}
+                            type="text"
+                            name="title"
+                            className={`list-form__title ${
+                              isErrorTitle ? "list-form__title--error" : ""
+                            }`}
+                            placeholder="list name"
+                          />
+                          <button type="submit" className="list-form__button">
+                            Save
+                          </button>
+                          <p className="ing-grocery__shared">
+                            Shared with{" "}
+                            {sharedUsers.length === 0
+                              ? "-----"
+                              : sharedUsers
+                                  .map((user) => user.shared_user_name)
+                                  .join(", ")}
+                          </p>
+                          <label className="list-form__share">
+                            Add person to share:{" "}
+                            <input
+                              type="email"
+                              name="share"
+                              className={`list-form__share-input ${
+                                isErrorEmail
+                                  ? "list-form__share-input--error"
+                                  : ""
+                              }`}
+                              placeholder="email"
+                            />
+                            {isErrorEmail ? (
+                              <span className="list-form__alert">
+                                <FontAwesomeIcon
+                                  icon={faExclamationCircle}
+                                  className="form__alert-icon"
+                                />
+                                invalid email
+                              </span>
+                            ) : (
+                              ""
+                            )}
+                          </label>
+                          <label className="list-form__share">
+                            Remove a person from share:{" "}
+                            <select
+                              name="remove"
+                              className="list-form__share-remove"
+                              defaultValue="none"
+                            >
+                              <option value="none">Please select a name</option>
+                              {sharedUsers.map((user) => (
+                                <option value={user.user_id} key={user.user_id}>
+                                  {user.shared_user_name}
+                                </option>
+                              ))}
+                            </select>
+                          </label>
 
-                      <p className="ing-grocery__owner-form">
-                        Owned by {ownerList.owner}
-                      </p>
-                    </form>
-                  ) : (
-                    <div className="ing-grocery__title-wrapper">
-                      <h2 className="ing-grocery__title">{listName}</h2>
-                      <p
-                        className="ing-grocery__edit"
-                        onClick={this.toggleEditable}
-                      >
-                        Edit
-                      </p>
-                      <p className="ing-grocery__shared">
-                        Shared with{" "}
-                        {sharedUsers
-                          .map((user) => user.shared_user_name)
-                          .join(", ")}
-                      </p>
-                      <p className="ing-grocery__owner">
-                        Owned by {ownerList.owner}
-                      </p>
-                    </div>
-                  )}
+                          <p className="ing-grocery__owner-form">
+                            Owned by {ownerList.owner}
+                          </p>
+                        </form>
+                      ) : (
+                        <div className="ing-grocery__title-wrapper">
+                          <h2 className="ing-grocery__title">{listName}</h2>
+                          <p
+                            className="ing-grocery__edit"
+                            onClick={this.toggleEditable}
+                          >
+                            Edit
+                          </p>
+                          <p className="ing-grocery__shared">
+                            Shared with{" "}
+                            {sharedUsers.length === 0
+                              ? "-----"
+                              : sharedUsers
+                                  .map((user) => user.shared_user_name)
+                                  .join(", ")}
+                          </p>
+                          <p className="ing-grocery__owner">
+                            Owned by {ownerList.owner}
+                          </p>
+                        </div>
+                      )}
 
-                  <div className="ing-grocery__content-wrapper">
-                    {/* <div className="ing-grocery__description-wrapper">
+                      <div className="ing-grocery__content-wrapper">
+                        {/* <div className="ing-grocery__description-wrapper">
                     <h4 className="ing-grocery__description">List Name</h4>
                     <h4 className="ing-grocery__description">Shared with</h4>
                   </div> */}
-                    <form className="grocery-form">
-                      {/* <form className="grocery-form" onSubmit={this.handleSubmit}> */}
-                      <div className="grocery-form__buttons-top">
-                        <button
-                          // type="submit"
-                          name="save"
-                          className="grocery-form__button-save--top"
-                          onClick={(e) => {
-                            this.handleSaveChanges(e);
-                          }}
-                        >
-                          Save Changes
-                        </button>
-                        <button
-                          // type="submit"
-                          name="addPantry"
-                          onClick={(e) => {
-                            this.addToPantry(e);
-                          }}
-                          className="grocery-form__button-pantry--top"
-                        >
-                          Add Selected Items to Pantry
-                        </button>
-                      </div>
+                        <form className="grocery-form">
+                          {/* <form className="grocery-form" onSubmit={this.handleSubmit}> */}
+                          {/* <div className="grocery-form__buttons-top">
+                            <button
+                              // type="submit"
+                              name="save"
+                              className="grocery-form__button-save--top"
+                              onClick={(e) => {
+                                this.handleSaveChanges(e);
+                              }}
+                            >
+                              Save Changes
+                            </button>
+                            <button
+                              // type="submit"
+                              name="addPantry"
+                              onClick={(e) => {
+                                this.addToPantry(e);
+                              }}
+                              className="grocery-form__button-pantry--top"
+                            >
+                              Add Selected Items to Pantry
+                            </button>
+                          </div> */}
 
-                      <div className="grocery-form__ing-wrapper">
-                        {groceryListActive.map((ingredient, i) => (
-                          <GroceryItem
-                            ingredient={ingredient}
-                            index={i}
-                            // key={i}
-                            noCheckbox={false}
-                            key={ingredient.ingredientID}
-                            handleChange={this.handleChange}
-                            handleDelete={this.handleDelete}
-                            unitsArr={unitsArr}
-                            categoriesArr={categoriesArr}
-                          />
-                        ))}
-                      </div>
-                      <div className="grocery-form__buttons-wrapper">
-                        {/* <button
+                          <div className="grocery-form__ing-wrapper">
+                            {groceryListActive.map((ingredient, i) => (
+                              <GroceryItem
+                                ingredient={ingredient}
+                                index={i}
+                                // key={i}
+                                noCheckbox={false}
+                                key={ingredient.ingredientID}
+                                handleChange={this.handleChange}
+                                handleDelete={this.handleDelete}
+                                unitsArr={unitsArr}
+                                categoriesArr={categoriesArr}
+                              />
+                            ))}
+                          </div>
+                          <div className="grocery-form__buttons-wrapper">
+                            {/* <button
                         type="submit"
                         name="save"
                         className="grocery-form__button-save"
                       >
                         Save Changes
                       </button> */}
-                        <button
-                          onClick={this.addNewItem}
-                          className="grocery-form__button-add"
-                        >
-                          + New Ingredient
-                        </button>
-                        {/* <button
+                            <div className="grocery-form__inner-wrapper">
+                              {showMessage && (
+                                <p className="grocery-form__message">
+                                  {message}
+                                </p>
+                              )}
+                              <button
+                                onClick={this.addNewItem}
+                                className="grocery-form__button-add"
+                              >
+                                + New Ingredient
+                              </button>
+                            </div>
+                            {/* <button
                         name="addPantry"
                         onClick={this.addToPantry}
                         className="grocery-form__button-pantry"
                       >
                         Add Items to Pantry
                       </button> */}
-                        <div className="grocery-form__buttons-bottom">
-                          <button
-                            // type="submit"
-                            name="save"
-                            className="grocery-form__button-save--bottom"
-                            onClick={(e) => {
-                              this.handleSaveChanges(e);
-                            }}
-                          >
-                            Save Changes
-                          </button>
-                          <button
-                            // type="submit"
-                            name="addPantry"
-                            onClick={(e) => {
-                              this.addToPantry(e);
-                            }}
-                            className="grocery-form__button-pantry--bottom"
-                          >
-                            Add Selected Items to Pantry
-                          </button>
-                        </div>
+                            <div className="grocery-form__buttons-bottom">
+                              <button
+                                // type="submit"
+                                name="save"
+                                className="grocery-form__button-save--bottom"
+                                onClick={(e) => {
+                                  this.handleSaveChanges(e);
+                                }}
+                              >
+                                Save
+                              </button>
+                              <button
+                                // type="submit"
+                                name="addPantry"
+                                onClick={(e) => {
+                                  this.addToPantry(e);
+                                }}
+                                className="grocery-form__button-pantry--bottom"
+                              >
+                                Add to Pantry
+                              </button>
+                              <button
+                                className="grocery-form__button-delete--bottom"
+                                onClick={(e) => {
+                                  this.handleDeleteList(e);
+                                }}
+                              >
+                                Delete List
+                              </button>
+                            </div>
+                          </div>
+                        </form>
                       </div>
-                    </form>
-                  </div>
-                  <p className="ing-grocery__comments">
-                    * selected items will be added to owner's list pantry
-                  </p>
-                  <div className="ing-grocery__delete-wrapper">
-                    <p
-                      className="ing-grocery__delete"
-                      onClick={this.handleDeleteList}
-                    >
-                      Delete List
-                    </p>
-                  </div>
-                </div>
-              </main>
+                      <p className="ing-grocery__comments">
+                        * selected items will be added to owner's list pantry
+                      </p>
+                      {/* <div className="ing-grocery__delete-wrapper">
+                        <p
+                          className="ing-grocery__delete"
+                          onClick={this.handleDeleteList}
+                        >
+                          Delete List
+                        </p>
+                      </div> */}
+                    </div>
+                  </main>
+                )}
+              </>
             )}
+
             <Sidebar isActive={"Grocery Lists"} />
           </>
         )}

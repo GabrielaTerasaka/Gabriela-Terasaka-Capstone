@@ -51,7 +51,7 @@ import "./GroceryItem.scss";
 
 class GroceryItem extends React.Component {
   state = {
-    isMore: false,
+    isMore: true,
     activeItem: this.props.ingredient,
     unitsArr: this.props.unitsArr,
     categoriesArr: this.props.categoriesArr,
@@ -109,16 +109,19 @@ class GroceryItem extends React.Component {
       <div className="label-box">
         <div className="label">
           {/* <label className="label"> */}
-          <label>
+          <label className="label__checkbox-wrapper">
             {!noCheckbox && (
-              <input
-                type="checkbox"
-                // name={ingredientID}
-                className="label__check"
-                onChange={(e) => {
-                  this.props.handleChange(e, index, "checkbox");
-                }}
-              />
+              <>
+                <input
+                  type="checkbox"
+                  // name={ingredientID}
+                  className="label__checkbox"
+                  onChange={(e) => {
+                    this.props.handleChange(e, index, "checkbox");
+                  }}
+                />
+                <span className="label__custom-checkbox"></span>
+              </>
             )}
           </label>
           <div className="label__mandatory-wrapper">
@@ -132,7 +135,8 @@ class GroceryItem extends React.Component {
               }}
             />
             <input
-              type="text"
+              type="number"
+              min="1"
               defaultValue={qty}
               className="label__qty"
               placeholder="qty"
@@ -212,7 +216,9 @@ class GroceryItem extends React.Component {
                   ))}
               </select>
               <input
-                type="text"
+                type="date"
+                min="2021-12-01"
+                // type="text"
                 defaultValue={shelf_life}
                 className="label__shelf"
                 placeholder="expiry date"

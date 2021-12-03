@@ -8,11 +8,13 @@ import Sidebar from "../../components/Sidebar";
 import UserHeader from "../../components/UserHeader";
 
 import "./AllGroceryList.scss";
+import Loading from "../../components/Loading";
 
 export default class AllGroceryList extends React.Component {
   state = {
     user: null,
     allGroceryList: [],
+    isLoading: true,
   };
 
   addNewList = () => {
@@ -71,6 +73,7 @@ export default class AllGroceryList extends React.Component {
               this.setState({
                 allGroceryList: allListInfo,
                 user: decode,
+                isLoading: false,
               });
             });
           // this.setState({
@@ -88,7 +91,7 @@ export default class AllGroceryList extends React.Component {
   }
 
   render() {
-    const { user, allGroceryList } = this.state;
+    const { user, allGroceryList, isLoading } = this.state;
     // const allGroceryList = [
     //   { id: 1, title: "list 1", shared_users: [], owner: "person 1" },
     //   {
@@ -108,44 +111,53 @@ export default class AllGroceryList extends React.Component {
     return (
       <div>
         {!sessionStorage.getItem("authorization") && <NoAccess />}
-        {sessionStorage.getItem("authorization") && user && (
+        {sessionStorage.getItem("authorization") && (
           <>
             <UserHeader />
-            <main className="grocery">
-              <div className="grocery__wrapper">
-                <h2 className="grocery__title">Grocery List</h2>
-                <div className="grocery__content-wrapper">
-                  <div className="grocery__description-wrapper">
-                    <h4 className="grocery__description-left">List Name</h4>
-                    <h4 className="grocery__description-middle">Owner</h4>
-                    <h4 className="grocery__description-right">Shared with</h4>
+            {isLoading && <Loading />}
+            {user && (
+              <main className="grocery">
+                <div className="grocery__wrapper">
+                  <h2 className="grocery__title">Grocery List</h2>
+                  <div className="grocery__content-wrapper">
+                    <div className="grocery__description-wrapper">
+                      <h4 className="grocery__description-left">List Name</h4>
+                      <h4 className="grocery__description-middle">Owner</h4>
+                      <h4 className="grocery__description-right">
+                        Shared with
+                      </h4>
+                    </div>
+                    <ul className="grocery__list">
+                      {allGroceryList.map((list) => (
+                        <Link
+                          className="grocery__link"
+                          key={list.id}
+                          to={`/grocery/${list.id}`}
+                          // listId={list.id}
+                        >
+                          <p className="grocery__link-name">{list.title}</p>
+                          <p className="grocery__link-owner">{list.owner}</p>
+                          <p className="grocery__link-shared">
+                            {list.shared_users.length !== 0
+                              ? list.shared_users.join(", ")
+                              : "---"}
+                          </p>
+                        </Link>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="grocery__list">
-                    {allGroceryList.map((list) => (
-                      <Link
-                        className="grocery__link"
-                        key={list.id}
-                        to={`/grocery/${list.id}`}
-                        // listId={list.id}
-                      >
-                        <p className="grocery__link-name">{list.title}</p>
-                        <p className="grocery__link-owner">{list.owner}</p>
-                        <p className="grocery__link-shared">
-                          {list.shared_users.length !== 0
-                            ? list.shared_users.join(", ")
-                            : "---"}
-                        </p>
-                      </Link>
-                    ))}
-                  </ul>
+                  <div className="grocery__button-wrapper">
+                    <p
+                      className="grocery__add-button"
+                      onClick={this.addNewList}
+                    >
+                      + Add New List
+                    </p>
+                  </div>
                 </div>
-                <div className="grocery__button-wrapper">
-                  <p className="grocery__add-button" onClick={this.addNewList}>
-                    + Add New List
-                  </p>
-                </div>
-              </div>
-            </main>
+              </main>
+            )}
+
             <Sidebar isActive={"Grocery Lists"} />
           </>
         )}

@@ -41,21 +41,23 @@
 
   &__box {
     position: absolute;
+    border-radius: 4px;
     top: pageYOffset;
     right: 4vw;
-    height: toRem(400);
+    height: toRem(300);
     width: 90vw;
     background-color: $background-primary-color;
-    padding: toRem(60) toRem(16) 0 toRem(16);
+    padding: toRem(23);
+    // padding: toRem(60) toRem(16) 0 toRem(16);
     z-index: 20;
 
     @include tablet-breakpoint {
       position: absolute;
-      width: toRem(672);
+      width: toRem(600);
       height: toRem(262);
       top: toRem(185);
-      right: calc(50vw - toRem(336));
-      padding: toRem(40) toRem(64);
+      right: calc(50vw - toRem(300));
+      padding: toRem(40);
     }
   }
 
@@ -66,14 +68,15 @@
     right: toRem(21);
   }
   &__title {
-    @include text-style(toRem(28), toRem(36), $font-demi);
+    @include text-style(toRem(20), toRem(22), $font-demi);
     margin-bottom: toRem(16);
+    width: calc(100% - toRem(40));
     @include tablet-breakpoint {
       @include text-style(toRem(32), toRem(40), $font-demi);
     }
   }
   &__content {
-    @include text-style(toRem(15), toRem(26), $font-regular);
+    @include text-style(toRem(14), toRem(20), $font-regular);
     @include tablet-breakpoint {
       @include text-style(toRem(16), toRem(28), $font-regular);
       margin-bottom: toRem(32);
@@ -83,7 +86,7 @@
     position: absolute;
     @include flex-wrap(row, space-between);
     bottom: toRem(24);
-    width: calc(90vw - toRem(32));
+    width: calc(90vw - toRem(46));
     @include tablet-breakpoint {
       position: relative;
       width: 100%;

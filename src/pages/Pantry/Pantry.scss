@@ -341,4 +341,9 @@
 
 .pantry__save--bottom {
   width: 100%;
+  border-right: none;
+  border-radius: 0 0 4px 4px;
+}
+.pantry-form__message {
+  margin-left: toRem(24);
 }
