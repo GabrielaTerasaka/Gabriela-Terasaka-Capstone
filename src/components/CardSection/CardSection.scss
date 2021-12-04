@@ -11,8 +11,6 @@
     @include flex-wrap(row, space-around);
 
     @include tablet-breakpoint {
-      // @include flex-wrap(row, space-between);
-
       padding: toRem(40) toRem(32) 0 toRem(32);
       max-width: toRem(1020);
       margin: 0 auto;

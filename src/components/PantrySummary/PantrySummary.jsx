@@ -4,21 +4,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-// const listArr = [
-//   { ingredient: "ingredient 1", quantity: "1", unit: "gram" },
-//   { ingredient: "ingredient 2", quantity: "2", unit: "lb" },
-//   { ingredient: "ingredient 3", quantity: "3", unit: "lb" },
-//   { ingredient: "ingredient 4", quantity: "4", unit: "lb" },
-//   { ingredient: "ingredient 5", quantity: "5", unit: "lb" },
-//   { ingredient: "ingredient 6", quantity: "6", unit: "lb" },
-//   { ingredient: "ingredient 7", quantity: "7", unit: "lb" },
-//   { ingredient: "ingredient 8", quantity: "8", unit: "lb" },
-//   { ingredient: "ingredient 9", quantity: "9", unit: "lb" },
-//   { ingredient: "ingredient 10", quantity: "10", unit: "lb" },
-//   { ingredient: "ingredient 11", quantity: "11", unit: "lb" },
-// ];
-// const listArr = [];
-
 class PantrySummary extends React.Component {
   state = {
     currentPantry: null,
@@ -28,22 +13,15 @@ class PantrySummary extends React.Component {
   componentDidMount() {
     const token = sessionStorage.getItem("authorization");
     axios
-      // .get(`http://localhost:8080/units`, {
-      //   headers: { Authorization: token },
-      // })
       .get(`https://shrouded-peak-10650.herokuapp.com/units`, {
         headers: { Authorization: token },
       })
       .then((res) => {
         axios
-          // .get(`http://localhost:8080/pantry-items`, {
-          //   headers: { Authorization: token },
-          // })
           .get(`https://shrouded-peak-10650.herokuapp.com/pantry-items`, {
             headers: { Authorization: token },
           })
           .then((response) => {
-            // console.log(response.data);
             this.setState({
               currentPantry: response.data,
               units: res.data,
@@ -57,13 +35,6 @@ class PantrySummary extends React.Component {
 
   render() {
     const { currentPantry, units } = this.state;
-    // const lastUpdate =
-    //   currentPantry &&
-    //   Math.max(
-    //     currentPantry.map((item) => Number(item.ingredient_date_bought))
-    //   );
-    // console.log(lastUpdate);
-    // console.log(currentPantry);
     const date =
       currentPantry &&
       currentPantry.length !== 0 &&
@@ -72,9 +43,6 @@ class PantrySummary extends React.Component {
           (a, b) => a.ingredient_date_bought - b.ingredient_date_bought
         )[currentPantry.length - 1].ingredient_date_bought
       );
-    // console.log(date);
-
-    // const date = new Date(Date.now());
     const format = {
       year: "numeric",
       month: "long",
@@ -116,7 +84,6 @@ class PantrySummary extends React.Component {
               </h4>
             )}
             <div className="summary__wrapper">
-              {/* <p className="summary__add-button">+ Add New Ingredient</p> */}
               <Link to="/pantry" className="summary__more-button">
                 See More
               </Link>

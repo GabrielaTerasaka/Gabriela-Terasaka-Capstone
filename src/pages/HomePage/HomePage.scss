@@ -26,7 +26,6 @@
   &__summary-wrapper {
     @include flex-wrap;
     gap: toRem(16);
-    // overflow: visible;
     @include tablet-breakpoint {
       @include flex-wrap(row, flex-start, flex-start);
     }

@@ -27,7 +27,6 @@ export default class HomePage extends React.Component {
         user: decode,
         isLoading: false,
       });
-      // console.log(decode);
     }
   }
 

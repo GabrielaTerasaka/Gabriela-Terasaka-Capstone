@@ -15,10 +15,6 @@
   flex-wrap: wrap;
 }
 
-// @mixin toRem($property, $value) {
-//   #{$property}: ($value / 16) + rem;
-// }
-
 @mixin button {
   border-radius: 50px;
   width: fit-content;
@@ -52,7 +48,7 @@
 
 @mixin input {
   border-radius: 8px;
-  border: 1px solid rgba($color: $black, $alpha: 0.5);
+  border: 1px solid rgba($color: $font-primary-color, $alpha: 0.5);
   padding: toRem(8) toRem(10);
   margin: toRem(4) 0;
   background-color: $background-primary-color;
@@ -80,7 +76,6 @@
 }
 
 @mixin label {
-  // display: block;
   margin-bottom: toRem(16);
   @include flex-wrap(column, flex-start, flex-start);
   @include text-style(toRem(14), toRem(16), $font-demi);

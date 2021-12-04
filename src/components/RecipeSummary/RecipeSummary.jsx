@@ -8,8 +8,6 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
 const listArr = ["recipe 1", "recipe 2", "recipe 3", "recipe 4"];
 
-// const listArr = [];
-
 class RecipeSummary extends React.Component {
   render() {
     return (
@@ -44,8 +42,6 @@ class RecipeSummary extends React.Component {
           ))}
         </ul>
         <div className="summary__wrapper summary__wrapper--recipe">
-          {/* <p className="summary__add-button">+ Add New Recipe</p>
-          <p className="summary__more-button">See More</p> */}
           <Link
             to="/featureinprogress"
             className="summary__add-button"
@@ -87,9 +83,6 @@ class RecipeSummary extends React.Component {
           ))}
         </ul>
         <div className="summary__wrapper summary__wrapper--recipe">
-          {/* <p className="summary__more-button summary__more-button--tasty">
-            See More
-          </p> */}
           <Link
             to="/featureinprogress"
             className="summary__more-button summary__more-button--tasty"

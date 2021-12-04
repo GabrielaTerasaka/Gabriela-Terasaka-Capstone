@@ -2,7 +2,7 @@ import "./Loading.scss";
 
 function Loading() {
   return (
-    <div className="lds-default">
+    <div className="load">
       <div></div>
       <div></div>
       <div></div>

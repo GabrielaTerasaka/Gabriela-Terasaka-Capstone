@@ -2,8 +2,6 @@ import "./DeleteModal.scss";
 import closeIcon from "../../assets/icons/close-24px.svg";
 
 export default function DeleteModal(props) {
-  // console.log(props.selectedItem);
-
   const { title } = props.selectedItem;
   return (
     <section className="modal">
@@ -14,7 +12,6 @@ export default function DeleteModal(props) {
         }}
       ></div>
       <div className="modal__box" style={{ top: window.scrollY + "px" }}>
-        {/* <div className="modal__box"> */}
         <img
           src={closeIcon}
           alt="close icon"

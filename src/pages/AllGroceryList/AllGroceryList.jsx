@@ -21,15 +21,10 @@ export default class AllGroceryList extends React.Component {
   addNewList = () => {
     const token = sessionStorage.getItem("authorization");
     axios
-      // .post(`http://localhost:8080/grocery`, {
-      //   headers: { Authorization: token },
-      // })
       .post(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
         headers: { Authorization: token },
       })
       .then((response) => {
-        // console.log(response.data);
-        // window.location.href = `/grocery/${response.data[0]}`;
         window.history.pushState(
           null,
           "List Page",
@@ -51,24 +46,16 @@ export default class AllGroceryList extends React.Component {
       );
       const token = sessionStorage.getItem("authorization");
       axios
-        // .get(`http://localhost:8080/grocery`, {
-        //   headers: { Authorization: token },
-        // })
         .get(`https://shrouded-peak-10650.herokuapp.com/grocery`, {
           headers: { Authorization: token },
         })
         .then((response) => {
-          // console.log(response.data);
           const userList = response.data;
           axios
-            // .get(`http://localhost:8080/grocery-users`, {
-            //   headers: { Authorization: token },
-            // })
             .get(`https://shrouded-peak-10650.herokuapp.com/grocery-users`, {
               headers: { Authorization: token },
             })
             .then((res) => {
-              // console.log(res.data);
               const sharedLists = res.data;
               const allListInfo = userList.map((list) => {
                 return {
@@ -78,45 +65,22 @@ export default class AllGroceryList extends React.Component {
                     .map((user) => user.shared_user_name),
                 };
               });
-              // console.log(allListInfo);
               this.setState({
                 allGroceryList: allListInfo,
                 user: decode,
                 isLoading: false,
               });
             });
-          // this.setState({
-          //   currentLists: response.data,
-          // });
         })
         .catch((err) => {
           console.log(err);
         });
-      // this.setState({
-      //   user: decode,
-      // });
-      // console.log(decode);
     }
   }
 
   render() {
     const { user, allGroceryList, isLoading } = this.state;
-    // const allGroceryList = [
-    //   { id: 1, title: "list 1", shared_users: [], owner: "person 1" },
-    //   {
-    //     id: 2,
-    //     title: "list 2",
-    //     shared_users: ["person 1", "person 2"],
-    //     owner: "person 1",
-    //   },
-    //   {
-    //     id: 3,
-    //     title: "list 3",
-    //     shared_users: ["person 2", "person 3", "person 7"],
-    //     owner: "person 1",
-    //   },
-    //   { id: 4, title: "list 4", shared_users: [], owner: "person 1" },
-    // ];
+
     return (
       <div>
         {!sessionStorage.getItem("authorization") && <NoAccess />}
@@ -142,7 +106,6 @@ export default class AllGroceryList extends React.Component {
                           className="grocery__link"
                           key={list.id}
                           to={`/grocery/${list.id}`}
-                          // listId={list.id}
                         >
                           <p className="grocery__link-name">{list.title}</p>
                           <p className="grocery__link-owner">{list.owner}</p>

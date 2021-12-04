@@ -10,15 +10,11 @@
 .header {
   position: absolute;
   width: 100%;
-  // height: calc(100% - toRem(78));
   height: 100%;
   @include tablet-breakpoint {
     position: relative;
     @include flex-wrap(row, space-between);
     max-width: toRem(1020);
-    margin: auto;
-  }
-  @include desktop-breakpoint {
     margin: auto;
   }
 
@@ -53,24 +49,20 @@
     @include text-style(toRem(16), toRem(18), $font-regular);
 
     width: 100%;
-    // text-align: center;
     margin: 0 auto;
     padding-bottom: toRem(24);
-    // border-bottom: 1px $primary-color1 solid;
     &:hover {
       color: $primary-color2;
       text-decoration: underline;
       text-decoration-color: $primary-color2;
     }
     @include tablet-breakpoint {
-      // @include text-style(toRem(16), toRem(18), $font-regular);
       margin: 0;
     }
   }
   &__login {
     @include tablet-breakpoint {
       @include button;
-      // margin: 0;
     }
   }
   &__sign-up {

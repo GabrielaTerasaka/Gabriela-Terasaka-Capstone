@@ -12,7 +12,6 @@
     padding: toRem(40) 5%;
     @include tablet-breakpoint {
       margin-left: toRem(93);
-      // max-width: toRem(1460);
       max-width: toRem(1364);
       padding: toRem(40);
       @include flex-wrap;
@@ -32,7 +31,6 @@
     max-width: toRem(800);
     width: 100%;
     @include flex-wrap(column, flex-start, flex-start);
-    // padding: toRem(16);
   }
   &__description-wrapper {
     @include flex-wrap(row, space-between);
@@ -46,36 +44,22 @@
   &__description-left,
   &__link-name {
     width: 40%;
-    // @include text-style(toRem(18), toRem(20), $font-demi);
-    // @include tablet-breakpoint {
-    //   @include text-style(toRem(22), toRem(24), $font-demi);
-    // }
   }
   &__description-middle,
   &__link-owner {
     width: 25%;
     text-align: center;
-
-    // @include text-style(toRem(18), toRem(20), $font-demi);
-    // @include tablet-breakpoint {
-    //   @include text-style(toRem(22), toRem(24), $font-demi);
-    // }
   }
   &__description-right,
   &__link-shared {
     width: 35%;
     text-align: center;
-    // @include text-style(toRem(18), toRem(20), $font-demi);
-    // @include tablet-breakpoint {
-    //   @include text-style(toRem(22), toRem(24), $font-demi);
-    // }
   }
   &__list {
     width: 100%;
     @include flex-wrap(column, flex-start, flex-start);
   }
   &__link {
-    // margin: toRem(8) 0;
     @include text-style(toRem(14), toRem(16), $font-regular);
     @include flex-wrap(row, space-between);
     width: 100%;
@@ -84,7 +68,6 @@
     &:hover {
       color: $font-primary-color;
       background-color: $background-secondary-color;
-      // border-radius: 4px;
     }
     @include tablet-breakpoint {
       @include text-style(toRem(16), toRem(18), $font-regular);

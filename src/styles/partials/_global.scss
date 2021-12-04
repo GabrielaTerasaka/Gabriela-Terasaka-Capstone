@@ -10,16 +10,13 @@
   text-align: left;
   outline: none;
   text-decoration: none;
-  // overflow-x: hidden;
 }
 
 body {
-  // font-family: "Mulish", sans-serif;
   font-family: "Montserrat", sans-serif;
   font-size: toRem(20);
   font-weight: 400;
   color: $font-primary-color;
-  // remove below
   overflow-x: hidden;
 }
 

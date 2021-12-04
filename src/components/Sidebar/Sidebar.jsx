@@ -37,7 +37,6 @@ const optionsArr = [
 ];
 
 function Sidebar(props) {
-  // const props = { isActive: "Home" };
   const { isActive } = props;
   return (
     <aside className="sidebar">
